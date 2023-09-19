@@ -1,5 +1,5 @@
 
-package task111;
+package task;
 
 /**
  * Класс для сортировки массива методом пирамиды (heap sort).
