@@ -1,5 +1,5 @@
 
-package task_1_1_1;
+package task111;
 
 /**
  * Класс для сортировки массива методом пирамиды (heap sort).
@@ -10,7 +10,7 @@ public class App {
      *
      * @param arr Массив, который требуется отсортировать.
      */
-    public static void heapSort(int arr[]) {
+    public static void heapSort(int[] arr) {
         int n = arr.length;
 
         // Построение max-кучи
@@ -37,7 +37,7 @@ public class App {
      * @param n   Размер кучи.
      * @param i   Индекс элемента, с которого начинается преобразование max-кучи.
      */
-    public static void heapify(int arr[], int n, int i) {
+    public static void heapify(int[] arr, int n, int i) {
         int largest = i; // Инициализируем наибольший элемент как корень
         int left = 2 * i + 1; // Левый дочерний элемент
         int right = 2 * i + 2; // Правый дочерний элемент
