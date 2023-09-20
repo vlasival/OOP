@@ -53,13 +53,13 @@ public class AppTest {
     }
 
     @Test
-    public void testPrintArray(){
+    public void testPrintArray() {
         App.printArray(new int[] {});
         assertTrue(true);
     }
 
     @Test
-    public void testMain(){
+    public void testMain() {
         App.main(new String[] {});
         assertTrue(true);
     }

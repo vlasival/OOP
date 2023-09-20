@@ -63,15 +63,22 @@ public class App {
         }
     }
 
+    /**
+     * Метод содержит в себе тестовый массив чисел для сортировки методом heapsort
+     */
     public static void main(String[] args) {
 
-        int[] array = {-29, 12, -17, 5, -20, 25, -8, 16, -4, 19, -11, 28, -23, 6, -14, 3, -2, 27, -18, 7, -26, 9, -15, 21, -1, 13, -10, 24, -30, 22};
+        int[] array = {-29, 12, -17, 5, -20, 25, -8, 16, -4, 19, -11, 28, -23,
+         6, -14, 3, -2, 27, -18, 7, -26, 9, -15, 21, -1, 13, -10, 24, -30, 22};
 
         heapSort(array);
 
         printArray(array);
     }
 
+    /**
+     * Метод выводит массив intов на экран
+     */
     public static void printArray(int[] arr) {
         for (int number : arr) {
             System.out.print(number + " ");
