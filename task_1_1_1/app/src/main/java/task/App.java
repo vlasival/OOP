@@ -1,7 +1,6 @@
 
 package task;
 
-import java.util.Scanner;
 /**
  * Класс для сортировки массива методом пирамиды (heap sort).
  */
@@ -66,24 +65,15 @@ public class App {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Введите размер массива: ");
-        int size = scanner.nextInt();
-
-        int[] array = new int[size];
-
-        System.out.println("Введите элементы массива:");
-
-
-        for (int i = 0; i < size; i++) {
-            System.out.print("Элемент " + (i + 1) + ": ");
-            array[i] = scanner.nextInt();
-        }
+        int[] array = {-29, 12, -17, 5, -20, 25, -8, 16, -4, 19, -11, 28, -23, 6, -14, 3, -2, 27, -18, 7, -26, 9, -15, 21, -1, 13, -10, 24, -30, 22};
 
         heapSort(array);
 
-        for (int number : array) {
+        printArray(array);
+    }
+
+    public static void printArray(int[] arr) {
+        for (int number : arr) {
             System.out.print(number + " ");
         }
         System.out.print("\n");

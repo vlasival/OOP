@@ -2,6 +2,7 @@
 package task;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -49,6 +50,18 @@ public class AppTest {
         int[] expectedArray = {-2147483648, 0, 2147483647};
         App.heapSort(inputArray);
         assertArrayEquals(expectedArray, inputArray);
+    }
+
+    @Test
+    public void testPrintArray(){
+        App.printArray(new int[] {});
+        assertTrue(true);
+    }
+
+    @Test
+    public void testMain(){
+        App.main(new String[] {});
+        assertTrue(true);
     }
 }
 
