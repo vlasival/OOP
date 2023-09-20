@@ -38,18 +38,18 @@ public class App {
      * @param i   Индекс элемента, с которого начинается преобразование max-кучи.
      */
     public static void heapify(int[] arr, int n, int i) {
-        int largest = i; // Инициализируем наибольший элемент как корень
-        int left = 2 * i + 1; // Левый дочерний элемент
-        int right = 2 * i + 2; // Правый дочерний элемент
+        int largest = i; 
+        int leftChild = 2 * i + 1; 
+        int rightChild = 2 * i + 2; 
 
         // Если левый дочерний элемент больше корня
-        if (left < n && arr[left] > arr[largest]) {
-            largest = left;
+        if (leftChild < n && arr[leftChild] > arr[largest]) {
+            largest = leftChild;
         }
 
         // Если правый дочерний элемент больше, чем наибольший элемент на данный момент
-        if (right < n && arr[right] > arr[largest]) {
-            largest = right;
+        if (rightChild < n && arr[rightChild] > arr[largest]) {
+            largest = rightChild;
         }
 
         // Если наибольший элемент не корень
