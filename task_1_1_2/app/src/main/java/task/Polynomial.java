@@ -1,5 +1,5 @@
 
-package task2;
+package task;
 
 import java.util.Arrays;
 
@@ -11,7 +11,7 @@ public class Polynomial {
     public int[] coefficients;
 
     /**
-     * Class constructor
+     * Class constructor.
      */
     public Polynomial(int[] args) {
         count = args.length;
@@ -40,16 +40,14 @@ public class Polynomial {
             }
 
             if (i == 0) {
-                if (coeff < 0){
+                if (coeff < 0) {
                     result.append("-");
                     coeff = -coeff;
                 }
-            }
-            else {
+            } else {
                 if (coeff > 0) {
                     result.append(" + ");
-                }
-                else {
+                } else {
                     result.append(" - "); 
                     coeff = -coeff;  
                 }
@@ -70,7 +68,9 @@ public class Polynomial {
         return result.toString();
     }
 
-
+    /**
+     * Method realising adding of polynoms.
+     */
     public Polynomial plus(Polynomial poly) {
         int maxLen = Math.max(poly.count, count);
         int[] coeffs = new int[maxLen];
@@ -82,6 +82,9 @@ public class Polynomial {
         return new Polynomial(coeffs);
     }
 
+    /**
+     * Method realising substraction of polynoms.
+     */
     public Polynomial minus(Polynomial poly) {
         int maxLen = Math.max(poly.count, count);
         int[] coeffs = new int[maxLen];
@@ -93,6 +96,9 @@ public class Polynomial {
         return new Polynomial(coeffs);
     }
 
+    /**
+     * Method checking if polynoms are equal.
+     */
     public boolean equals(Polynomial poly) {
         if (count != poly.count){
             return false;
@@ -105,6 +111,9 @@ public class Polynomial {
         return true;
     }
 
+    /**
+     * Method realising multiplication of polynoms.
+     */
     public Polynomial times(Polynomial poly) {
         int[] mult = new int[poly.count + count - 1];
 
@@ -117,6 +126,9 @@ public class Polynomial {
         return new Polynomial(mult);
     }
 
+    /**
+     * Method realising taking derivative of polynom.
+     */
     public Polynomial differentiate(int deg) {
         int[] newCoeffs = coefficients;
         int newCount = count;
@@ -131,6 +143,9 @@ public class Polynomial {
         return new Polynomial(newCoeffs);
     }
 
+    /**
+     * Method realising calculation of polynoms.
+     */
     public long evaluate(long x) {
         long res = 0;
         for (int i = 0; i < count - 1; i++) {
