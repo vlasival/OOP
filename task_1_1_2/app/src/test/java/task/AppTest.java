@@ -2,8 +2,8 @@
 package task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -126,7 +126,8 @@ class AppTest {
     public void testBigTest() {
         Polynomial p1 = new Polynomial(new int[] {3, 5, -2, -6, 7, 5, 3, -2});
         p1 = p1.differentiate(1);
-        assertTrue(p1.equals(new Polynomial(new int[] {21, 30, -10, -24, 21, 10, 3})), "Big test, 1");
+        assertTrue(p1.equals(
+            new Polynomial(new int[] {21, 30, -10, -24, 21, 10, 3})), "Big test, 1");
         p1 = p1.minus(new Polynomial(new int[] {0, 21, 0, 0, 0, 21, 10, 0}));
         assertTrue(p1.equals(new Polynomial(new int[] {30, -10, -24, 0, 0, 3})), "Big test, 2");
         p1 = p1.plus(new Polynomial(new int[] {-20, 5, 12, 2, 3, 2}));

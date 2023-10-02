@@ -12,7 +12,6 @@ public class Polynomial {
 
     /**
      * Constructs a polynomial from an array of coefficients.
-     *
      * @param args An array of coefficients.
      */
     public Polynomial(int[] args) {
@@ -77,7 +76,6 @@ public class Polynomial {
 
     /**
      * Adds two polynomials and returns the result as a new polynomial.
-     * 
      * @param poly is the polynomial to be added.
      * @return A new polynomial representing the sum of this polynomial and the provided polynomial.
      */
@@ -105,10 +103,9 @@ public class Polynomial {
 
     /**
      * Subtracts another polynomial from this polynomial and returns the result as a new polynomial.
-     * 
      * @param poly is the polynomial to be subtracted.
-     * @return A new polynomial representing the difference 
-     * between this polynomial and the provided polynomial.
+     * @return A new polynomial representing the difference <br>
+     *         between this polynomial and the provided polynomial.
      */
     public Polynomial minus(Polynomial poly) {
         int maxLen = poly.count > count ? poly.count : count;
@@ -139,12 +136,20 @@ public class Polynomial {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {return true;}
-        if ((obj == null) || (getClass() != obj.getClass())) {return false;}
+        if (this == obj) {
+            return true;
+        }
+        if ((obj == null) || (getClass() != obj.getClass())) {
+            return false;
+        }
         Polynomial that = (Polynomial) obj;
-        if (this.count != that.count) {return false;}
+        if (this.count != that.count) {
+            return false;
+        }
         for (int i = 0; i < count; i++) {
-            if (this.coefficients[i] != that.coefficients[i]) {return false;}
+            if (this.coefficients[i] != that.coefficients[i]) {
+                return false;
+            }
         }
         return true;
     }
@@ -207,11 +212,11 @@ public class Polynomial {
      */
     public long evaluate(long x) {
         long res = 0;
-        long xPower = 1;
+        long xpow = 1;
     
         for (int i = count - 1; i >= 0; i--) {
-            res += coefficients[i] * xPower;
-            xPower *= x;
+            res += coefficients[i] * xpow;
+            xpow *= x;
         }
     
         return res;
