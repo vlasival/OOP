@@ -12,7 +12,7 @@ public class Polynomial {
 
     /**
      * Constructs a polynomial from an array of coefficients.
-     * 
+     *
      * @param args An array of coefficients.
      */
     public Polynomial(int[] args) {
@@ -77,7 +77,7 @@ public class Polynomial {
 
     /**
      * Adds two polynomials and returns the result as a new polynomial.
-     * 
+     *
      * @param poly is the polynomial to be added.
      * @return A new polynomial representing the sum of this polynomial and the provided polynomial.
      */
@@ -105,7 +105,7 @@ public class Polynomial {
 
     /**
      * Subtracts another polynomial from this polynomial and returns the result as a new polynomial.
-     * 
+     *
      * @param poly is the polynomial to be subtracted.
      * @return A new polynomial representing the difference <br>
      *         between this polynomial and the provided polynomial.
@@ -172,7 +172,7 @@ public class Polynomial {
     
     /**
      * Multiplies two polynomials and returns the result as a new polynomial.
-     * 
+     *
      * @param poly is the polynomial to be multiplied.
      * @return A new polynomial representing the products of polynomials.
      */
@@ -190,7 +190,7 @@ public class Polynomial {
 
     /**
      * Computes the derivative of the polynomial with a specified degree.
-     * 
+     *
      * @param deg is the degree of the derivative to compute.
      * @return A new polynomial representing the derivative of this polynomial.
      */
@@ -212,7 +212,7 @@ public class Polynomial {
 
     /**
      * Evaluates the polynomial at a given value of x.
-     * 
+     *
      * @param x is the value of x at which to evaluate the polynomial.
      * @return The result of evaluating the polynomial at the given value of x.
      */
