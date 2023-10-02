@@ -4,26 +4,33 @@ package task;
 import java.util.Arrays;
 
 /**
- * Main class, which contain methods makes able to work with polynoms.
+ * Represents a polynomial and provides methods for polynomial operations.
  */
 public class Polynomial {
-    public int count;
-    public int[] coefficients;
+    public int count; // Contains number of coefficients.
+    public int[] coefficients; // Array of coefficients.
 
     /**
-     * Class constructor.
+     * Constructs a polynomial from an array of coefficients.
+     *
+     * @param args An array of coefficients.
      */
     public Polynomial(int[] args) {
         count = args.length;
-
-        int i = 0;
-        while ((i < count) && (args[i] == 0)) {
-            i++;
+    
+        int firstNonZeroIndex = 0;
+        while (firstNonZeroIndex < count && args[firstNonZeroIndex] == 0) {
+            firstNonZeroIndex++;
         }
-        coefficients = Arrays.copyOfRange(args, i, count);
-        count = args.length - i;
+    
+        coefficients = Arrays.copyOfRange(args, firstNonZeroIndex, count);
+        count = coefficients.length;
     }
-
+    
+    /**
+     * Redefinición of standart method toString().
+     * Represents polynom in string form.
+     */
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
@@ -69,42 +76,72 @@ public class Polynomial {
     }
 
     /**
-     * Method realising adding of polynoms.
+     * Adds two polynomials and returns the result as a new polynomial.
+     * @param poly is the polynomial to be added.
+     * @return A new polynomial representing the sum of this polynomial and the provided polynomial.
      */
     public Polynomial plus(Polynomial poly) {
-        int maxLen = Math.max(poly.count, count);
+        int maxLen = poly.count > count ? poly.count : count;
+        int minLen = poly.count < count ? poly.count : count;
         int[] coeffs = new int[maxLen];
 
-        for (int i = 0; i < maxLen; i++) {
-            coeffs[i] = coefficients[i] + poly.coefficients[i];
+        for (int i = 1; i <= minLen; i++) {
+            coeffs[maxLen - i] = this.coefficients[this.count - i] + poly.coefficients[poly.count - i];
+        }
+
+        if (this.count == minLen) {
+            for (int i = minLen + 1; i <= maxLen; i++) {
+                coeffs[maxLen - i] = poly.coefficients[maxLen - i];
+            }
+        } else {
+            for (int i = minLen + 1; i <= maxLen; i++) {
+                coeffs[maxLen - i] = this.coefficients[maxLen - i];
+            }
         }
 
         return new Polynomial(coeffs);
     }
 
     /**
-     * Method realising substraction of polynoms.
+     * Subtracts another polynomial from this polynomial and returns the result as a new polynomial.
+     * @param poly is the polynomial to be subtracted.
+     * @return A new polynomial representing the difference between this polynomial and the provided polynomial.
      */
     public Polynomial minus(Polynomial poly) {
-        int maxLen = Math.max(poly.count, count);
+        int maxLen = poly.count > count ? poly.count : count;
+        int minLen = poly.count < count ? poly.count : count;
         int[] coeffs = new int[maxLen];
 
-        for (int i = 0; i < maxLen; i++) {
-            coeffs[i] = coefficients[i] - poly.coefficients[i];
+        for (int i = 1; i <= minLen; i++) {
+            coeffs[maxLen - i] = this.coefficients[this.count - i] - poly.coefficients[poly.count - i];
         }
+
+        if (this.count == minLen) {
+            for (int i = minLen + 1; i <= maxLen; i++) {
+                coeffs[maxLen - i] = -poly.coefficients[maxLen - i];
+            }
+        } else {
+            for (int i = minLen + 1; i <= maxLen; i++) {
+                coeffs[maxLen - i] = this.coefficients[maxLen - i];
+            }
+        }
+
 
         return new Polynomial(coeffs);
     }
 
     /**
-     * Method checking if polynoms are equal.
+     * Checks if two polynomials are equal.
+     * Redefinicion of the standart method.
      */
-    public boolean equals(Polynomial poly) {
-        if (count != poly.count){
-            return false;
-        }
-        for (int i = 0; i < count; i++){
-            if (coefficients[i] != poly.coefficients[i]){
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if ((obj == null) || (getClass() != obj.getClass())) return false;
+        Polynomial that = (Polynomial) obj;
+        if (this.count != that.count) return false;
+        for (int i = 0; i < count; i++) {
+            if (this.coefficients[i] != that.coefficients[i]) {
                 return false;
             }
         }
@@ -112,7 +149,22 @@ public class Polynomial {
     }
 
     /**
-     * Method realising multiplication of polynoms.
+     * Redefinicion hashCode method.
+     * Returns a hash code value for the polynomial.
+     * Depends on polynomial length and coefficients.
+     */
+    @Override
+    public int hashCode() {
+        int result = 17; 
+        result = 31 * result + count;
+        result = 31 * result + Arrays.hashCode(coefficients);
+        return result;
+    }
+    
+    /**
+     * Multiplies two polynomials and returns the result as a new polynomial.
+     * @param poly is the polynomial to be multiplied.
+     * @return A new polynomial representing the products of polynomials.
      */
     public Polynomial times(Polynomial poly) {
         int[] mult = new int[poly.count + count - 1];
@@ -127,42 +179,40 @@ public class Polynomial {
     }
 
     /**
-     * Method realising taking derivative of polynom.
+     * Computes the derivative of the polynomial with a specified degree.
+     * @param deg is the degree of the derivative to compute.
+     * @return A new polynomial representing the derivative of this polynomial.
      */
     public Polynomial differentiate(int deg) {
-        int[] newCoeffs = coefficients;
-        int newCount = count;
+        if (deg >= count){
+            return new Polynomial(new int[] {0});
+        }
+        int[] newCoeffs = new int[count];
+        System.arraycopy(coefficients, 0, newCoeffs, 0, count);
         for (int i = 0; i < deg; i++) {
-            for (int j = 0; j < newCount - 1; j++) {
-                newCoeffs[j] *= newCount - j - 1;
+            for (int j = count - 1; j > i; j--) {
+                newCoeffs[j] = newCoeffs[j - 1] * (count - j);
             }
-            newCount -= 1;
-            newCoeffs = Arrays.copyOfRange(newCoeffs, 0, newCount);
+            newCoeffs[i] = 0;
         }
 
         return new Polynomial(newCoeffs);
     }
 
     /**
-     * Method realising calculation of polynoms.
+     * Evaluates the polynomial at a given value of x.
+     * @param x is the value of x at which to evaluate the polynomial.
+     * @return The result of evaluating the polynomial at the given value of x.
      */
     public long evaluate(long x) {
         long res = 0;
-        for (int i = 0; i < count - 1; i++) {
-            res += coefficients[i] * Math.pow(x, count - i - 1);
+        long xPower = 1;
+    
+        for (int i = count - 1; i >= 0; i--) {
+            res += coefficients[i] * xPower;
+            xPower *= x;
         }
-        res += coefficients[count - 1];
+    
         return res;
     }
-
-    // public static void main(String[] args) {
-    //     Polynomial p1 = new Polynomial(new int[] {0, 1, 2, 0, 1});
-    //     System.out.println(p1.toString());
-
-    //     Polynomial p2 = new Polynomial(new int[] {0, 0, 0});
-    //     System.out.println(p2.toString());
-    // }
-
 }
-
-
