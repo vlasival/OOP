@@ -11,7 +11,8 @@ public class Polynomial {
     public int[] coefficients; // Array of coefficients.
 
     /**
-     * Constructs a polynomial from an array of coefficients.
+     * Constructs a polynomial from an array of coefficients. <br>
+     * <br>
      * @param args An array of coefficients.
      */
     public Polynomial(int[] args) {
@@ -75,7 +76,8 @@ public class Polynomial {
     }
 
     /**
-     * Adds two polynomials and returns the result as a new polynomial.
+     * Adds two polynomials and returns the result as a new polynomial. <br>
+     * <br>
      * @param poly is the polynomial to be added.
      * @return A new polynomial representing the sum of this polynomial and the provided polynomial.
      */
@@ -102,7 +104,8 @@ public class Polynomial {
     }
 
     /**
-     * Subtracts another polynomial from this polynomial and returns the result as a new polynomial.
+     * Subtracts another polynomial from this polynomial and returns the result as a new polynomial. <br>
+     * <br>
      * @param poly is the polynomial to be subtracted.
      * @return A new polynomial representing the difference <br>
      *         between this polynomial and the provided polynomial.
@@ -168,7 +171,8 @@ public class Polynomial {
     }
     
     /**
-     * Multiplies two polynomials and returns the result as a new polynomial.
+     * Multiplies two polynomials and returns the result as a new polynomial. <br>
+     * <br>
      * @param poly is the polynomial to be multiplied.
      * @return A new polynomial representing the products of polynomials.
      */
@@ -185,12 +189,13 @@ public class Polynomial {
     }
 
     /**
-     * Computes the derivative of the polynomial with a specified degree.
+     * Computes the derivative of the polynomial with a specified degree. <br>
+     * <br>
      * @param deg is the degree of the derivative to compute.
      * @return A new polynomial representing the derivative of this polynomial.
      */
     public Polynomial differentiate(int deg) {
-        if (deg >= count){
+        if (deg >= count) {
             return new Polynomial(new int[] {0});
         }
         int[] newCoeffs = new int[count];
@@ -206,7 +211,8 @@ public class Polynomial {
     }
 
     /**
-     * Evaluates the polynomial at a given value of x.
+     * Evaluates the polynomial at a given value of x. <br>
+     * <br>
      * @param x is the value of x at which to evaluate the polynomial.
      * @return The result of evaluating the polynomial at the given value of x.
      */
