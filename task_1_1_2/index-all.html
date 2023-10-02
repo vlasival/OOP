@@ -48,7 +48,7 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
+<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
 <dt><a href="task/Polynomial.html#coefficients" class="member-name-link">coefficients</a> - Variable in class task.<a href="task/Polynomial.html" title="class in task">Polynomial</a></dt>
@@ -60,40 +60,57 @@ loadScripts(document, 'script');</script>
 <dl class="index">
 <dt><a href="task/Polynomial.html#differentiate(int)" class="member-name-link">differentiate(int)</a> - Method in class task.<a href="task/Polynomial.html" title="class in task">Polynomial</a></dt>
 <dd>
-<div class="block">Method realising taking derivative of polynom.</div>
+<div class="block">Computes the derivative of the polynomial with a specified degree.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:E">E</h2>
 <dl class="index">
-<dt><a href="task/Polynomial.html#equals(task.Polynomial)" class="member-name-link">equals(Polynomial)</a> - Method in class task.<a href="task/Polynomial.html" title="class in task">Polynomial</a></dt>
+<dt><a href="task/Polynomial.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in class task.<a href="task/Polynomial.html" title="class in task">Polynomial</a></dt>
 <dd>
-<div class="block">Method checking if polynoms are equal.</div>
+<div class="block">Checks if two polynomials are equal.</div>
 </dd>
 <dt><a href="task/Polynomial.html#evaluate(long)" class="member-name-link">evaluate(long)</a> - Method in class task.<a href="task/Polynomial.html" title="class in task">Polynomial</a></dt>
 <dd>
-<div class="block">Method realising calculation of polynoms.</div>
+<div class="block">Evaluates the polynomial at a given value of x.</div>
+</dd>
+</dl>
+<h2 class="title" id="I:H">H</h2>
+<dl class="index">
+<dt><a href="task/Polynomial.html#hashCode()" class="member-name-link">hashCode()</a> - Method in class task.<a href="task/Polynomial.html" title="class in task">Polynomial</a></dt>
+<dd>
+<div class="block">Redefinicion hashCode method.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:M">M</h2>
 <dl class="index">
+<dt><a href="task/Main.html#main(java.lang.String%5B%5D)" class="member-name-link">main(String[])</a> - Static method in class task.<a href="task/Main.html" title="class in task">Main</a></dt>
+<dd>
+<div class="block">The main entry point of the application.</div>
+</dd>
+<dt><a href="task/Main.html" class="type-name-link" title="class in task">Main</a> - Class in <a href="task/package-summary.html">task</a></dt>
+<dd>
+<div class="block">Main class.</div>
+</dd>
+<dt><a href="task/Main.html#%3Cinit%3E()" class="member-name-link">Main()</a> - Constructor for class task.<a href="task/Main.html" title="class in task">Main</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="task/Polynomial.html#minus(task.Polynomial)" class="member-name-link">minus(Polynomial)</a> - Method in class task.<a href="task/Polynomial.html" title="class in task">Polynomial</a></dt>
 <dd>
-<div class="block">Method realising substraction of polynoms.</div>
+<div class="block">Subtracts another polynomial from this polynomial and returns the result as a new polynomial.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:P">P</h2>
 <dl class="index">
 <dt><a href="task/Polynomial.html#plus(task.Polynomial)" class="member-name-link">plus(Polynomial)</a> - Method in class task.<a href="task/Polynomial.html" title="class in task">Polynomial</a></dt>
 <dd>
-<div class="block">Method realising adding of polynoms.</div>
+<div class="block">Adds two polynomials and returns the result as a new polynomial.</div>
 </dd>
 <dt><a href="task/Polynomial.html" class="type-name-link" title="class in task">Polynomial</a> - Class in <a href="task/package-summary.html">task</a></dt>
 <dd>
-<div class="block">Main class, which contain methods makes able to work with polynoms.</div>
+<div class="block">Represents a polynomial and provides methods for polynomial operations.</div>
 </dd>
 <dt><a href="task/Polynomial.html#%3Cinit%3E(int%5B%5D)" class="member-name-link">Polynomial(int[])</a> - Constructor for class task.<a href="task/Polynomial.html" title="class in task">Polynomial</a></dt>
 <dd>
-<div class="block">Class constructor.</div>
+<div class="block">Constructs a polynomial from an array of coefficients.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:T">T</h2>
@@ -102,12 +119,14 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="task/Polynomial.html#times(task.Polynomial)" class="member-name-link">times(Polynomial)</a> - Method in class task.<a href="task/Polynomial.html" title="class in task">Polynomial</a></dt>
 <dd>
-<div class="block">Method realising multiplication of polynoms.</div>
+<div class="block">Multiplies two polynomials and returns the result as a new polynomial.</div>
 </dd>
 <dt><a href="task/Polynomial.html#toString()" class="member-name-link">toString()</a> - Method in class task.<a href="task/Polynomial.html" title="class in task">Polynomial</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Redefinición of standart method toString().</div>
+</dd>
 </dl>
-<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
+<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
 </div>
 </div>
 </body>

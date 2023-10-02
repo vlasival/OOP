@@ -90,7 +90,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Polynomial</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Main class, which contain methods makes able to work with polynoms.</div>
+<div class="block">Represents a polynomial and provides methods for polynomial operations.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -122,7 +122,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int%5B%5D)" class="member-name-link">Polynomial</a><wbr>(int[]&nbsp;args)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Class constructor.</div>
+<div class="block">Constructs a polynomial from an array of coefficients.</div>
 </div>
 </div>
 </section>
@@ -141,42 +141,49 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Polynomial.html" title="class in task">Polynomial</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#differentiate(int)" class="member-name-link">differentiate</a><wbr>(int&nbsp;deg)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Method realising taking derivative of polynom.</div>
+<div class="block">Computes the derivative of the polynomial with a specified degree.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(task.Polynomial)" class="member-name-link">equals</a><wbr>(<a href="Polynomial.html" title="class in task">Polynomial</a>&nbsp;poly)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;obj)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Method checking if polynoms are equal.</div>
+<div class="block">Checks if two polynomials are equal.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#evaluate(long)" class="member-name-link">evaluate</a><wbr>(long&nbsp;x)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Method realising calculation of polynoms.</div>
+<div class="block">Evaluates the polynomial at a given value of x.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Polynomial.html" title="class in task">Polynomial</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#minus(task.Polynomial)" class="member-name-link">minus</a><wbr>(<a href="Polynomial.html" title="class in task">Polynomial</a>&nbsp;poly)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Method realising substraction of polynoms.</div>
+<div class="block">Redefinicion hashCode method.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Polynomial.html" title="class in task">Polynomial</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#plus(task.Polynomial)" class="member-name-link">plus</a><wbr>(<a href="Polynomial.html" title="class in task">Polynomial</a>&nbsp;poly)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#minus(task.Polynomial)" class="member-name-link">minus</a><wbr>(<a href="Polynomial.html" title="class in task">Polynomial</a>&nbsp;poly)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Method realising adding of polynoms.</div>
+<div class="block">Subtracts another polynomial from this polynomial and returns the result as a new polynomial.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Polynomial.html" title="class in task">Polynomial</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#times(task.Polynomial)" class="member-name-link">times</a><wbr>(<a href="Polynomial.html" title="class in task">Polynomial</a>&nbsp;poly)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#plus(task.Polynomial)" class="member-name-link">plus</a><wbr>(<a href="Polynomial.html" title="class in task">Polynomial</a>&nbsp;poly)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Method realising multiplication of polynoms.</div>
+<div class="block">Adds two polynomials and returns the result as a new polynomial.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Polynomial.html" title="class in task">Polynomial</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#times(task.Polynomial)" class="member-name-link">times</a><wbr>(<a href="Polynomial.html" title="class in task">Polynomial</a>&nbsp;poly)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Multiplies two polynomials and returns the result as a new polynomial.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Redefinición of standart method toString().</div>
+</div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
-<code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
+<code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
 </section>
 </li>
 </ul>
@@ -212,7 +219,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(int[])">
 <h3>Polynomial</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Polynomial</span><wbr><span class="parameters">(int[]&nbsp;args)</span></div>
-<div class="block">Class constructor.</div>
+<div class="block">Constructs a polynomial from an array of coefficients.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>args</code> - An array of coefficients.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -227,6 +238,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="toString()">
 <h3>toString</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
+<div class="block">Redefinición of standart method toString().
+ Represents polynom in string form.</div>
 <dl class="notes">
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
@@ -237,42 +250,90 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="plus(task.Polynomial)">
 <h3>plus</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Polynomial.html" title="class in task">Polynomial</a></span>&nbsp;<span class="element-name">plus</span><wbr><span class="parameters">(<a href="Polynomial.html" title="class in task">Polynomial</a>&nbsp;poly)</span></div>
-<div class="block">Method realising adding of polynoms.</div>
+<div class="block">Adds two polynomials and returns the result as a new polynomial.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>poly</code> - is the polynomial to be added.</dd>
+<dt>Returns:</dt>
+<dd>A new polynomial representing the sum of this polynomial and the provided polynomial.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="minus(task.Polynomial)">
 <h3>minus</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Polynomial.html" title="class in task">Polynomial</a></span>&nbsp;<span class="element-name">minus</span><wbr><span class="parameters">(<a href="Polynomial.html" title="class in task">Polynomial</a>&nbsp;poly)</span></div>
-<div class="block">Method realising substraction of polynoms.</div>
+<div class="block">Subtracts another polynomial from this polynomial and returns the result as a new polynomial.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>poly</code> - is the polynomial to be subtracted.</dd>
+<dt>Returns:</dt>
+<dd>A new polynomial representing the difference between this polynomial and the provided polynomial.</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="equals(task.Polynomial)">
+<section class="detail" id="equals(java.lang.Object)">
 <h3>equals</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">equals</span><wbr><span class="parameters">(<a href="Polynomial.html" title="class in task">Polynomial</a>&nbsp;poly)</span></div>
-<div class="block">Method checking if polynoms are equal.</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">equals</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;obj)</span></div>
+<div class="block">Checks if two polynomials are equal.
+ Redefinicion of the standart method.</div>
+<dl class="notes">
+<dt>Overrides:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="hashCode()">
+<h3>hashCode</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">hashCode</span>()</div>
+<div class="block">Redefinicion hashCode method.
+ Returns a hash code value for the polynomial.
+ Depends on polynomial length and coefficients.</div>
+<dl class="notes">
+<dt>Overrides:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="times(task.Polynomial)">
 <h3>times</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Polynomial.html" title="class in task">Polynomial</a></span>&nbsp;<span class="element-name">times</span><wbr><span class="parameters">(<a href="Polynomial.html" title="class in task">Polynomial</a>&nbsp;poly)</span></div>
-<div class="block">Method realising multiplication of polynoms.</div>
+<div class="block">Multiplies two polynomials and returns the result as a new polynomial.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>poly</code> - is the polynomial to be multiplied.</dd>
+<dt>Returns:</dt>
+<dd>A new polynomial representing the products of polynomials.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="differentiate(int)">
 <h3>differentiate</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Polynomial.html" title="class in task">Polynomial</a></span>&nbsp;<span class="element-name">differentiate</span><wbr><span class="parameters">(int&nbsp;deg)</span></div>
-<div class="block">Method realising taking derivative of polynom.</div>
+<div class="block">Computes the derivative of the polynomial with a specified degree.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>deg</code> - is the degree of the derivative to compute.</dd>
+<dt>Returns:</dt>
+<dd>A new polynomial representing the derivative of this polynomial.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="evaluate(long)">
 <h3>evaluate</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">evaluate</span><wbr><span class="parameters">(long&nbsp;x)</span></div>
-<div class="block">Method realising calculation of polynoms.</div>
+<div class="block">Evaluates the polynomial at a given value of x.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>x</code> - is the value of x at which to evaluate the polynomial.</dd>
+<dt>Returns:</dt>
+<dd>The result of evaluating the polynomial at the given value of x.</dd>
+</dl>
 </section>
 </li>
 </ul>
