@@ -227,4 +227,13 @@ public class Polynomial {
     
         return res;
     }
+
+    /**
+     * The main entry point of the application.
+     */
+    public static void main(String[] args) {
+        Polynomial p1 = new Polynomial(new int[] {0, 1, 2, 0, 1});
+        Polynomial p2 = new Polynomial(new int[] {-3, -2, 0, 1, 4});
+        System.out.println(p1.minus(p2));
+    }
 }
