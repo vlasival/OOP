@@ -14,5 +14,6 @@ More specifically:
 - Redefinition hashCode calculating for polynomials.
 - Multiplication
 - Differentiation
-- Evaluation
+- Evaluation 
+
 Full documentation you can find [here](https://vlasival.github.io/OOP/task_1_1_2/).
