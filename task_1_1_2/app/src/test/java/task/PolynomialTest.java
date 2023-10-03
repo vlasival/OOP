@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
-class TestPolynomialMethods {
+class PolynomialTest {
     @Test
     public void testToStringSimple() {
         Polynomial p1 = new Polynomial(new int[] {0, 1, -2, 0, 1});
