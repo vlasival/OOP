@@ -231,6 +231,7 @@ public class Polynomial {
     /**
      * The main entry point of the application.
      */
+    @ExcludeFromJacocoGeneratedReport
     public static void main(String[] args) {
         Polynomial p1 = new Polynomial(new int[] {0, 1, 2, 0, 1});
         Polynomial p2 = new Polynomial(new int[] {-3, -2, 0, 1, 4});
