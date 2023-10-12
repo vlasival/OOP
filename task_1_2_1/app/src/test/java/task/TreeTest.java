@@ -7,8 +7,28 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TreeTest {
-    @Test void appHasAGreeting() {
-        Tree classUnderTest = new Tree();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+
+    @Test
+    public void toStringDfsTest() {
+        Tree<Integer> root = new Tree<>(1);
+        Tree<Integer> node2 = root.addChild(2);
+        Tree<Integer> node3 = root.addChild(3);
+        node2.addChild(4);
+        node2.addChild(5);
+        node3.addChild(6);
+    
+        assertEquals("1 2 4 5 3 6 ", root.toStringDfs());
     }
+
+    public void toStringBfsTest() {
+        Tree<Integer> root = new Tree<>(1);
+        Tree<Integer> node2 = root.addChild(2);
+        Tree<Integer> node3 = root.addChild(3);
+        node2.addChild(4);
+        node2.addChild(5);
+        node3.addChild(6);
+    
+        assertEquals("1 2 3 4 5 6 ", root.toStringBfs());
+    }
+
 }
