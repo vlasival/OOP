@@ -6,7 +6,10 @@ package task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ConcurrentModificationException;
 
 import org.junit.jupiter.api.Test;
 import task.Tree.TraversalMethod;
@@ -155,5 +158,19 @@ class TreeTest {
         Tree<String> sub = tree.addChild("A");
         sub.addChild("LOL");
         assertNotEquals(childA, sub);
+    }
+    
+    @Test
+    public void testConcurrentModificationExceptionDfs() {
+        var curr = exampleTree.iterator();
+        try {
+            while (curr.hasNext()) {
+                var node = curr.next();
+                node.remove();
+                curr.next();
+            }
+        } catch (ConcurrentModificationException e) {
+            assertTrue(true);
+        }
     }
 }

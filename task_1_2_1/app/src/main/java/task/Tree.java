@@ -169,6 +169,8 @@ public class Tree<T> implements Iterable<Tree<T>> {
      */
     private class DepthFirstIterator implements Iterator<Tree<T>> {
         private Stack<Tree<T>> stack;
+        private Integer hash;
+        private Tree<T> root;
 
         /**
          * Creates a new iterator for depth-first traversal, starting from the root node.
@@ -179,6 +181,8 @@ public class Tree<T> implements Iterable<Tree<T>> {
             if (root != null) {
                 stack = new Stack<>();
                 stack.push(root);
+                hash = root.hashCode();
+                this.root = root;
             }
         }
 
@@ -197,6 +201,7 @@ public class Tree<T> implements Iterable<Tree<T>> {
          *
          * @return The next node.
          * @throws NoSuchElementException If there are no nodes available for iteration.
+         * @throws ConcurrentModificationException If an element with empty data field appeared.
          */
         @Override
         public Tree<T> next() {
@@ -204,7 +209,7 @@ public class Tree<T> implements Iterable<Tree<T>> {
                 throw new NoSuchElementException();
             }
             Tree<T> current = stack.pop();
-            if (current.data == null) {
+            if (root.hashCode() != hash) {
                 throw new ConcurrentModificationException();
             }
             for (Tree<T> child : current.childrens) {
@@ -219,6 +224,8 @@ public class Tree<T> implements Iterable<Tree<T>> {
      */
     private class BreadthFirstIterator implements Iterator<Tree<T>> {
         private Queue<Tree<T>> queue;
+        private Integer hash;
+        private Tree<T> root;
 
         /**
          * Creates a new iterator for breadth-first traversal, starting from the root node.
@@ -229,6 +236,8 @@ public class Tree<T> implements Iterable<Tree<T>> {
             if (root != null) {
                 queue = new LinkedList<>();
                 queue.add(root);
+                hash = root.hashCode();
+                this.root = root;
             }
         }
 
@@ -247,6 +256,7 @@ public class Tree<T> implements Iterable<Tree<T>> {
          *
          * @return The next node.
          * @throws NoSuchElementException If there are no nodes available for iteration.
+         * @throws ConcurrentModificationException If an element with empty data field appeared.
          */
         @Override
         public Tree<T> next() {
@@ -254,7 +264,7 @@ public class Tree<T> implements Iterable<Tree<T>> {
                 throw new NoSuchElementException();
             }
             Tree<T> current = queue.poll();
-            if (current.data == null) {
+            if (root.hashCode() != hash) {
                 throw new ConcurrentModificationException();
             }
             queue.addAll(current.childrens);
