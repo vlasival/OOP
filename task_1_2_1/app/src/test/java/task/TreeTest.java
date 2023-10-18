@@ -4,31 +4,155 @@
 package task;
 
 import org.junit.jupiter.api.Test;
+
+import task.Tree.TraversalMethod;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 class TreeTest {
+    public Tree<String> exampleTree = new Tree<>("R1");
+    public Tree<String> a = exampleTree.addChild("A");
+    public Tree<String> b = a.addChild("B");
+    public Tree<String> subTree1 = new Tree<>("R2");
+    public Tree<String> d = subTree1.addChild("D");
+    public Tree<String> c = subTree1.addChild("C");
+    public Tree<String> subTree2 = exampleTree.addChild(subTree1);
 
     @Test
-    public void toStringDfsTest() {
-        Tree<Integer> root = new Tree<>(1);
-        Tree<Integer> node2 = root.addChild(2);
-        Tree<Integer> node3 = root.addChild(3);
-        node2.addChild(4);
-        node2.addChild(5);
-        node3.addChild(6);
-    
-        assertEquals("1 2 4 5 3 6 ", root.toStringDfs());
+    public void testAddChildByValues() {
+        Tree<String> tree = new Tree<>("R1");
+        var a = tree.addChild("A").addChild("B");
+        var r2 = tree.addChild("R2").addChild("C");
+        var d = r2.addChild("D");
+        assertEquals(exampleTree, tree);
     }
 
-    public void toStringBfsTest() {
-        Tree<Integer> root = new Tree<>(1);
-        Tree<Integer> node2 = root.addChild(2);
-        Tree<Integer> node3 = root.addChild(3);
-        node2.addChild(4);
-        node2.addChild(5);
-        node3.addChild(6);
-    
-        assertEquals("1 2 3 4 5 6 ", root.toStringBfs());
+    @Test
+    public void testAddChildByNodes() {
+        var tree = new Tree<>("R1");
+        var b = new Tree<>("B");
+        var a = new Tree<>("A");
+        var c = new Tree<>("C");
+        var d = new Tree<>("D");
+        var r2 = new Tree<>("R2");
+        a.addChild(b);
+        r2.addChild(c);
+        r2.addChild(d);
+        tree.addChild(r2);
+        tree.addChild(a);
+        assertEquals(exampleTree, tree);
     }
 
+    @Test
+    public void testRemove() {
+        Tree<String> tree = new Tree<>("R1");
+        Tree<String> e = tree.addChild("Nope");
+        Tree<String> a = tree.addChild("A");
+        Tree<String> b = a.addChild("B");
+        Tree<String> subTree = e.addChild("R2");
+        Tree<String> d = subTree.addChild("D");
+        Tree<String> c = subTree.addChild("C");
+        e.remove();
+        assertEquals(exampleTree, tree);
+    }
+
+    @Test
+    public void testTraversal() {
+        Tree<String> tree = new Tree<>("R1");
+        Tree<String> a = tree.addChild("A");
+        Tree<String> b = a.addChild("B");
+        Tree<String> subTree = new Tree<>("R2");
+        Tree<String> d = subTree.addChild("D");
+        Tree<String> c = subTree.addChild("C");
+        tree.addChild(subTree);
+
+        String expectedDFS = "R1 R2 C D A B ";
+        String expectedBFS = "R1 A R2 B D C ";
+
+        tree.setTraverseMethod(TraversalMethod.DFS);
+        assertEquals(expectedDFS, tree.toString());
+        tree.setTraverseMethod(TraversalMethod.BFS);
+        assertEquals(expectedBFS, tree.toString());
+    }
+
+    @Test
+    public void testEquals() {
+        Tree<String> tree1 = new Tree<>("R1");
+        tree1.addChild("A").addChild("B");
+        tree1.addChild("R2").addChild("C").addChild("D");
+
+        Tree<String> tree2 = new Tree<>("R1");
+        Tree<String> a = tree2.addChild("A");
+        a.addChild("B");
+        Tree<String> r2 = tree2.addChild("R2");
+        r2.addChild("C").addChild("D");
+
+        assertEquals(tree1, tree2);
+    }
+
+    @Test
+    public void testHashCode() {
+        Tree<String> tree1 = new Tree<>("R1");
+        tree1.addChild("A").addChild("B");
+        tree1.addChild("R2").addChild("C").addChild("D");
+
+        Tree<String> tree2 = new Tree<>("R1");
+        tree2.addChild("A").addChild("B");
+        tree2.addChild("R2").addChild("C").addChild("D");
+
+        assertEquals(tree1.hashCode(), tree2.hashCode());
+    }
+
+    @Test
+    public void testgetAllSubTree() {
+        String expected = new String("[A, B, C, D, R2]");
+        assertEquals(expected, exampleTree.getAllSubTree().toString());
+    }
+
+    @Test
+    public void testSetNullData() {
+        try {
+            Tree<?> example = new Tree<>(null);
+        } catch (IllegalArgumentException e) {
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    public void testEqualsObjNull() {
+        assertNotEquals(exampleTree, null);
+    }
+
+    @Test
+    public void testEqualsDiffData() {
+        Tree<String> tree = new Tree<>("1");
+        (tree.addChild(a)).addChild(subTree1);
+        assertNotEquals(exampleTree, tree);
+    }
+
+    @Test
+    public void testEqualsNullParent() {
+        Tree<String> tree = new Tree<>("R1");
+        (tree.addChild(a)).addChild(subTree1);
+        Tree<String> root = new Tree<>("R0");
+        root.addChild(tree);
+        assertNotEquals(exampleTree, tree);
+    }
+
+    @Test
+    public void testEqualsDifferentParentData() {
+        Tree<String> tree = new Tree<>("R0");
+        Tree<String> sub = tree.addChild("A");
+        assertNotEquals(a, sub);
+    }
+
+    @Test
+    public void testEqualsDifferentChildSize() {
+        Tree<String> tree = new Tree<>("R1");
+        Tree<String> sub = tree.addChild("A");
+        sub.addChild("LOL");
+        assertNotEquals(a, sub);
+    }
 }
