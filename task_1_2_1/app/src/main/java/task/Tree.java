@@ -160,7 +160,8 @@ public class Tree<T> implements Iterable<Tree<T>> {
     @Override
     public int hashCode() {
         var parentValue = parent == null ? 7 : parent.data.hashCode();
-        var values = new int[] {data.hashCode(), parentValue, childrens.hashCode()};
+        var dataValue = data == null ? 13 : data.hashCode();
+        var values = new int[] {dataValue, parentValue, childrens.hashCode()};
         return Arrays.hashCode(values);
     }
 
