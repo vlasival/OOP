@@ -37,11 +37,11 @@ class TreeTest {
         var c = new Tree<>("C");
         var d = new Tree<>("D");
         var r2 = new Tree<>("R2");
+        tree.addChild(r2);
+        tree.addChild(a);
         a.addChild(b);
         r2.addChild(c);
         r2.addChild(d);
-        tree.addChild(r2);
-        tree.addChild(a);
         assertEquals(exampleTree, tree);
     }
 
@@ -68,13 +68,13 @@ class TreeTest {
         Tree<String> c = subTree.addChild("C");
         tree.addChild(subTree);
 
-        String expectedDFS = "R1 R2 C D A B ";
-        String expectedBFS = "R1 A R2 B D C ";
-
+        String expectedDfs = "R1 R2 C D A B ";
         tree.setTraverseMethod(TraversalMethod.DFS);
-        assertEquals(expectedDFS, tree.toString());
+        assertEquals(expectedDfs, tree.toString());
+
+        String expectedBfs = "R1 A R2 B D C ";
         tree.setTraverseMethod(TraversalMethod.BFS);
-        assertEquals(expectedBFS, tree.toString());
+        assertEquals(expectedBfs, tree.toString());
     }
 
     @Test

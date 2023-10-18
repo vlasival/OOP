@@ -119,7 +119,8 @@ public class Tree<T> implements Iterable<Tree<T>> {
             return false;
         }
     
-        if ((parent == null && otherTree.parent != null) || (parent != null && otherTree.parent == null)) {
+        if ((parent == null && otherTree.parent != null) || 
+            (parent != null && otherTree.parent == null)) {
             return false;
         }
 
@@ -262,7 +263,8 @@ public class Tree<T> implements Iterable<Tree<T>> {
     }
 
     /**
-     * Returns an iterator for tree traversal based on the currently set traversal method (DFS or BFS).
+     * Returns an iterator for tree traversal
+     * based on the currently set traversal method (DFS or BFS).
      *
      * @return The iterator for tree traversal.
      */
