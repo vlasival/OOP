@@ -25,7 +25,7 @@ public class Tree<T> implements Iterable<Tree<T>> {
     /**
      * The parent of the current node (null if it is the root node).
      */
-    public Tree<T> parent;
+    private Tree<T> parent;
     /**
      * The set of child nodes for the current node.
      */
