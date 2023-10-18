@@ -119,8 +119,8 @@ public class Tree<T> implements Iterable<Tree<T>> {
             return false;
         }
     
-        if ((parent == null && otherTree.parent != null) || 
-            (parent != null && otherTree.parent == null)) {
+        if ((parent == null && otherTree.parent != null)
+            || (parent != null && otherTree.parent == null)) {
             return false;
         }
 

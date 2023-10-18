@@ -32,16 +32,17 @@ class TreeTest {
     @Test
     public void testAddChildByNodes() {
         var tree = new Tree<>("R1");
-        var b = new Tree<>("B");
-        var a = new Tree<>("A");
-        var c = new Tree<>("C");
-        var d = new Tree<>("D");
         var r2 = new Tree<>("R2");
         tree.addChild(r2);
+        var a = new Tree<>("A");
         tree.addChild(a);
-        a.addChild(b);
+        var c = new Tree<>("C");
         r2.addChild(c);
+        var d = new Tree<>("D");
         r2.addChild(d);
+        var b = new Tree<>("B");
+        a.addChild(b);
+        
         assertEquals(exampleTree, tree);
     }
 
