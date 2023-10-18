@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"task","l":"Tree"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"task","l":"ExcludeFromJacocoGeneratedReport"},{"p":"task","l":"Tree.TraversalMethod"},{"p":"task","l":"Tree"}];updateSearchResults();
