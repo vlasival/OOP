@@ -9,12 +9,17 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * SubstringSearch class implements methods to find substring.
+ */
 public class SubstringSearch {
 
     /**
-     * @param filename
-     * @param pattern
-     * @return
+     * Main function that implements finding substring.
+     *
+     * @param filename file where to find substing.
+     * @param pattern current substring.
+     * @return List of indices of substring entries.
      */
     public static List<Integer> findSubstringIndices(String filename, String pattern) {
         List<Integer> indices = new ArrayList<>();
@@ -66,9 +71,11 @@ public class SubstringSearch {
     }
 
     /**
+     * Opens file from resoueces.
+     *
      * @param filename
-     * @param chunkSize
-     * @return
+     * @param chunkSize size of one portion of reading data.
+     * @return reader.
      */
     protected static BufferedReader openFromResources(String filename, int chunkSize) {
         InputStream inputStream = SubstringSearch.class.getClassLoader().getResourceAsStream(filename);
@@ -83,6 +90,13 @@ public class SubstringSearch {
         }
     }
 
+    /**
+     * Method implements KMP-algorithm.
+     *
+     * @param text string where to find.
+     * @param pattern substring.
+     * @return List of indices of entries.
+     */
     public static List<Integer> findSubstring(String text, String pattern) {
         List<Integer> indices = new ArrayList<>();
         int textLength = text.length();
@@ -114,6 +128,12 @@ public class SubstringSearch {
         return indices;
     }
 
+    /**
+     * Method-helper that calculates KMP-algorithm coefficients.
+     *
+     * @param pattern substring.
+     * @return coefficients.
+     */
     private static int[] computeLPSArray(String pattern) {
         int patternLength = pattern.length();
         int[] lps = new int[patternLength];
@@ -138,6 +158,11 @@ public class SubstringSearch {
         return lps;
     }
 
+    /**
+     * Entry point.
+     *
+     * @param args
+     */
     @ExcludeFromJacocoGeneratedReport
     public static void main(String[] args) {
         String filename = "chineesetest.txt";
@@ -146,6 +171,12 @@ public class SubstringSearch {
         System.out.println(indicesToString(indices));
     }
 
+    /**
+     * Not overrided toString.
+     *
+     * @param indices List of indices
+     * @return string of indices. 
+     */
     @ExcludeFromJacocoGeneratedReport
     public static String indicesToString(List<Integer> indices) {
         StringBuilder sb = new StringBuilder("[");
