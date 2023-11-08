@@ -55,7 +55,8 @@ public class SubstringSearch {
                 chunkCounter++;
 
                 if (totalChunkSize >= pattern.length()) {
-                    System.arraycopy(chunk, bytesRead - pattern.length() + 1, prevChunk, 0, pattern.length() - 1);
+                    System.arraycopy(chunk, bytesRead - pattern.length() + 1, 
+                                    prevChunk, 0, pattern.length() - 1);
                     prevChunkSize = pattern.length() - 1;
                 } else {
                     System.arraycopy(chunk, 0, prevChunk, 0, bytesRead);
@@ -73,12 +74,13 @@ public class SubstringSearch {
     /**
      * Opens file from resoueces.
      *
-     * @param filename
+     * @param filename name of source file.
      * @param chunkSize size of one portion of reading data.
      * @return reader.
      */
     protected static BufferedReader openFromResources(String filename, int chunkSize) {
-        InputStream inputStream = SubstringSearch.class.getClassLoader().getResourceAsStream(filename);
+        InputStream inputStream 
+            = SubstringSearch.class.getClassLoader().getResourceAsStream(filename);
         
         if (inputStream != null) {
             InputStreamReader inputStreamReader 
@@ -101,7 +103,7 @@ public class SubstringSearch {
         List<Integer> indices = new ArrayList<>();
         int textLength = text.length();
         int patternLength = pattern.length();
-        int[] lps = computeLPSArray(pattern);
+        int[] lps = computeLpsArray(pattern);
 
         int textIndex = 0;
         int patternIndex = 0;
@@ -134,7 +136,7 @@ public class SubstringSearch {
      * @param pattern substring.
      * @return coefficients.
      */
-    private static int[] computeLPSArray(String pattern) {
+    private static int[] computeLpsArray(String pattern) {
         int patternLength = pattern.length();
         int[] lps = new int[patternLength];
         int length = 0;
@@ -161,7 +163,7 @@ public class SubstringSearch {
     /**
      * Entry point.
      *
-     * @param args
+     * @param args input arguments.
      */
     @ExcludeFromJacocoGeneratedReport
     public static void main(String[] args) {
