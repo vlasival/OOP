@@ -2,10 +2,11 @@
 package task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 class SubstringSearchTest {
     @Test
@@ -27,7 +28,7 @@ class SubstringSearchTest {
     }
 
     @Test
-    public void algorithmKMPTest() {
+    public void algorithmKmpTest() {
         List<Integer> expected = new ArrayList<>(Arrays.asList(60, 123, 316));
         assertEquals(expected, SubstringSearch.findSubstringIndices("kmptest.txt", "ababbaba"));
     }
