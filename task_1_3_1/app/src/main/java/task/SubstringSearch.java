@@ -22,13 +22,15 @@ public class SubstringSearch {
      * @param pattern current substring.
      * @return List of indices of substring entries.
      */
-    public static List<Long> findSubstringIndices(String filename, boolean useResourcesFolder, String pattern) {
+    public static List<Long> findSubstringIndices  (String filename, 
+                                                    boolean useResourcesFolder, 
+                                                    String pattern) {
         List<Long> indices = new ArrayList<>();
         int chunkSize = 1024 * 1024 * 10;
         
-        try (BufferedReader reader =    useResourcesFolder ? 
-                                        openFromResources(filename, chunkSize) :
-                                        openFile(filename, chunkSize)) {
+        try (BufferedReader reader =    useResourcesFolder 
+                                        ? openFromResources(filename, chunkSize) 
+                                        : openFile(filename, chunkSize)) {
             if (reader == null) {
                 throw new IOException();
             }
@@ -53,7 +55,10 @@ public class SubstringSearch {
                 List<Long> partialIndices = findSubstring(data, pattern);
 
                 for (long partialIndex : partialIndices) {
-                    indices.add((long) partialIndex + (long) chunkCounter * (long) chunkSize - (long) prevChunkSize);
+                    indices.add ((long) partialIndex 
+                                + (long) chunkCounter 
+                                * (long) chunkSize 
+                                - (long) prevChunkSize);
                 }
                 chunkCounter++;
 
@@ -95,6 +100,13 @@ public class SubstringSearch {
         }
     }
 
+    /**
+     * Opens file from root directory.
+     *
+     * @param filename name of source file.
+     * @param chunkSize size of one portion of reading data.
+     * @return reader.
+     */
     private static BufferedReader openFile(String filename, int chunkSize) {
         try {
             FileInputStream fileInputStream = new FileInputStream(filename);
@@ -102,8 +114,7 @@ public class SubstringSearch {
                 fileInputStream, StandardCharsets.UTF_8
             );
             return new BufferedReader(inputStreamReader, chunkSize);
-        } catch (Exception e) {
-            System.err.println("File wasn't opened\n" + e);
+        } catch (IOException e) {
             return null;
         }
     }

@@ -15,37 +15,47 @@ import org.junit.jupiter.api.Test;
 class SubstringSearchTest {
     @Test
     public void chineeseTest() {
-        List<Integer> expected = new ArrayList<>(Arrays.asList(79, 135, 153));
-        assertEquals(expected, SubstringSearch.findSubstringIndices("chineesetest.txt", true, "传统医学"));
+        List<Long> expected = Arrays.asList(79L, 135L, 153L);
+        assertEquals(expected, SubstringSearch.findSubstringIndices("chineesetest.txt", 
+                                                                    true, 
+                                                                    "传统医学"));
     }
 
     @Test
     public void russianTest() {
-        List<Integer> expected = new ArrayList<>(Arrays.asList(18, 21, 24, 28, 63, 66));
-        assertEquals(expected, SubstringSearch.findSubstringIndices("russiantest.txt", true, "бла"));
+        List<Long> expected = Arrays.asList(18L, 21L, 24L, 28L, 63L, 66L);
+        assertEquals(expected, SubstringSearch.findSubstringIndices("russiantest.txt", 
+                                                                    true, 
+                                                                    "бла"));
     }
 
     @Test
     public void simpleTest() {
-        List<Integer> expected = new ArrayList<>(Arrays.asList(1, 4, 13, 136, 145));
-        assertEquals(expected, SubstringSearch.findSubstringIndices("simpletest.txt", true, "bla"));
+        List<Long> expected = Arrays.asList(1L, 4L, 13L, 136L, 145L);
+        assertEquals(expected, SubstringSearch.findSubstringIndices("simpletest.txt", 
+                                                                    true, 
+                                                                    "bla"));
     }
 
     @Test
     public void algorithmKmpTest() {
-        List<Integer> expected = new ArrayList<>(Arrays.asList(60, 123, 316));
-        assertEquals(expected, SubstringSearch.findSubstringIndices("kmptest.txt", true, "ababbaba"));
+        List<Long> expected = Arrays.asList(60L, 123L, 316L);
+        assertEquals(expected, SubstringSearch.findSubstringIndices("kmptest.txt", 
+                                                                    true, 
+                                                                    "ababbaba"));
     }
 
     @Test
     public void errorTest() {
-        SubstringSearch.findSubstringIndices("abcd.txt", true, "abcd");
+        SubstringSearch.findSubstringIndices("abcd.txt", 
+                                            true, 
+                                            "abcd");
     }
 
     @Test
     public void indicesToStringTest() {
         List<Long> list = new ArrayList<>();
-        for (long i = 3; i < 1000; i*=3) {
+        for (long i = 3; i < 1000; i *= 3) {
             list.add(i);
         }
         String expected = "[3, 9, 27, 81, 243, 729]";
@@ -74,13 +84,15 @@ class SubstringSearchTest {
             e.printStackTrace();
         } 
 
-        List<Long> preres = SubstringSearch.findSubstringIndices("large_file.txt", false, "ba");
+        List<Long> preres = SubstringSearch.findSubstringIndices("large_file.txt", 
+                                                                false, 
+                                                                "ba");
         res = SubstringSearch.indicesToString(preres);
         
         file.delete();
         List<Long> expected = new ArrayList<>();
-        expected.add(1024L * 1024 * 1024 * 8 - 1);
-        expected.add(1024L * 1024 * 1024 * 16);
+        expected.add(fileSize - 1);
+        expected.add(fileSize * 2);
         assertEquals(expected.toString(), res);
     }
 }
