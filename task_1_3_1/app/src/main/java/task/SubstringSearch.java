@@ -2,6 +2,7 @@
 package task;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -21,11 +22,13 @@ public class SubstringSearch {
      * @param pattern current substring.
      * @return List of indices of substring entries.
      */
-    public static List<Integer> findSubstringIndices(String filename, String pattern) {
-        List<Integer> indices = new ArrayList<>();
+    public static List<Long> findSubstringIndices(String filename, boolean useResourcesFolder, String pattern) {
+        List<Long> indices = new ArrayList<>();
         int chunkSize = 1024 * 1024 * 10;
         
-        try (BufferedReader reader = openFromResources(filename, chunkSize)) {
+        try (BufferedReader reader =    useResourcesFolder ? 
+                                        openFromResources(filename, chunkSize) :
+                                        openFile(filename, chunkSize)) {
             if (reader == null) {
                 throw new IOException();
             }
@@ -47,10 +50,10 @@ public class SubstringSearch {
                 buffer.append(chunk, 0, bytesRead);
 
                 String data = buffer.toString();
-                List<Integer> partialIndices = findSubstring(data, pattern);
+                List<Long> partialIndices = findSubstring(data, pattern);
 
-                for (int partialIndex : partialIndices) {
-                    indices.add(partialIndex + chunkCounter * chunkSize - prevChunkSize);
+                for (long partialIndex : partialIndices) {
+                    indices.add((long) partialIndex + (long) chunkCounter * (long) chunkSize - (long) prevChunkSize);
                 }
                 chunkCounter++;
 
@@ -78,7 +81,7 @@ public class SubstringSearch {
      * @param chunkSize size of one portion of reading data.
      * @return reader.
      */
-    protected static BufferedReader openFromResources(String filename, int chunkSize) {
+    private static BufferedReader openFromResources(String filename, int chunkSize) {
         InputStream inputStream 
             = SubstringSearch.class.getClassLoader().getResourceAsStream(filename);
         
@@ -92,6 +95,19 @@ public class SubstringSearch {
         }
     }
 
+    private static BufferedReader openFile(String filename, int chunkSize) {
+        try {
+            FileInputStream fileInputStream = new FileInputStream(filename);
+            InputStreamReader inputStreamReader = new InputStreamReader(
+                fileInputStream, StandardCharsets.UTF_8
+            );
+            return new BufferedReader(inputStreamReader, chunkSize);
+        } catch (Exception e) {
+            System.err.println("File wasn't opened\n" + e);
+            return null;
+        }
+    }
+
     /**
      * Method implements KMP-algorithm.
      *
@@ -99,8 +115,8 @@ public class SubstringSearch {
      * @param pattern substring.
      * @return List of indices of entries.
      */
-    public static List<Integer> findSubstring(String text, String pattern) {
-        List<Integer> indices = new ArrayList<>();
+    public static List<Long> findSubstring(String text, String pattern) {
+        List<Long> indices = new ArrayList<>();
         int textLength = text.length();
         int patternLength = pattern.length();
         int[] lps = computeLpsArray(pattern);
@@ -115,7 +131,7 @@ public class SubstringSearch {
             }
 
             if (patternIndex == patternLength) {
-                indices.add(textIndex - patternIndex);
+                indices.add((long) (textIndex - patternIndex));
                 patternIndex = lps[patternIndex - 1];
             } else if (textIndex < textLength 
                     && pattern.charAt(patternIndex) != text.charAt(textIndex)) {
@@ -169,7 +185,7 @@ public class SubstringSearch {
     public static void main(String[] args) {
         String filename = "chineesetest.txt";
         String pattern = "传统医学";
-        List<Integer> indices = findSubstringIndices(filename, pattern);
+        List<Long> indices = findSubstringIndices(filename, true, pattern);
         System.out.println(indicesToString(indices));
     }
 
@@ -179,8 +195,7 @@ public class SubstringSearch {
      * @param indices List of indices
      * @return string of indices. 
      */
-    @ExcludeFromJacocoGeneratedReport
-    public static String indicesToString(List<Integer> indices) {
+    public static String indicesToString(List<Long> indices) {
         StringBuilder sb = new StringBuilder("[");
         for (int i = 0; i < indices.size(); i++) {
             sb.append(indices.get(i));

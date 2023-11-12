@@ -3,6 +3,10 @@ package task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,65 +16,72 @@ class SubstringSearchTest {
     @Test
     public void chineeseTest() {
         List<Integer> expected = new ArrayList<>(Arrays.asList(79, 135, 153));
-        assertEquals(expected, SubstringSearch.findSubstringIndices("chineesetest.txt", "传统医学"));
+        assertEquals(expected, SubstringSearch.findSubstringIndices("chineesetest.txt", true, "传统医学"));
     }
 
     @Test
     public void russianTest() {
         List<Integer> expected = new ArrayList<>(Arrays.asList(18, 21, 24, 28, 63, 66));
-        assertEquals(expected, SubstringSearch.findSubstringIndices("russiantest.txt", "бла"));
+        assertEquals(expected, SubstringSearch.findSubstringIndices("russiantest.txt", true, "бла"));
     }
 
     @Test
     public void simpleTest() {
         List<Integer> expected = new ArrayList<>(Arrays.asList(1, 4, 13, 136, 145));
-        assertEquals(expected, SubstringSearch.findSubstringIndices("simpletest.txt", "bla"));
+        assertEquals(expected, SubstringSearch.findSubstringIndices("simpletest.txt", true, "bla"));
     }
 
     @Test
     public void algorithmKmpTest() {
         List<Integer> expected = new ArrayList<>(Arrays.asList(60, 123, 316));
-        assertEquals(expected, SubstringSearch.findSubstringIndices("kmptest.txt", "ababbaba"));
+        assertEquals(expected, SubstringSearch.findSubstringIndices("kmptest.txt", true, "ababbaba"));
     }
 
     @Test
     public void errorTest() {
-        SubstringSearch.findSubstringIndices("abcd.txt", "abcd");
+        SubstringSearch.findSubstringIndices("abcd.txt", true, "abcd");
     }
 
-    // @Test
-    // public void theBiggestTest() {
-    //     String fileName = "large_file.txt";
-    //     long fileSize = 128L;
-    //     boolean state = false;
+    @Test
+    public void indicesToStringTest() {
+        List<Long> list = new ArrayList<>();
+        for (long i = 3; i < 1000; i*=3) {
+            list.add(i);
+        }
+        String expected = "[3, 9, 27, 81, 243, 729]";
+        assertEquals(expected, SubstringSearch.indicesToString(list));
+    }
 
-    //     File file = new File(fileName);
-    //     try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-    //         long bytesWritten = 0;
-    //         while (bytesWritten < fileSize) {
-    //             writer.write('b');
-    //             bytesWritten++;
-    //         }
-    //         writer.write('a');
-    //         bytesWritten = 0;
-    //         while (bytesWritten < fileSize) {
-    //             writer.write('b');
-    //             bytesWritten++;
-    //         }
+    @Test
+    public void theBiggestTest() {
+        String fileName = "large_file.txt";
+        long fileSize = 1024L * 1024 * 1024 * 8; // 16 gb will be in total
+        String res = "";
 
-    //         List<Integer> res = SubstringSearch.findSubstringIndices("large_file.txt", "bab");
-    //         state = res.equals(Arrays.asList(fileSize));
+        File file = new File(fileName);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+        
+            long ind = 0;
+            for (ind = 0; ind < fileSize; ind++) {
+                writer.write('b');
+            }
+            writer.write('a');
+            for (ind = 0; ind < fileSize; ind++) {
+                writer.write('b');
+            }
+            writer.write('a');
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
 
-    //         if (file.delete()) {
-    //             System.out.println("File deleted succsesfully.");
-    //         } else {
-    //             System.out.println("File wasn't deleted.");
-    //         }
-
-    //     } catch (IOException e) {
-    //         e.printStackTrace();
-    //     }
-    //     assertTrue(state);
-    // }
+        List<Long> preres = SubstringSearch.findSubstringIndices("large_file.txt", false, "ba");
+        res = SubstringSearch.indicesToString(preres);
+        
+        file.delete();
+        List<Long> expected = new ArrayList<>();
+        expected.add(1024L * 1024 * 1024 * 8 - 1);
+        expected.add(1024L * 1024 * 1024 * 16);
+        assertEquals(expected.toString(), res);
+    }
 }
 
