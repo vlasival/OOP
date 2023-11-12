@@ -65,18 +65,18 @@ class SubstringSearchTest {
     @Test
     public void theBiggestTest() {
         String fileName = "large_file.txt";
-        long fileSize = 1024L * 1024 * 1024 * 8; // 16 gb will be in total
-        String res = "";
+        long halfFileSize = 1024L * 1024 * 1024 * 8; // 16 gb will be in total
+        List<Long> res;
 
         File file = new File(fileName);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
         
             long ind = 0;
-            for (ind = 0; ind < fileSize; ind++) {
+            for (ind = 0; ind < halfFileSize; ind++) {
                 writer.write('b');
             }
             writer.write('a');
-            for (ind = 0; ind < fileSize; ind++) {
+            for (ind = 0; ind < halfFileSize; ind++) {
                 writer.write('b');
             }
             writer.write('a');
@@ -84,16 +84,15 @@ class SubstringSearchTest {
             e.printStackTrace();
         } 
 
-        List<Long> preres = SubstringSearch.findSubstringIndices("large_file.txt", 
-                                                                false, 
-                                                                "ba");
-        res = SubstringSearch.indicesToString(preres);
+        res = SubstringSearch.findSubstringIndices("large_file.txt", 
+                                                    false, 
+                                                    "ba");
         
         file.delete();
         List<Long> expected = new ArrayList<>();
-        expected.add(fileSize - 1);
-        expected.add(fileSize * 2);
-        assertEquals(expected.toString(), res);
+        expected.add(halfFileSize - 1);
+        expected.add(halfFileSize * 2);
+        assertEquals(expected, res);
     }
 }
 

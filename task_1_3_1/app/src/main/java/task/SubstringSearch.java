@@ -22,7 +22,7 @@ public class SubstringSearch {
      * @param pattern current substring.
      * @return List of indices of substring entries.
      */
-    public static List<Long> findSubstringIndices  (String filename, 
+    public static List<Long> findSubstringIndices(String filename, 
                                                     boolean useResourcesFolder, 
                                                     String pattern) {
         List<Long> indices = new ArrayList<>();
@@ -52,10 +52,10 @@ public class SubstringSearch {
                 buffer.append(chunk, 0, bytesRead);
 
                 String data = buffer.toString();
-                List<Long> partialIndices = findSubstring(data, pattern);
+                List<Integer> partialIndices = findSubstring(data, pattern);
 
-                for (long partialIndex : partialIndices) {
-                    indices.add ((long) partialIndex 
+                for (int partialIndex : partialIndices) {
+                    indices.add((long) partialIndex 
                                 + (long) chunkCounter 
                                 * (long) chunkSize 
                                 - (long) prevChunkSize);
@@ -72,7 +72,6 @@ public class SubstringSearch {
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error!");
             e.printStackTrace();
         }
 
@@ -126,8 +125,8 @@ public class SubstringSearch {
      * @param pattern substring.
      * @return List of indices of entries.
      */
-    public static List<Long> findSubstring(String text, String pattern) {
-        List<Long> indices = new ArrayList<>();
+    public static List<Integer> findSubstring(String text, String pattern) {
+        List<Integer> indices = new ArrayList<>();
         int textLength = text.length();
         int patternLength = pattern.length();
         int[] lps = computeLpsArray(pattern);
@@ -142,7 +141,7 @@ public class SubstringSearch {
             }
 
             if (patternIndex == patternLength) {
-                indices.add((long) (textIndex - patternIndex));
+                indices.add(textIndex - patternIndex);
                 patternIndex = lps[patternIndex - 1];
             } else if (textIndex < textLength 
                     && pattern.charAt(patternIndex) != text.charAt(textIndex)) {
