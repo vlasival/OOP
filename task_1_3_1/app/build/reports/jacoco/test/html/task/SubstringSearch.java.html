@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SubstringSearch.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">task</a> &gt; <span class="el_source">SubstringSearch.java</span></div><h1>SubstringSearch.java</h1><pre class="source lang-java linenums">
+package task;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * SubstringSearch class implements methods to find substring.
+ */
+<span class="nc" id="L16">public class SubstringSearch {</span>
+
+    /**
+     * Main function that implements finding substring.
+     *
+     * @param filename file where to find substing.
+     * @param pattern current substring.
+     * @return List of indices of substring entries.
+     */
+    public static List&lt;Long&gt; findSubstringIndices  (String filename, 
+                                                    boolean useResourcesFolder, 
+                                                    String pattern) {
+<span class="fc" id="L28">        List&lt;Long&gt; indices = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L29">        int chunkSize = 1024 * 1024 * 10;</span>
+        
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        try (BufferedReader reader =    useResourcesFolder </span>
+<span class="fc" id="L32">                                        ? openFromResources(filename, chunkSize) </span>
+<span class="fc" id="L33">                                        : openFile(filename, chunkSize)) {</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">            if (reader == null) {</span>
+<span class="fc" id="L35">                throw new IOException();</span>
+            }
+<span class="fc" id="L37">            char[] prevChunk = new char[chunkSize];</span>
+<span class="fc" id="L38">            int prevChunkSize = 0;</span>
+<span class="fc" id="L39">            int chunkCounter = 0;</span>
+
+            while (true) {
+<span class="fc" id="L42">                char[] chunk = new char[chunkSize];</span>
+<span class="fc" id="L43">                int bytesRead = reader.read(chunk);</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">                if (bytesRead == -1) {</span>
+<span class="fc" id="L45">                    break;</span>
+                }
+
+<span class="fc" id="L48">                int totalChunkSize = prevChunkSize + bytesRead;</span>
+<span class="fc" id="L49">                StringBuilder buffer = new StringBuilder(totalChunkSize);</span>
+
+<span class="fc" id="L51">                buffer.append(prevChunk, 0, prevChunkSize);</span>
+<span class="fc" id="L52">                buffer.append(chunk, 0, bytesRead);</span>
+
+<span class="fc" id="L54">                String data = buffer.toString();</span>
+<span class="fc" id="L55">                List&lt;Long&gt; partialIndices = findSubstring(data, pattern);</span>
+
+<span class="fc bfc" id="L57" title="All 2 branches covered.">                for (long partialIndex : partialIndices) {</span>
+<span class="fc" id="L58">                    indices.add ((long) partialIndex </span>
+                                + (long) chunkCounter 
+                                * (long) chunkSize 
+                                - (long) prevChunkSize);
+<span class="fc" id="L62">                }</span>
+<span class="fc" id="L63">                chunkCounter++;</span>
+
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">                if (totalChunkSize &gt;= pattern.length()) {</span>
+<span class="fc" id="L66">                    System.arraycopy(chunk, bytesRead - pattern.length() + 1, </span>
+<span class="fc" id="L67">                                    prevChunk, 0, pattern.length() - 1);</span>
+<span class="fc" id="L68">                    prevChunkSize = pattern.length() - 1;</span>
+                } else {
+<span class="nc" id="L70">                    System.arraycopy(chunk, 0, prevChunk, 0, bytesRead);</span>
+<span class="nc" id="L71">                    prevChunkSize = bytesRead;</span>
+                }
+<span class="fc" id="L73">            }</span>
+<span class="fc" id="L74">        } catch (IOException e) {</span>
+<span class="fc" id="L75">            System.err.println(&quot;Error!&quot;);</span>
+<span class="fc" id="L76">            e.printStackTrace();</span>
+<span class="fc" id="L77">        }</span>
+
+<span class="fc" id="L79">        return indices;</span>
+    }
+
+    /**
+     * Opens file from resoueces.
+     *
+     * @param filename name of source file.
+     * @param chunkSize size of one portion of reading data.
+     * @return reader.
+     */
+    private static BufferedReader openFromResources(String filename, int chunkSize) {
+<span class="fc" id="L90">        InputStream inputStream </span>
+<span class="fc" id="L91">            = SubstringSearch.class.getClassLoader().getResourceAsStream(filename);</span>
+        
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        if (inputStream != null) {</span>
+<span class="fc" id="L94">            InputStreamReader inputStreamReader </span>
+                = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+<span class="fc" id="L96">            return new BufferedReader(inputStreamReader, chunkSize);</span>
+        } else {
+<span class="fc" id="L98">            System.out.println(&quot;Can't find: &quot; + filename);</span>
+<span class="fc" id="L99">            return null;</span>
+        }
+    }
+
+    /**
+     * Opens file from root directory.
+     *
+     * @param filename name of source file.
+     * @param chunkSize size of one portion of reading data.
+     * @return reader.
+     */
+    private static BufferedReader openFile(String filename, int chunkSize) {
+        try {
+<span class="fc" id="L112">            FileInputStream fileInputStream = new FileInputStream(filename);</span>
+<span class="fc" id="L113">            InputStreamReader inputStreamReader = new InputStreamReader(</span>
+                fileInputStream, StandardCharsets.UTF_8
+            );
+<span class="fc" id="L116">            return new BufferedReader(inputStreamReader, chunkSize);</span>
+<span class="nc" id="L117">        } catch (Exception e) {</span>
+<span class="nc" id="L118">            System.err.println(&quot;File wasn't opened\n&quot; + e);</span>
+<span class="nc" id="L119">            return null;</span>
+        }
+    }
+
+    /**
+     * Method implements KMP-algorithm.
+     *
+     * @param text string where to find.
+     * @param pattern substring.
+     * @return List of indices of entries.
+     */
+    public static List&lt;Long&gt; findSubstring(String text, String pattern) {
+<span class="fc" id="L131">        List&lt;Long&gt; indices = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L132">        int textLength = text.length();</span>
+<span class="fc" id="L133">        int patternLength = pattern.length();</span>
+<span class="fc" id="L134">        int[] lps = computeLpsArray(pattern);</span>
+
+<span class="fc" id="L136">        int textIndex = 0;</span>
+<span class="fc" id="L137">        int patternIndex = 0;</span>
+
+<span class="fc bfc" id="L139" title="All 2 branches covered.">        while (textIndex &lt; textLength) {</span>
+<span class="fc bfc" id="L140" title="All 2 branches covered.">            if (pattern.charAt(patternIndex) == text.charAt(textIndex)) {</span>
+<span class="fc" id="L141">                textIndex++;</span>
+<span class="fc" id="L142">                patternIndex++;</span>
+            }
+
+<span class="fc bfc" id="L145" title="All 2 branches covered.">            if (patternIndex == patternLength) {</span>
+<span class="fc" id="L146">                indices.add((long) (textIndex - patternIndex));</span>
+<span class="fc" id="L147">                patternIndex = lps[patternIndex - 1];</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">            } else if (textIndex &lt; textLength </span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">                    &amp;&amp; pattern.charAt(patternIndex) != text.charAt(textIndex)) {</span>
+<span class="fc bfc" id="L150" title="All 2 branches covered.">                if (patternIndex != 0) {</span>
+<span class="fc" id="L151">                    patternIndex = lps[patternIndex - 1];</span>
+                } else {
+<span class="fc" id="L153">                    textIndex++;</span>
+                }
+            }
+        }
+
+<span class="fc" id="L158">        return indices;</span>
+    }
+
+    /**
+     * Method-helper that calculates KMP-algorithm coefficients.
+     *
+     * @param pattern substring.
+     * @return coefficients.
+     */
+    private static int[] computeLpsArray(String pattern) {
+<span class="fc" id="L168">        int patternLength = pattern.length();</span>
+<span class="fc" id="L169">        int[] lps = new int[patternLength];</span>
+<span class="fc" id="L170">        int length = 0;</span>
+<span class="fc" id="L171">        int i = 1;</span>
+
+<span class="fc bfc" id="L173" title="All 2 branches covered.">        while (i &lt; patternLength) {</span>
+<span class="fc bfc" id="L174" title="All 2 branches covered.">            if (pattern.charAt(i) == pattern.charAt(length)) {</span>
+<span class="fc" id="L175">                length++;</span>
+<span class="fc" id="L176">                lps[i] = length;</span>
+<span class="fc" id="L177">                i++;</span>
+            } else {
+<span class="fc bfc" id="L179" title="All 2 branches covered.">                if (length != 0) {</span>
+<span class="fc" id="L180">                    length = lps[length - 1];</span>
+                } else {
+<span class="fc" id="L182">                    lps[i] = 0;</span>
+<span class="fc" id="L183">                    i++;</span>
+                }
+            }
+        }
+
+<span class="fc" id="L188">        return lps;</span>
+    }
+
+    /**
+     * Entry point.
+     *
+     * @param args input arguments.
+     */
+    @ExcludeFromJacocoGeneratedReport
+    public static void main(String[] args) {
+        String filename = &quot;chineesetest.txt&quot;;
+        String pattern = &quot;传统医学&quot;;
+        List&lt;Long&gt; indices = findSubstringIndices(filename, true, pattern);
+        System.out.println(indicesToString(indices));
+    }
+
+    /**
+     * Not overrided toString.
+     *
+     * @param indices List of indices
+     * @return string of indices. 
+     */
+    public static String indicesToString(List&lt;Long&gt; indices) {
+<span class="fc" id="L211">        StringBuilder sb = new StringBuilder(&quot;[&quot;);</span>
+<span class="fc bfc" id="L212" title="All 2 branches covered.">        for (int i = 0; i &lt; indices.size(); i++) {</span>
+<span class="fc" id="L213">            sb.append(indices.get(i));</span>
+<span class="fc bfc" id="L214" title="All 2 branches covered.">            if (i &lt; indices.size() - 1) {</span>
+<span class="fc" id="L215">                sb.append(&quot;, &quot;);</span>
+            }
+        }
+<span class="fc" id="L218">        sb.append(&quot;]&quot;);</span>
+<span class="fc" id="L219">        return sb.toString();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
