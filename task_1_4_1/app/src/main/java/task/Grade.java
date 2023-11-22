@@ -41,4 +41,35 @@ public class Grade {
     public void setDifferentiated(boolean differentiated) {
         this.differentiated = differentiated;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((subject == null) ? 0 : subject.hashCode());
+        result = prime * result + mark;
+        result = prime * result + (differentiated ? 1231 : 1237);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Grade other = (Grade) obj;
+        if (subject == null) {
+            if (other.subject != null)
+                return false;
+        } else if (!subject.equals(other.subject))
+            return false;
+        if (mark != other.mark)
+            return false;
+        if (differentiated != other.differentiated)
+            return false;
+        return true;
+    }
 }

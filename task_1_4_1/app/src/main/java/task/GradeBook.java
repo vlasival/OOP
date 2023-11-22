@@ -71,6 +71,24 @@ public class GradeBook {
     }
 
     /**
+     * Setter for gradebook pages.
+     *
+     * @param pages array of mark pages.
+     */
+    public void setPages(MarksPage[] pages) {
+        this.pages = pages;
+    }
+
+    /**
+     * Getter for gradebook pages.
+     *
+     * @return array of mark pages.
+     */
+    public MarksPage[] getPages() {
+        return pages;
+    }
+
+    /**
      * Method adds new entry to a GradeBook.
      *
      * @param currentSemester number of page (semester) in GradeBook. <br>
@@ -190,7 +208,7 @@ public class GradeBook {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + Arrays.hashCode(pages);
+        result = prime * result + pages.hashCode();
         result = prime * result + pageCount;
         result = prime * result + ((studentName == null) ? 0 : studentName.hashCode());
         return result;
@@ -211,7 +229,7 @@ public class GradeBook {
         if (getClass() != obj.getClass())
             return false;
         GradeBook other = (GradeBook) obj;
-        if (!Arrays.equals(pages, other.pages))
+        if (Arrays.hashCode(pages) != Arrays.hashCode(other.pages))
             return false;
         if (pageCount != other.pageCount)
             return false;
@@ -223,6 +241,11 @@ public class GradeBook {
         return true;
     }
 
+    /**
+     * Overrided method toString for GradeBook objects.
+     *
+     * @return string representation of gradebook.
+     */
     @Override
     public String toString() {
         StringBuffer res = new StringBuffer();
@@ -234,6 +257,17 @@ public class GradeBook {
             }
         }
         return res.toString();
+    }
+
+    public GradeBook clone() {
+        try {
+            var res = new GradeBook(this.studentName, this.pageCount);
+            for (var i : this.getPages()) {
+                
+            }
+        } catch (GradeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
 
