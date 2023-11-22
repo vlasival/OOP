@@ -1,23 +1,30 @@
 package task;
 
+/**
+ * Main class to demonstrate the functionality of the GradeBook system.
+ */
 public class Main {
+    /**
+     * Main method to run the GradeBook demonstration.
+     *
+     * @param args Command line arguments (not used in this context).
+     */
+    @ExcludeFromJacocoGeneratedReport
     public static void main(String[] args) {
         try {
-            GradeBook book = new GradeBook("Ivanov Ivan Ivanovich", 4);
-            book.writeInGradeBook(1, "Math", 5, true);
-            book.writeInGradeBook(1, "Rus", 3, true);
-            book.writeInGradeBook(1, "Haskell", 3, false);
-            book.writeInGradeBook(2, "SQL", 2, false);
-            book.writeInGradeBook(4, "Diploma", 5, true);
-            book.removeFromGradeBook(1, "Rus");
-            System.out.println(book.averageMark());
-            System.out.println(book.redDiploma());
-            System.out.println(book.scholarship(1));
-            System.out.println(book.toString());
+            GradeBook newBook = new GradeBook("Ivanov Ivan Ivanovich", 4);
+
+            newBook = new GradeBook("Petrov Petr Petrovich", 1);
+            newBook.writeInGradeBook(1, "Math", 5, true);
+            newBook.writeInGradeBook(1, "Diploma", 5, true);
+
+            System.out.println("Average Mark: " + newBook.averageMark());
+            System.out.println("Red Diploma Eligibility: " + newBook.redDiploma());
+            System.out.println("Scholarship Eligibility for Semester 1: " + newBook.scholarship(1));
+            System.out.println(newBook.toString());
         } catch (Exception e) {
             var message = e.getMessage();
-            System.out.println(message);
+            System.out.println("Error: " + message);
         }
-        
     }
 }

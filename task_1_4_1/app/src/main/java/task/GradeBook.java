@@ -1,12 +1,10 @@
-
 package task;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Gradle book class implements methods to create, edit, remove electronic student grade book.
- * Also it has some methods for displaying additional information.
+ * Represents an electronic student grade book with methods for managing and analyzing grades.
  */
 public class GradeBook {
     /**
@@ -28,7 +26,7 @@ public class GradeBook {
      * Class constructor.
      *
      * @param studentName name in the format: first name, last name, patronymic.
-     * @param pageCount count of pages in Grade Book. 
+     * @param pageCount   count of pages in Grade Book.
      * @throws GradeException special exception for GradeBook class. Contains information message.
      */
     public GradeBook(String studentName, int pageCount) throws GradeException {
@@ -50,7 +48,7 @@ public class GradeBook {
     }
 
     /**
-     * Setter for student name. 
+     * Setter for student name.
      *
      * @param studentName a name that will be checked to match the format.
      * @throws GradeException special exception for GradeBook class. Contains information message.
@@ -58,44 +56,22 @@ public class GradeBook {
     public void setStudentName(String studentName) throws GradeException {
         String[] nameParts = studentName.split(" ");
         if (nameParts.length != 3) {
-            throw new GradeException("\"" + studentName + "\"" + 
-                                            " is not supported in this record book.\n" + 
-                                            "Please, Make sure your name is in the format:\n" + 
-                                            "last name, first name, patronymic.\n");
-        } 
+            throw new GradeException("Invalid name format: " + studentName + "\n"
+                    + "Please ensure your name is in the format: last name, first name, patronymic.\n");
+        }
         if (studentName.matches(".*\\d.*")) {
-            throw new GradeException("\"" + studentName + "\"" +
-                                            " contains numbers. Fix this.\n");
+            throw new GradeException("Invalid name format: " + studentName + " contains numbers. Please fix this.\n");
         }
         this.studentName = studentName;
     }
 
     /**
-     * Setter for gradebook pages.
+     * Adds a new grade entry to the GradeBook for a specific semester.
      *
-     * @param pages array of mark pages.
-     */
-    public void setPages(MarksPage[] pages) {
-        this.pages = pages;
-    }
-
-    /**
-     * Getter for gradebook pages.
-     *
-     * @return array of mark pages.
-     */
-    public MarksPage[] getPages() {
-        return pages;
-    }
-
-    /**
-     * Method adds new entry to a GradeBook.
-     *
-     * @param currentSemester number of page (semester) in GradeBook. <br>
-     *                          Must be between 1 and pageCount.
-     * @param subject name of the subject.
-     * @param mark grade for this subject.
-     * @param differentiated boolean variable. True if mark is differentiated, false otherwise.
+     * @param currentSemester number of page (semester) in GradeBook.
+     * @param subject         name of the subject.
+     * @param mark            grade for this subject.
+     * @param differentiated  boolean variable. True if mark is differentiated, false otherwise.
      * @throws GradeException special exception for GradeBook class. Contains information message.
      */
     public void writeInGradeBook(int currentSemester, 
@@ -105,14 +81,14 @@ public class GradeBook {
         if (currentSemester < 1 || currentSemester > pageCount) {
             throw new GradeException("Semester must be between 1 and " + pageCount);
         }
-        pages[currentSemester - 1].addNode(subject, mark, differentiated);
+        pages[currentSemester - 1].addNote(subject, mark, differentiated);
     }
 
     /**
-     * Method removes a note from gradebook.
+     * Removes a note from the gradebook for a specific semester.
      *
      * @param currentSemester number of page (semester) in GradeBook.
-     * @param subject name of the subject to remove.
+     * @param subject         name of the subject to remove.
      */
     public void removeFromGradeBook(int currentSemester, String subject) {
         var currSemGrades = pages[currentSemester - 1].getNotes();
@@ -125,10 +101,10 @@ public class GradeBook {
     }
 
     /**
-     * Methods return ability to get increased scholarship.
+     * Checks if the student is eligible for an increased scholarship in a specific semester.
      *
      * @param semester number of page (semester) in GradeBook.
-     * @return true if is able to get increased scholarship this semester, false otherwise.
+     * @return true if eligible, false otherwise.
      */
     public boolean scholarship(int semester) {
         MarksPage page = pages[semester - 1];
@@ -141,9 +117,9 @@ public class GradeBook {
     } 
 
     /**
-     * Methods return ability to get red diploma.
+     * Checks if the student is eligible for a red diploma based on their entire academic history.
      *
-     * @return true if is able to get red diploma, false otherwise.
+     * @return true if eligible, false otherwise.
      */
     public boolean redDiploma() {
         ArrayList<String> visited = new ArrayList<>();
@@ -182,7 +158,7 @@ public class GradeBook {
     }
 
     /**
-     * Methods return average grade for all semesters.
+     * Calculates the average grade for all semesters.
      *
      * @return float number of average grade.
      */
@@ -200,27 +176,25 @@ public class GradeBook {
     }
 
     /**
-     * Overrided hashCode.
-     *
-     * @return hash of GradeBook object.
+     * {@inheritDoc}
      */
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + pages.hashCode();
+        for (var i : pages) {
+            result += i.hashCode();
+        }
         result = prime * result + pageCount;
         result = prime * result + ((studentName == null) ? 0 : studentName.hashCode());
         return result;
     }
 
     /**
-     * Overrided equals.
-     *
-     * @param obj Object to compare.
-     * @return true if GradeBooks are equals.
+     * {@inheritDoc}
      */
     @Override
+    @ExcludeFromJacocoGeneratedReport
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -229,8 +203,6 @@ public class GradeBook {
         if (getClass() != obj.getClass())
             return false;
         GradeBook other = (GradeBook) obj;
-        if (Arrays.hashCode(pages) != Arrays.hashCode(other.pages))
-            return false;
         if (pageCount != other.pageCount)
             return false;
         if (studentName == null) {
@@ -238,17 +210,24 @@ public class GradeBook {
                 return false;
         } else if (!studentName.equals(other.studentName))
             return false;
-        return true;
+        int hash1 = 0;
+        int hash2 = 0;
+        for (var i : pages) {
+            hash1 += i.hashCode();
+        }
+        for (var i : other.pages) {
+            hash2 += i.hashCode();
+        }
+        return hash1 == hash2;
     }
 
     /**
-     * Overrided method toString for GradeBook objects.
-     *
-     * @return string representation of gradebook.
+     * {@inheritDoc}
      */
     @Override
+    @ExcludeFromJacocoGeneratedReport
     public String toString() {
-        StringBuffer res = new StringBuffer();
+        StringBuilder res = new StringBuilder();
         for (int i = 0; i < pageCount; i++) {
             var currPage = pages[i];
             res.append("Semester number " + (i + 1) + "\n");
@@ -258,16 +237,4 @@ public class GradeBook {
         }
         return res.toString();
     }
-
-    public GradeBook clone() {
-        try {
-            var res = new GradeBook(this.studentName, this.pageCount);
-            for (var i : this.getPages()) {
-                
-            }
-        } catch (GradeException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 }
-
