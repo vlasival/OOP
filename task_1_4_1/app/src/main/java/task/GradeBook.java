@@ -1,7 +1,6 @@
 package task;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Represents an electronic student grade book with methods for managing and analyzing grades.
@@ -56,15 +55,17 @@ public class GradeBook {
     public void setStudentName(String studentName) throws GradeException {
         String[] nameParts = studentName.split(" ");
         if (nameParts.length != 3) {
-            throw new GradeException("Invalid name format: " + studentName + "\n"
-                    + "Please ensure your name is in the format: last name, first name, patronymic.\n");
-        }
+            throw new GradeException("\"" + studentName + "\"" + 
+                                            " is not supported in this record book.\n" + 
+                                            "Please, Make sure your name is in the format:\n" + 
+                                            "last name, first name, patronymic.\n");
+        } 
         if (studentName.matches(".*\\d.*")) {
-            throw new GradeException("Invalid name format: " + studentName + " contains numbers. Please fix this.\n");
+            throw new GradeException("\"" + studentName + "\"" +
+                                            " contains numbers. Fix this.\n");
         }
         this.studentName = studentName;
     }
-
     /**
      * Adds a new grade entry to the GradeBook for a specific semester.
      *

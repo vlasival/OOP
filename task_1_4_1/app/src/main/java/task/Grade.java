@@ -1,4 +1,5 @@
 package task;
+
 /**
  * Class represents subject grade in gradebook.
  */
@@ -114,22 +115,29 @@ public class Grade {
     @ExcludeFromJacocoGeneratedReport
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj){
             return true;
-        if (obj == null)
+        }
+        if (obj == null){
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()){
             return false;
+        }
         Grade other = (Grade) obj;
         if (subject == null) {
-            if (other.subject != null)
+            if (other.subject != null){
                 return false;
-        } else if (!subject.equals(other.subject))
+            }
+        } else if (!subject.equals(other.subject)){
             return false;
-        if (mark != other.mark)
+        }
+        if (mark != other.mark){
             return false;
-        if (differentiated != other.differentiated)
+        }
+        if (differentiated != other.differentiated){
             return false;
+        }
         return true;
     }
 }
