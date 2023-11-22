@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"task","l":"ExcludeFromJacocoGeneratedReport"},{"p":"task","l":"Grade"},{"p":"task","l":"GradeBook"},{"p":"task","l":"GradeException"},{"p":"task","l":"Main"},{"p":"task","l":"MarksPage"}];updateSearchResults();
