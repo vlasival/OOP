@@ -55,14 +55,13 @@ public class GradeBook {
     public void setStudentName(String studentName) throws GradeException {
         String[] nameParts = studentName.split(" ");
         if (nameParts.length != 3) {
-            throw new GradeException("\"" + studentName + "\"" + 
-                                            " is not supported in this record book.\n" + 
-                                            "Please, Make sure your name is in the format:\n" + 
-                                            "last name, first name, patronymic.\n");
+            throw new GradeException("\"" + studentName + "\"" 
+                                    + " is not supported in this record book.\n" 
+                                    + "Please, Make sure your name is in the format:\n" 
+                                    + "last name, first name, patronymic.\n");
         } 
         if (studentName.matches(".*\\d.*")) {
-            throw new GradeException("\"" + studentName + "\"" +
-                                            " contains numbers. Fix this.\n");
+            throw new GradeException("\"" + studentName + "\"" + " contains numbers. Fix this.\n");
         }
         this.studentName = studentName;
     }
@@ -197,20 +196,26 @@ public class GradeBook {
     @Override
     @ExcludeFromJacocoGeneratedReport
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         GradeBook other = (GradeBook) obj;
-        if (pageCount != other.pageCount)
+        if (pageCount != other.pageCount) {
             return false;
+        }
         if (studentName == null) {
-            if (other.studentName != null)
+            if (other.studentName != null) {
                 return false;
-        } else if (!studentName.equals(other.studentName))
+            }
+        } else if (!studentName.equals(other.studentName)) {
             return false;
+        }
         int hash1 = 0;
         int hash2 = 0;
         for (var i : pages) {

@@ -69,16 +69,20 @@ public class MarksPage {
     @ExcludeFromJacocoGeneratedReport
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         MarksPage other = (MarksPage) obj;
         if (notes == null) {
-            if (other.notes != null)
+            if (other.notes != null) {
                 return false;
+            }
         } else if (this.hashCode() != other.hashCode()) {
             return false;
         }
