@@ -65,6 +65,7 @@ public class GradeBook {
         }
         this.studentName = studentName;
     }
+    
     /**
      * Adds a new grade entry to the GradeBook for a specific semester.
      *

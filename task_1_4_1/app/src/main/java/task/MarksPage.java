@@ -25,7 +25,7 @@ public class MarksPage {
      * @param subject         The name of the subject.
      * @param mark            The grade for this subject.
      * @param differentiated  True if the grading is differentiated, false otherwise.
-     * @throws GradeException Special exception for the GradeBook class containing an informative message.
+     * @throws GradeException Special exception for the GradeBook class containing a message.
      */
     public void addNote(String subject, int mark, boolean differentiated) throws GradeException {
         Grade newNote = new Grade(subject, mark, differentiated);
