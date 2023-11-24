@@ -108,13 +108,7 @@ public class GradeBook {
      * @return true if eligible, false otherwise.
      */
     public boolean scholarship(int semester) {
-        MarksPage page = pages[semester - 1];
-        for (var i : page.getNotes()) {
-            if (i.getMark() != 5) {
-                return false;
-            }
-        }
-        return true;
+        return pages[semester - 1].getNotes().stream().allMatch(x -> x.getMark() == 5);
     } 
 
     /**

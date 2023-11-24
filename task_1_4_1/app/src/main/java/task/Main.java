@@ -16,6 +16,7 @@ public class Main {
 
             newBook = new GradeBook("Petrov Petr Petrovich", 1);
             newBook.writeInGradeBook(1, "Math", 5, true);
+            newBook.writeInGradeBook(1, "Rus", 4, true);
             newBook.writeInGradeBook(1, "Diploma", 5, true);
 
             System.out.println("Average Mark: " + newBook.averageMark());
