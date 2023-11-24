@@ -11,7 +11,7 @@ class StudentBookTest {
 
     GradeBook testData() {
         try {
-           GradeBook book = new GradeBook("Vlasov Vlas Vlasovich", 4);
+            GradeBook book = new GradeBook("Vlasov Vlas Vlasovich", 4);
             book.writeInGradeBook(1, "Math", 5, true);
             book.writeInGradeBook(1, "Rus", 3, false);
             book.writeInGradeBook(1, "Discrete", 4, true);
