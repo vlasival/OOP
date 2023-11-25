@@ -1,6 +1,10 @@
 package task;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.IntStream;
 
 /**
  * Represents an electronic student grade book with methods for managing and analyzing grades.
@@ -58,7 +62,7 @@ public class GradeBook {
             throw new GradeException("\"" + studentName + "\"" 
                                     + " is not supported in this record book.\n" 
                                     + "Please, Make sure your name is in the format:\n" 
-                                    + "last name, first name, patronymic.\n");
+                                    + "last name, first name, patronymic (\"-\" if absent).\n");
         } 
         if (studentName.matches(".*\\d.*")) {
             throw new GradeException("\"" + studentName + "\"" + " contains numbers. Fix this.\n");
@@ -117,39 +121,31 @@ public class GradeBook {
      * @return true if eligible, false otherwise.
      */
     public boolean redDiploma() {
-        ArrayList<String> visited = new ArrayList<>();
-        int goodMarks = 0;
-        int countMarks = 0;
-        boolean diplomWritten = false;
-        for (int i = pageCount - 1; i >= 0; i--) {
-            var temp = pages[i];
-            for (var j : temp.getNotes()) {
-                if (!visited.contains(j.getSubject())) {
-                    if (j.getMark() <= 3) {
-                        return false;
-                    }
-                    if (j.getSubject() == "Diploma") {
-                        diplomWritten = true;
-                        if (j.getMark() < 5) {
-                            return false;
-                        }
-                    }
-                    visited.add(j.getSubject());
-                    if (j.getMark() == 5) {
-                        goodMarks++;
-                    }
-                    countMarks++;
+        Set<String> visited = new HashSet<>();
+        int[] goodMarks = {0};
+        int[] countMarks = {0};
+        boolean[] diplomWritten = {false};
+
+        Arrays.stream(pages)
+            .flatMap(curr -> curr.getNotes().stream())
+            .filter(i -> !visited.contains(i.getSubject()))
+            .peek(i -> visited.add(i.getSubject()))
+            .allMatch(j -> {
+                if (j.getMark() <= 3) {
+                    return false;
                 }
-            }
-        }
-        if (!diplomWritten) {
-            return false;
-        }
-        float goodMarkPercent = (float) goodMarks / (float) countMarks;
-        if (goodMarkPercent < 0.75) {
-            return false;
-        }
-        return true;
+                if ("Diploma".equals(j.getSubject())) {
+                    diplomWritten[0] = true;
+                    return j.getMark() == 5;
+                }
+                if (j.getMark() == 5) {
+                    goodMarks[0]++;
+                }
+                countMarks[0]++;
+                return true;
+            });
+
+        return diplomWritten[0] && ((float) goodMarks[0] / countMarks[0] >= 0.75);
     }
 
     /**
@@ -158,16 +154,13 @@ public class GradeBook {
      * @return float number of average grade.
      */
     public float averageMark() {
-        float total = 0f;
-        int countMarks = 0;
-        for (int i = pageCount - 1; i >= 0; i--) {
-            var temp = pages[i];
-            for (var j : temp.getNotes()) {
-                total += (float) j.getMark();
-                countMarks++;
-            }
-        }
-        return total / (float) countMarks;
+        float[] total = {0f};
+        long countMarks = Arrays.stream(pages)
+            .flatMap(curr -> curr.getNotes().stream())
+            .peek(j -> {
+                total[0] += (float) j.getMark();
+            }).count();
+        return total[0] / (float) countMarks;
     }
 
     /**
@@ -211,15 +204,7 @@ public class GradeBook {
         } else if (!studentName.equals(other.studentName)) {
             return false;
         }
-        int hash1 = 0;
-        int hash2 = 0;
-        for (var i : pages) {
-            hash1 += i.hashCode();
-        }
-        for (var i : other.pages) {
-            hash2 += i.hashCode();
-        }
-        return hash1 == hash2;
+        return true;
     }
 
     /**
