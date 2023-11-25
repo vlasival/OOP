@@ -2,6 +2,7 @@ package task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -49,11 +50,7 @@ class StudentBookTest {
 
     @Test
     public void setStudentIncorrectNameFormatExceptionTest() {
-        try {
-            testBook.setStudentName("Ivan Ivanovich");
-        } catch (GradeException e) {
-            assertTrue(true);
-        }
+        assertThrows(GradeException.class, () -> testBook.setStudentName("Ivan Ivanovich"));
     }
 
     @Test

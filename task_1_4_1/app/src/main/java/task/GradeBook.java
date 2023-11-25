@@ -1,10 +1,8 @@
 package task;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.IntStream;
 
 /**
  * Represents an electronic student grade book with methods for managing and analyzing grades.
@@ -204,7 +202,9 @@ public class GradeBook {
         } else if (!studentName.equals(other.studentName)) {
             return false;
         }
-        return true;
+        Set<MarksPage> thisSet = new HashSet<>(Arrays.asList(pages));
+        Set<MarksPage> otherSet = new HashSet<>(Arrays.asList(other.pages));
+        return thisSet.equals(otherSet);
     }
 
     /**

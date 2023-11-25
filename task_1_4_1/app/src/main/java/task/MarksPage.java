@@ -1,6 +1,8 @@
 package task;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Represents a page in the gradebook containing subject grades. 
@@ -83,9 +85,9 @@ public class MarksPage {
             if (other.notes != null) {
                 return false;
             }
-        } else if (this.hashCode() != other.hashCode()) {
-            return false;
         }
-        return true;
+        Set<Grade> thisSet = new HashSet<>(notes);
+        Set<Grade> otherSet = new HashSet<>(other.notes);
+        return thisSet.equals(otherSet);
     }
 }
