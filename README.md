@@ -24,6 +24,6 @@ Implements a tree representation and methods for working with it. [Java Document
 ## [Task 1_3_1](https://vlasival.github.io/OOP/task_1_3_1/)
 Implements the [Knuth–Morris–Pratt algorithm](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm) for searching a substring in a string. [Java Documentation](https://vlasival.github.io/OOP/task_1_3_1/).
 
-## Task 1_4_1
+## [Task 1_4_1](https://vlasival.github.io/OOP/task_1_4_1/)
 NSU FIT Student's electronic grade book.
 [JavaDoc](https://vlasival.github.io/OOP/task_1_4_1/).
