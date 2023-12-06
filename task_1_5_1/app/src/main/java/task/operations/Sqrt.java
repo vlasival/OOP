@@ -1,8 +1,7 @@
-package task.operationsClasses;
+package task.operations;
 
 import java.util.EmptyStackException;
 import java.util.Stack;
-
 import task.CalculationException;
 
 /**

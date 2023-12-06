@@ -1,13 +1,13 @@
-package task.operationsClasses;
+package task.operations;
 
 import java.util.EmptyStackException;
 import java.util.Stack;
 import task.CalculationException;
 
 /**
- * Class implements pow calculating.
+ * Class implements division of two numbers in stack.
  */
-public final class Pow implements Operation {
+public final class Division implements Operation {
     @Override
     public double apply(Stack<Double> stack) {
         double op1;
@@ -18,9 +18,9 @@ public final class Pow implements Operation {
         } catch (EmptyStackException e) {
             throw new CalculationException("Incorrect expression!");
         }
-        if (op1 < 0.000000001) {
-            throw new CalculationException("The base of the pow function is less than zero!");
+        if (Math.abs(op2) < 0.000000001) {
+            throw new CalculationException("Division by zero!");
         }
-        return Math.pow(op1, op2);
+        return op1 / op2;
     }
 }

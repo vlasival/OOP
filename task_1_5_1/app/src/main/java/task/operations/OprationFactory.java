@@ -1,4 +1,4 @@
-package task.operationsClasses;
+package task.operations;
 
 /**
  * Factory class create objects of arithmetical operations classes.

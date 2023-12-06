@@ -1,4 +1,4 @@
-package task.operationsClasses;
+package task.operations;
 
 import java.util.Stack;
 

@@ -1,20 +1,19 @@
-package task.operationsClasses;
+package task.operations;
 
 import java.util.EmptyStackException;
 import java.util.Stack;
 import task.CalculationException;
 
 /**
- * Class implements sinus calculations.
+ * Class implements cosinus calculations.
  */
-public final class Sin implements Operation {
+public final class Cos implements Operation {
     @Override
     public double apply(Stack<Double> stack) {
         try {
-            return Math.sin(stack.pop());
+            return Math.cos(stack.pop());
         } catch (EmptyStackException e) {
             throw new CalculationException("Incorrect expression!");
         }
     }
-    
 }

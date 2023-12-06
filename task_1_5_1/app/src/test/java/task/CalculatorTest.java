@@ -8,8 +8,8 @@ import java.util.Stack;
 
 import org.junit.jupiter.api.Test;
 
-import task.operationsClasses.Operation;
-import task.operationsClasses.OprationFactory;
+import task.operations.Operation;
+import task.operations.OprationFactory;
 
 
 class CalculatorTest {
