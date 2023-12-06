@@ -2,9 +2,8 @@
 package task;
 
 import java.util.Stack;
-
-import task.OperationsClasses.Operation;
-import task.OperationsClasses.OprationFactory;
+import task.operationsClasses.Operation;
+import task.operationsClasses.OprationFactory;
 
 /**
  * A class that implements methods for calculating the value of an arithmetic expression.

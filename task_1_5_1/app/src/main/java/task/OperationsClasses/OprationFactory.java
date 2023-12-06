@@ -1,4 +1,4 @@
-package task.OperationsClasses;
+package task.operationsClasses;
 
 /**
  * Factory class create objects of arithmetical operations classes.
@@ -21,7 +21,7 @@ public class OprationFactory {
             case "log": return new Log();
             case "sqrt": return new Sqrt();
             case "pow": return new Pow();
+            default: return null;
         }
-        return null;
     }
 }
