@@ -3,35 +3,46 @@ package task;
 
 import java.util.Stack;
 
+import task.OperationsClasses.Operation;
+import task.OperationsClasses.OprationFactory;
+
+/**
+ * A class that implements methods for calculating the value of an arithmetic expression.
+ */
 public class Calculator {
 
-    public static double calculateFromInput(String in) {
+    /**
+     * Static method realises calculating.
+     *
+     * @param in input string of expression.
+     * @return result of expression if possible.
+     */
+    public static double calculate(String in) {
         String[] substrings = in.split(" ");
 
         Stack<Double> stack = new Stack<>();
-        double result;
-        double op1;
-        double op2;
 
         for (int i = substrings.length - 1; i >= 0; i--) {
             if (isOperator(substrings[i])) {
-                op1 = stack.pop();
-                switch (substrings[i]) {
-                    case "+": op2 = stack.pop(); result = op1 + op2; break;
-                    case "-": op2 = stack.pop(); result = op1 - op2; break;
-                    case "*": op2 = stack.pop(); result = op1 * op2; break;
-                    case "/": op2 = stack.pop(); result = op1 / op2; break;
-                    case "sin": result = Math.sin(i);
-                    case "cos": result = Math.cos(i);
-                    case "log": result = Math.log(i);
-                    default:
-                        break;
+                Operation op = OprationFactory.create(substrings[i]);
+                stack.push(op.apply(stack));
+            } else {
+                try {
+                    stack.push(Double.parseDouble(substrings[i]));
+                } catch (NumberFormatException e) {
+                    throw new CalculationException("Incorrect or non-existent operator!");
                 }
             }
         }
-        return 0;
+        return stack.pop();
     }
 
+    /**
+     * Method-helper to determine operator.
+     *
+     * @param elem parsed token.
+     * @return true if this is an operator.
+     */
     private static boolean isOperator(String elem) {
         String ops = "sin cos log pow sqrt + - * /";
         if (ops.indexOf(elem) != -1) {
