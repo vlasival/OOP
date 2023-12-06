@@ -5,7 +5,8 @@ import java.util.Stack;
 /**
  * Sealed interface (contract) that brings together all operations.
  */
-public sealed interface Operation permits Addition, Substraction, Multiplication, Division, Sin, Log, Cos, Sqrt, Pow {
+public sealed interface Operation permits Addition, Substraction, Multiplication, 
+                                            Division, Sin, Log, Cos, Sqrt, Pow {
     /**
      * Abstract method implies the implementation of the functionality of applying an operation.
      *

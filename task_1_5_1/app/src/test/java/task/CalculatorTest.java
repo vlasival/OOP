@@ -5,9 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Stack;
-
 import org.junit.jupiter.api.Test;
-
 import task.operations.Operation;
 import task.operations.OprationFactory;
 
@@ -50,7 +48,7 @@ class CalculatorTest {
     }
 
     @Test
-    void SubstractionFailTest() {
+    void substractionFailTest() {
         Operation sub = OprationFactory.create("-");
         Stack<Double> stack = new Stack<>();
         stack.push(728d);

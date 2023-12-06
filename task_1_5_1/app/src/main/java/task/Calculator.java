@@ -2,7 +2,6 @@
 package task;
 
 import java.util.Stack;
-
 import task.operations.Operation;
 import task.operations.OprationFactory;
 
