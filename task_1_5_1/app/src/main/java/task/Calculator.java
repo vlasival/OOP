@@ -2,7 +2,6 @@
 package task;
 
 import java.util.Stack;
-
 import task.exceptions.IncorrectExpressionException;
 import task.factory.OperationFactory;
 import task.operations.Operation;
