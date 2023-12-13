@@ -1,4 +1,4 @@
 task
-task.Exceptions
-task.Factory
+task.exceptions
+task.factory
 task.operations
