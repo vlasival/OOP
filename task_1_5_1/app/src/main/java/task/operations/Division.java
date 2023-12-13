@@ -3,6 +3,7 @@ package task.operations;
 import java.util.EmptyStackException;
 import java.util.Stack;
 import task.CalculationException;
+import task.Calculator;
 
 /**
  * Class implements division of two numbers in stack.
@@ -18,7 +19,7 @@ public final class Division implements Operation {
         } catch (EmptyStackException e) {
             throw new CalculationException("Incorrect expression!");
         }
-        if (Math.abs(op2) < 0.000000001) {
+        if (Math.abs(op2) < Calculator.zeroValue) {
             throw new CalculationException("Division by zero!");
         }
         return op1 / op2;
