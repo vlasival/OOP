@@ -9,6 +9,9 @@ import task.operations.OprationFactory;
  * A class that implements methods for calculating the value of an arithmetic expression.
  */
 public class Calculator {
+    /**
+     * Equals to zero value using in functionalities class.
+     */
     public static double zeroValue = 0.000000001;
 
     /**
@@ -28,7 +31,7 @@ public class Calculator {
     /**
      * Static method realises calculating.
      *
-     * @param in input string of expression.
+     * @param input input string of expression.
      * @return result of expression if possible.
      */
     public static double calculate(String input) {
