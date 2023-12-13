@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Stack;
 import org.junit.jupiter.api.Test;
-
 import task.Exceptions.IncorrectExpressionException;
 import task.Exceptions.LogLessZeroArgumentException;
 import task.Exceptions.PowLessZeroArgumentException;
