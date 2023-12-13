@@ -2,7 +2,8 @@ package task.operations;
 
 import java.util.EmptyStackException;
 import java.util.Stack;
-import task.CalculationException;
+
+import task.Exceptions.IncorrectExpressionException;
 
 /**
  * Class implements cosinus calculations.
@@ -13,7 +14,7 @@ public final class Cos implements Operation {
         try {
             return Math.cos(stack.pop());
         } catch (EmptyStackException e) {
-            throw new CalculationException("Incorrect expression!");
+            throw new IncorrectExpressionException();
         }
     }
 }

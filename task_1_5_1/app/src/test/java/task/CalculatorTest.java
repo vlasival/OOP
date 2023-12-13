@@ -6,8 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Stack;
 import org.junit.jupiter.api.Test;
+
+import task.Exceptions.IncorrectExpressionException;
+import task.Exceptions.LogLessZeroArgumentException;
+import task.Exceptions.PowLessZeroArgumentException;
+import task.Exceptions.SqrtLessZeroArgumentException;
+import task.Exceptions.ZeroDivisionException;
+import task.Factory.OperationFactory;
 import task.operations.Operation;
-import task.operations.OprationFactory;
 
 
 class CalculatorTest {
@@ -18,12 +24,12 @@ class CalculatorTest {
 
     @Test
     void incorrectOperatorTest() {
-        assertThrows(CalculationException.class, () -> Calculator.calculate("sqpt 0.34"));
+        assertThrows(IncorrectExpressionException.class, () -> Calculator.calculate("sqpt 0.34"));
     }
 
     @Test
     void additionTest() {
-        Operation add = OprationFactory.create("+");
+        Operation add = OperationFactory.create("+");
         Stack<Double> stack = new Stack<>();
         stack.push(728.5453d);
         stack.push(435.232d);
@@ -32,15 +38,15 @@ class CalculatorTest {
     
     @Test
     void additionFailTest() {
-        Operation add = OprationFactory.create("+");
+        Operation add = OperationFactory.create("+");
         Stack<Double> stack = new Stack<>();
         stack.push(728d);
-        assertThrows(CalculationException.class, () -> add.apply(stack));
+        assertThrows(IncorrectExpressionException.class, () -> add.apply(stack));
     }
 
     @Test
     void substractionTest() {
-        Operation sub = OprationFactory.create("-");
+        Operation sub = OperationFactory.create("-");
         Stack<Double> stack = new Stack<>();
         stack.push(728d);
         stack.push(453d);
@@ -49,15 +55,15 @@ class CalculatorTest {
 
     @Test
     void substractionFailTest() {
-        Operation sub = OprationFactory.create("-");
+        Operation sub = OperationFactory.create("-");
         Stack<Double> stack = new Stack<>();
         stack.push(728d);
-        assertThrows(CalculationException.class, () -> sub.apply(stack));
+        assertThrows(IncorrectExpressionException.class, () -> sub.apply(stack));
     }
 
     @Test
     void multiplicationTest() {
-        Operation mul = OprationFactory.create("*");
+        Operation mul = OperationFactory.create("*");
         Stack<Double> stack = new Stack<>();
         stack.push(728d);
         stack.push(453d);
@@ -66,15 +72,15 @@ class CalculatorTest {
 
     @Test
     void multiplicationFailTest() {
-        Operation mul = OprationFactory.create("*");
+        Operation mul = OperationFactory.create("*");
         Stack<Double> stack = new Stack<>();
         stack.push(728d);
-        assertThrows(CalculationException.class, () -> mul.apply(stack));
+        assertThrows(IncorrectExpressionException.class, () -> mul.apply(stack));
     }
 
     @Test
     void divisionTest() {
-        Operation div = OprationFactory.create("/");
+        Operation div = OperationFactory.create("/");
         Stack<Double> stack = new Stack<>();
         stack.push(798d);
         stack.push(399d);
@@ -83,20 +89,20 @@ class CalculatorTest {
 
     @Test
     void divisionByZeroTest() {
-        assertThrows(CalculationException.class, () -> Calculator.calculate("/ 5 0"));
+        assertThrows(ZeroDivisionException.class, () -> Calculator.calculate("/ 5 0"));
     }
 
     @Test
     void divisionEmptyStackFailTest() {
-        Operation div = OprationFactory.create("/");
+        Operation div = OperationFactory.create("/");
         Stack<Double> stack = new Stack<>();
         stack.push(798d);
-        assertThrows(CalculationException.class, () -> div.apply(stack));
+        assertThrows(IncorrectExpressionException.class, () -> div.apply(stack));
     }
 
     @Test
     void logTest() {
-        Operation log = OprationFactory.create("log");
+        Operation log = OperationFactory.create("log");
         Stack<Double> stack = new Stack<>();
         stack.push(Math.pow(Math.E, 2.67d));
         assertEquals(2.67d, log.apply(stack));
@@ -104,22 +110,22 @@ class CalculatorTest {
 
     @Test
     void logEmptyStackFailTest() {
-        Operation log = OprationFactory.create("log");
+        Operation log = OperationFactory.create("log");
         Stack<Double> stack = new Stack<>();
-        assertThrows(CalculationException.class, () -> log.apply(stack));
+        assertThrows(IncorrectExpressionException.class, () -> log.apply(stack));
     }
 
     @Test
     void logZeroArgumentFailTest() {
-        Operation log = OprationFactory.create("log");
+        Operation log = OperationFactory.create("log");
         Stack<Double> stack = new Stack<>();
         stack.push(0d);
-        assertThrows(CalculationException.class, () -> log.apply(stack));
+        assertThrows(LogLessZeroArgumentException.class, () -> log.apply(stack));
     }
 
     @Test
     void sinTest() {
-        Operation sin = OprationFactory.create("sin");
+        Operation sin = OperationFactory.create("sin");
         Stack<Double> stack = new Stack<>();
         stack.push(Math.PI * 1.5);
         assertEquals(-1d, sin.apply(stack));
@@ -127,14 +133,14 @@ class CalculatorTest {
 
     @Test
     void sinEmptyStackFailTest() {
-        Operation sin = OprationFactory.create("sin");
+        Operation sin = OperationFactory.create("sin");
         Stack<Double> stack = new Stack<>();
-        assertThrows(CalculationException.class, () -> sin.apply(stack));
+        assertThrows(IncorrectExpressionException.class, () -> sin.apply(stack));
     }
 
     @Test
     void cosTest() {
-        Operation cos = OprationFactory.create("cos");
+        Operation cos = OperationFactory.create("cos");
         Stack<Double> stack = new Stack<>();
         stack.push(Math.PI);
         assertEquals(-1d, cos.apply(stack));
@@ -142,14 +148,14 @@ class CalculatorTest {
 
     @Test
     void cosEmptyStackFailTest() {
-        Operation cos = OprationFactory.create("cos");
+        Operation cos = OperationFactory.create("cos");
         Stack<Double> stack = new Stack<>();
-        assertThrows(CalculationException.class, () -> cos.apply(stack));
+        assertThrows(IncorrectExpressionException.class, () -> cos.apply(stack));
     }
 
     @Test
     void sqrtTest() {
-        Operation sqrt = OprationFactory.create("sqrt");
+        Operation sqrt = OperationFactory.create("sqrt");
         Stack<Double> stack = new Stack<>();
         stack.push(65 * 65d);
         assertEquals(65d, sqrt.apply(stack));
@@ -157,22 +163,22 @@ class CalculatorTest {
 
     @Test
     void sqrtEmptyStackFailTest() {
-        Operation sqrt = OprationFactory.create("sqrt");
+        Operation sqrt = OperationFactory.create("sqrt");
         Stack<Double> stack = new Stack<>();
-        assertThrows(CalculationException.class, () -> sqrt.apply(stack));
+        assertThrows(IncorrectExpressionException.class, () -> sqrt.apply(stack));
     }
 
     @Test
-    void sqrtZeroArgumentFailTest() {
-        Operation sqrt = OprationFactory.create("sqrt");
+    void sqrtLessZeroArgumentFailTest() {
+        Operation sqrt = OperationFactory.create("sqrt");
         Stack<Double> stack = new Stack<>();
         stack.push(-12d);
-        assertThrows(CalculationException.class, () -> sqrt.apply(stack));
+        assertThrows(SqrtLessZeroArgumentException.class, () -> sqrt.apply(stack));
     }
 
     @Test
     void powTest() {
-        Operation pow = OprationFactory.create("pow");
+        Operation pow = OperationFactory.create("pow");
         Stack<Double> stack = new Stack<>();
         stack.push(4d);
         stack.push(16d);
@@ -181,24 +187,24 @@ class CalculatorTest {
 
     @Test
     void powEmptyStackFailTest() {
-        Operation pow = OprationFactory.create("pow");
+        Operation pow = OperationFactory.create("pow");
         Stack<Double> stack = new Stack<>();
         stack.push(4d);
-        assertThrows(CalculationException.class, () -> pow.apply(stack));
+        assertThrows(IncorrectExpressionException.class, () -> pow.apply(stack));
     }
 
     @Test
     void powZeroBaseFailTest() {
-        Operation pow = OprationFactory.create("pow");
+        Operation pow = OperationFactory.create("pow");
         Stack<Double> stack = new Stack<>();
         stack.push(4d);
         stack.push(0d);
-        assertThrows(CalculationException.class, () -> pow.apply(stack));
+        assertThrows(PowLessZeroArgumentException.class, () -> pow.apply(stack));
     }
 
     @Test
     void factoryNullOutTest() {
-        Operation pop = OprationFactory.create("pop");
+        Operation pop = OperationFactory.create("pop");
         assertNull(pop);
     }
 }

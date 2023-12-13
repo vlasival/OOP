@@ -2,8 +2,10 @@ package task.operations;
 
 import java.util.EmptyStackException;
 import java.util.Stack;
-import task.CalculationException;
+
 import task.Calculator;
+import task.Exceptions.IncorrectExpressionException;
+import task.Exceptions.PowLessZeroArgumentException;
 
 /**
  * Class implements pow calculating.
@@ -17,10 +19,10 @@ public final class Pow implements Operation {
             op1 = stack.pop();
             op2 = stack.pop();
         } catch (EmptyStackException e) {
-            throw new CalculationException("Incorrect expression!");
+            throw new IncorrectExpressionException();
         }
         if (op1 < Calculator.zeroValue) {
-            throw new CalculationException("The base of the pow function is less than zero!");
+            throw new PowLessZeroArgumentException();
         }
         return Math.pow(op1, op2);
     }

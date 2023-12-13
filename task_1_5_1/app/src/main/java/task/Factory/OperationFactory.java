@@ -1,9 +1,20 @@
-package task.operations;
+package task.Factory;
+
+import task.operations.Addition;
+import task.operations.Cos;
+import task.operations.Division;
+import task.operations.Log;
+import task.operations.Multiplication;
+import task.operations.Operation;
+import task.operations.Pow;
+import task.operations.Sin;
+import task.operations.Sqrt;
+import task.operations.Substraction;
 
 /**
  * Factory class create objects of arithmetical operations classes.
  */
-public class OprationFactory {
+public class OperationFactory {
     /**
      * Method creates class instances.
      *

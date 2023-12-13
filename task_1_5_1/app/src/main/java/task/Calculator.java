@@ -2,8 +2,10 @@
 package task;
 
 import java.util.Stack;
+
+import task.Exceptions.IncorrectExpressionException;
+import task.Factory.OperationFactory;
 import task.operations.Operation;
-import task.operations.OprationFactory;
 
 /**
  * A class that implements methods for calculating the value of an arithmetic expression.
@@ -41,13 +43,13 @@ public class Calculator {
 
         for (int i = substrings.length - 1; i >= 0; i--) {
             if (isOperator(substrings[i])) {
-                Operation op = OprationFactory.create(substrings[i]);
+                Operation op = OperationFactory.create(substrings[i]);
                 stack.push(op.apply(stack));
             } else {
                 try {
                     stack.push(Double.parseDouble(substrings[i]));
                 } catch (NumberFormatException e) {
-                    throw new CalculationException("Incorrect or non-existent operator!");
+                    throw new IncorrectExpressionException();
                 }
             }
         }

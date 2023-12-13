@@ -2,8 +2,10 @@ package task.operations;
 
 import java.util.EmptyStackException;
 import java.util.Stack;
-import task.CalculationException;
+
 import task.Calculator;
+import task.Exceptions.IncorrectExpressionException;
+import task.Exceptions.ZeroDivisionException;
 
 /**
  * Class implements division of two numbers in stack.
@@ -17,10 +19,10 @@ public final class Division implements Operation {
             op1 = stack.pop();
             op2 = stack.pop();
         } catch (EmptyStackException e) {
-            throw new CalculationException("Incorrect expression!");
+            throw new IncorrectExpressionException();
         }
         if (Math.abs(op2) < Calculator.zeroValue) {
-            throw new CalculationException("Division by zero!");
+            throw new ZeroDivisionException();
         }
         return op1 / op2;
     }
