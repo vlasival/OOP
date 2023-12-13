@@ -1,4 +1,4 @@
-package task.Factory;
+package task.factory;
 
 import task.operations.Addition;
 import task.operations.Cos;

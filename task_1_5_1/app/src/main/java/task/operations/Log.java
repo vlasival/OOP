@@ -3,8 +3,8 @@ package task.operations;
 import java.util.EmptyStackException;
 import java.util.Stack;
 import task.Calculator;
-import task.Exceptions.IncorrectExpressionException;
-import task.Exceptions.LogLessZeroArgumentException;
+import task.exceptions.IncorrectExpressionException;
+import task.exceptions.LogLessZeroArgumentException;
 
 /**
  * Class implements log calculations.

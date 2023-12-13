@@ -3,8 +3,8 @@ package task.operations;
 import java.util.EmptyStackException;
 import java.util.Stack;
 import task.Calculator;
-import task.Exceptions.IncorrectExpressionException;
-import task.Exceptions.ZeroDivisionException;
+import task.exceptions.IncorrectExpressionException;
+import task.exceptions.ZeroDivisionException;
 
 /**
  * Class implements division of two numbers in stack.

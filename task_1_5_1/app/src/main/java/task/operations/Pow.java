@@ -3,8 +3,8 @@ package task.operations;
 import java.util.EmptyStackException;
 import java.util.Stack;
 import task.Calculator;
-import task.Exceptions.IncorrectExpressionException;
-import task.Exceptions.PowLessZeroArgumentException;
+import task.exceptions.IncorrectExpressionException;
+import task.exceptions.PowLessZeroArgumentException;
 
 /**
  * Class implements pow calculating.

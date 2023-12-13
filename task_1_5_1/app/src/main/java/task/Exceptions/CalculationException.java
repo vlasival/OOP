@@ -1,4 +1,4 @@
-package task.Exceptions;
+package task.exceptions;
 
 /**
  * Custom exception class for handling calculating exceptions.
