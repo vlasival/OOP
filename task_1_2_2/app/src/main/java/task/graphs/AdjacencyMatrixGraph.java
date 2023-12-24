@@ -3,9 +3,10 @@ package task.graphs;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import task.graphModel.Edge;
-import task.graphModel.Graph;
-import task.graphModel.Vertex;
+
+import task.graphmodel.Edge;
+import task.graphmodel.Graph;
+import task.graphmodel.Vertex;
 
 /**
  * Implementation of the Graph interface using an adjacency matrix representation.
@@ -30,7 +31,8 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
     private final List<List<E>> adjacencyMatrix;
 
     /**
-     * Constructs a new AdjacencyMatrixGraph with empty lists for vertices, edges, and the adjacency matrix.
+     * Constructs a new AdjacencyMatrixGraph with empty lists 
+     * for vertices, edges, and the adjacency matrix.
      */
     public AdjacencyMatrixGraph() {
         vertices = new ArrayList<>();
@@ -116,13 +118,13 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
      * @return the newly added edge
      */
     @Override
-    public Edge<V,E> addEdge(Vertex<V> from, Vertex<V> to, E weight) {
+    public Edge<V, E> addEdge(Vertex<V> from, Vertex<V> to, E weight) {
         upscaleMatrix(vertices.size());
         if (!vertices.contains(from) || !vertices.contains(to)) {
             System.err.println("Edge's vertices don't exist.");
             return null;
         }
-        Edge<V,E> newEdge = new Edge<>(from, to, weight);
+        Edge<V, E> newEdge = new Edge<>(from, to, weight);
         edges.add(newEdge);
         int indexFrom = vertices.indexOf(from);
         int indexTo = vertices.indexOf(to);
@@ -136,7 +138,7 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
      * @param edge the edge to be removed
      */
     @Override
-    public void removeEdge(Edge<V,E> edge) {
+    public void removeEdge(Edge<V, E> edge) {
         if (!edges.contains(edge)) {
             System.err.println("Removing edge doesn't exist.");
             return;
@@ -154,7 +156,7 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
      * @param newWeight the new weight to be assigned to the edge
      */
     @Override
-    public void changeEdge(Edge<V,E> edge, E newWeight) {
+    public void changeEdge(Edge<V, E> edge, E newWeight) {
         if (!edges.contains(edge)) {
             System.err.println("Changing edge doesn't exist.");
             return;

@@ -1,7 +1,8 @@
-package task.entryPoint;
+package task.entrypoint;
 
 import java.io.IOException;
-import task.graphModel.Graph;
+
+import task.graphmodel.Graph;
 import task.graphs.AdjacencyMatrixGraph;
 import task.resources.ReaderMatrix;
 

@@ -1,4 +1,4 @@
-package task.graphModel;
+package task.graphmodel;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public interface Graph<V, E extends Number> {
      * @param weight the weight associated with the new edge
      * @return the newly added edge
      */
-    Edge<V,E> addEdge(Vertex<V> from, Vertex<V> to, E weight);
+    Edge<V, E> addEdge(Vertex<V> from, Vertex<V> to, E weight);
 
     /**
      * Removes the specified edge from the graph.
@@ -69,7 +69,7 @@ public interface Graph<V, E extends Number> {
      *
      * @return a list of edges in the graph
      */
-    List<Edge<V,E>> getEdges();
+    List<Edge<V, E>> getEdges();
 
     /**
      * Gets a list of outgoing edges from the specified vertex in the graph.

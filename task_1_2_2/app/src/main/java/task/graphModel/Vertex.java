@@ -1,4 +1,4 @@
-package task.graphModel;
+package task.graphmodel;
 
 /**
  * Represents a vertex in a graph.

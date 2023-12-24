@@ -2,9 +2,10 @@ package task.graphs;
 
 import java.util.ArrayList;
 import java.util.List;
-import task.graphModel.Edge;
-import task.graphModel.Graph;
-import task.graphModel.Vertex;
+
+import task.graphmodel.Edge;
+import task.graphmodel.Graph;
+import task.graphmodel.Vertex;
 
 /**
  * Implementation of the Graph interface using an incidence matrix representation.
@@ -29,7 +30,8 @@ public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
     private final List<Edge<V, E>> edges;
 
     /**
-     * Constructs a new IncedenceMatrixGraph with empty lists for vertices, edges, and the incidence matrix.
+     * Constructs a new IncedenceMatrixGraph with empty lists 
+     * for vertices, edges, and the incidence matrix.
      */
     public IncedenceMatrixGraph() {
         vertices = new ArrayList<>();
@@ -96,8 +98,8 @@ public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
      * @return the newly added edge
      */
     @Override
-    public Edge<V,E> addEdge(Vertex<V> from, Vertex<V> to, E weight) {
-        Edge<V,E> newEdge = new Edge<>(from, to, weight);
+    public Edge<V, E> addEdge(Vertex<V> from, Vertex<V> to, E weight) {
+        Edge<V, E> newEdge = new Edge<>(from, to, weight);
         edges.add(newEdge);
         for (int i = 0; i < incedenceMatrix.size(); i++) {
             incedenceMatrix.get(i).add(false);

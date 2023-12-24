@@ -6,9 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import task.graphModel.Edge;
-import task.graphModel.Graph;
-import task.graphModel.Vertex;
+
+import task.graphmodel.Edge;
+import task.graphmodel.Graph;
+import task.graphmodel.Vertex;
 
 /**
  * Implementation of the Graph interface using an adjacency list representation.
@@ -89,8 +90,8 @@ public class AdjacencyListGraph<V, E extends Number> implements Graph<V, E> {
      * @return the newly added edge
      */
     @Override
-    public Edge<V,E> addEdge(Vertex<V> from, Vertex<V> to, E weight) {
-        Edge<V,E> newEdge = new Edge<>(from, to, weight);
+    public Edge<V, E> addEdge(Vertex<V> from, Vertex<V> to, E weight) {
+        Edge<V, E> newEdge = new Edge<>(from, to, weight);
         adjacencyMap.get(from).add(newEdge);
         edges.add(newEdge);
         return newEdge;

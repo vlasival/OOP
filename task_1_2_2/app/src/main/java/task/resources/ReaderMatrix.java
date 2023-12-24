@@ -6,8 +6,8 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 import java.util.List;
 import task.exceptions.IncorrectMatrixException;
-import task.graphModel.Graph;
-import task.graphModel.Vertex;
+import task.graphmodel.Graph;
+import task.graphmodel.Vertex;
 
 /**
  * Utility class for reading matrices from files and populating graphs.
@@ -60,7 +60,8 @@ public class ReaderMatrix {
     }
 
     /**
-     * Reads a matrix from a file, creates vertices in the graph, and adds edges based on the matrix.
+     * Reads a matrix from a file, creates vertices in the graph, 
+     * and adds edges based on the matrix.
      *
      * @param graph    the graph to populate
      * @param pathname the path to the file containing the matrix
@@ -83,8 +84,5 @@ public class ReaderMatrix {
                 graph.addEdge(vertices.get(i), vertices.get(j), (E) parseNumber(values[i][j]));
             }
         }
-    }
-
-    public class InvalidMatrixException {
     }
 }

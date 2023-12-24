@@ -16,7 +16,7 @@ public class IncorrectMatrixException extends GraphException {
     /**
      * Constructs a new IncorrectMatrixException with the specified detail message.
      *
-     * @param message the detail message (which is saved for later retrieval by the getMessage() method)
+     * @param message the detail message
      */
     public IncorrectMatrixException(String message) {
         super(message);
