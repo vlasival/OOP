@@ -1,10 +1,15 @@
 
-package task;
+package task.graphs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
+import task.graphModel.Edge;
+import task.graphModel.Graph;
+import task.graphModel.Vertex;
 
 public class AdjacencyListGraph<V, E extends Number> implements Graph<V, E> {
     Map<Vertex<V>, ArrayList<Edge<V,E>>> adjacencyMap;
@@ -14,22 +19,17 @@ public class AdjacencyListGraph<V, E extends Number> implements Graph<V, E> {
     }
 
     @Override
-    public Vertex<V> addVertex(V data) {
+    public void addVertex(V data) {
         var newVertex = new Vertex<>(data);
         adjacencyMap.put(newVertex, new ArrayList<Edge<V,E>>());
-        return newVertex;
     }
 
     @Override
     public void removeVertex(Vertex<V> node) {
         adjacencyMap.remove(node);
-        for (var i : adjacencyMap.entrySet()) {
-            for (var j : i.getValue()) {
-                if (j.getTo() == node) {
-                    adjacencyMap.get(i.getKey()).remove(j);
-                }
-            }
-        }
+        adjacencyMap.values()
+            .forEach(edges -> edges.removeIf(edge -> edge.getFrom().equals(node) 
+                                            || edge.getTo().equals(node)));
     }
 
     @Override
@@ -38,20 +38,14 @@ public class AdjacencyListGraph<V, E extends Number> implements Graph<V, E> {
     }
 
     @Override
-    public Edge<V, E> addEdge(Vertex<V> from, Vertex<V> to, E weight) {
-        var newEdge = new Edge<>(from, to, weight);
+    public void addEdge(Vertex<V> from, Vertex<V> to, E weight) {
+        Edge<V,E> newEdge = new Edge<>(from, to, weight);
         adjacencyMap.get(from).add(newEdge);
-        return newEdge;
     }
 
     @Override
     public void removeEdge(Edge<V, E> edge) {
-        for (var i : adjacencyMap.entrySet()) {
-            if (i.getValue().contains(edge)) {
-                i.getValue().remove(edge);
-                break;
-            }
-        }
+        adjacencyMap.get(edge.getFrom()).remove(edge);
     }
 
     @Override
@@ -61,15 +55,14 @@ public class AdjacencyListGraph<V, E extends Number> implements Graph<V, E> {
 
     @Override
     public List<Vertex<V>> getVertices() {
-        var listVertices = new ArrayList<Vertex<V>>();
-        for (var i : adjacencyMap.keySet()) {
-            listVertices.add(i);
-        }
-        return listVertices;
+        return new ArrayList<>(adjacencyMap.keySet());
     }
 
     @Override
-    public List<Edge<V, E>> getEdges(Vertex<V> node) {
-        return adjacencyMap.get(node);
+    public List<Edge<V, E>> getIncidentEdges(Vertex<V> node) {
+        return adjacencyMap.values().stream()
+                .flatMap(list -> list.stream())
+                .filter(edge -> edge.getTo().equals(node))
+                .collect(Collectors.toList());
     }
 }

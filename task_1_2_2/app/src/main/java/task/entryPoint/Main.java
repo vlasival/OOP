@@ -1,10 +1,14 @@
-package task;
+package task.entryPoint;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 
 public class Main {
     @ExcludeFromJacocoGeneratedReport
     public static void main(String[] args) throws IOException {
-        var adjMatrix = ReadMatrixFromFile.readMatrix("task_1_2_2/app/src/main/java/task/inAdjMatrix.txt");
+        
+        ArrayList a = new ArrayList<>();
+        System.out.println(a.get(3));
     }
 }

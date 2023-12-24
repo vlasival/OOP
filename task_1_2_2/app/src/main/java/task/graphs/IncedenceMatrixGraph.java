@@ -1,24 +1,28 @@
-package task;
+package task.graphs;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class IncedenceMatrix<V, E extends Number> implements Graph<V, E> {
-    private ArrayList<ArrayList<Boolean>> incedenceMatrix;
+import task.graphModel.Edge;
+import task.graphModel.Graph;
+import task.graphModel.Vertex;
+
+public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
+    private List<List<Boolean>> incedenceMatrix;
     private List<Vertex<V>> vertices;
     private List<Edge<V,E>> edges;
 
-    public IncedenceMatrix() {
+    public IncedenceMatrixGraph(int vertexNumber, int edgeNumber) {
         vertices = new ArrayList<>();
         edges = new ArrayList<>();
+        incedenceMatrix = new ArrayList<>();
     }
 
     @Override
-    public Vertex<V> addVertex(V data) {
+    public void addVertex(V data) {
         var newVertex = new Vertex<>(data);
         vertices.add(newVertex);
-        incedenceMatrix.add(new ArrayList<Boolean>(edges.size()));
-        return newVertex;
+        incedenceMatrix.add(new ArrayList<>());
     }
 
     @Override
@@ -28,7 +32,6 @@ public class IncedenceMatrix<V, E extends Number> implements Graph<V, E> {
             if (incedenceMatrix.get(index).get(i) != null) {
                 removeEdge(edges.get(i));
             }
-            
         }
         incedenceMatrix.remove(index);
         vertices.remove(index);
@@ -40,7 +43,7 @@ public class IncedenceMatrix<V, E extends Number> implements Graph<V, E> {
     }
 
     @Override
-    public Edge<V, E> addEdge(Vertex<V> from, Vertex<V> to, E weight) {
+    public void addEdge(Vertex<V> from, Vertex<V> to, E weight) {
         var newEdge = new Edge<>(from, to, weight);
         edges.add(newEdge);
         var indexFrom = vertices.indexOf(from);
@@ -54,7 +57,6 @@ public class IncedenceMatrix<V, E extends Number> implements Graph<V, E> {
                 incedenceMatrix.get(i).add(null);
             }
         }
-        return newEdge;
     }
 
     @Override
@@ -77,7 +79,7 @@ public class IncedenceMatrix<V, E extends Number> implements Graph<V, E> {
     }
 
     @Override
-    public List<Edge<V, E>> getEdges(Vertex<V> node) {
+    public List<Edge<V, E>> getIncidentEdges(Vertex<V> node) {
         List<Edge<V,E>> listEges = new ArrayList<Edge<V,E>>();
         var index = vertices.indexOf(node);
         for (int i = 0; i < edges.size(); i++) {
