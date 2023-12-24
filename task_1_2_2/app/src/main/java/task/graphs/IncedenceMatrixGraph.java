@@ -169,7 +169,7 @@ public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
      */
     @Override
     public List<Edge<V, E>> getIncidentEdges(Vertex<V> node) {
-        List<Edge<V,E>> listEges = new ArrayList<Edge<V,E>>();
+        List<Edge<V, E>> listEges = new ArrayList<Edge<V, E>>();
         var index = vertices.indexOf(node);
         for (int i = 0; i < edges.size(); i++) {
             var tmp = incedenceMatrix.get(index).get(i);

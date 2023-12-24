@@ -20,12 +20,12 @@ public class AdjacencyListGraph<V, E extends Number> implements Graph<V, E> {
     /**
      * A map that stores vertices as keys and their corresponding outgoing edges as values.
      */
-    Map<Vertex<V>, ArrayList<Edge<V,E>>> adjacencyMap;
+    Map<Vertex<V>, ArrayList<Edge<V, E>>> adjacencyMap;
 
     /**
      * A list to store all edges in the graph.
      */
-    List<Edge<V,E>> edges;
+    List<Edge<V, E>> edges;
 
     /**
      * Constructs a new AdjacencyListGraph with an empty adjacency map and an empty list of edges.
@@ -44,7 +44,7 @@ public class AdjacencyListGraph<V, E extends Number> implements Graph<V, E> {
     @Override
     public Vertex<V> addVertex(V data) {
         var newVertex = new Vertex<>(data);
-        adjacencyMap.put(newVertex, new ArrayList<Edge<V,E>>());
+        adjacencyMap.put(newVertex, new ArrayList<Edge<V, E>>());
         return newVertex;
     }
 
