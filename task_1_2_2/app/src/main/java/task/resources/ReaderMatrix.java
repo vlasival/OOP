@@ -7,26 +7,33 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import task.exceptions.IncorrectMatrixException;
+import task.graphModel.Graph;
+import task.graphModel.Vertex;
 
 public class ReaderMatrix {
-    private List<List<String>> values;
-    private String[] verticesName;
+    private static String[][] values;
+    private static String[] verticesName;
 
-    public ReaderMatrix(String pathname) {
-        readMatrixFromFile(pathname);
+    private static Number parseNumber(String value) {
+        try {
+            if (value.contains(".")) {
+                return Double.valueOf(value);
+            } else {
+                return Integer.valueOf(value);
+            }
+        } catch (NumberFormatException e) {
+            throw new IncorrectMatrixException("Invalid number format: " + value);
+        }
     }
 
-    private void readMatrixFromFile(String pathname) {
+    private static void readMatrixFromFile(String pathname) {
         try {
             List<String> lines = Files.readAllLines(Paths.get(pathname));
             verticesName = lines.get(0).split("\\s+");
-            int rows = verticesName.length;
-            matrix = new String[rows][rows];
-            for (int i = 1; i <= rows; i++) {
-                String[] currLine = lines.get(i).split("\\s+");
-                for (int j = 0; j < rows; i++) {
-                    matrix[i][j] = currLine[j];
-                }
+            int size = verticesName.length;
+            values = new String[size][size];
+            for (int i = 0; i < size; i++) {
+                values[i] = lines.get(i + 1).split("\\s+");
             }
         } catch (IOException e) {
             throw new IncorrectMatrixException("Cannot open file.");
@@ -37,23 +44,20 @@ public class ReaderMatrix {
         }
     }
 
-    private E parseNumber(String value) {
-        try {
-            if (value.contains(".")) {
-                return (E) Double.valueOf(value);
-            } else {
-                return (E) Integer.valueOf(value);
-            }
-        } catch (NumberFormatException e) {
-            throw new IncorrectMatrixException("Invalid number format: " + value);
+    public static <V, E extends Number> void fillGraphFromFile(Graph<V, E> graph, String pathname) {
+        readMatrixFromFile(pathname);
+        for (int i = 0; i < verticesName.length; i++) {
+            graph.addVertex((V) verticesName[i]);
         }
-    }
+        List<Vertex<V>> vertices = graph.getVertices();
 
-    public String[][] getStringMatrix() {
-        return matrix;
-    }
-    
-    public String[] getVerticesName() {
-        return verticesName;
+        for (int i = 0; i < values.length; i++) {
+            for (int j = 0; j < values.length; j++) {
+                if (values[i][j].equals("n")) {
+                    continue;
+                }
+                graph.addEdge(vertices.get(i), vertices.get(j), (E) parseNumber(values[i][j]));
+            }
+        }
     }
 }

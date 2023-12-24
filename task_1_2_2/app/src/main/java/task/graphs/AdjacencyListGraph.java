@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import task.exceptions.GraphOperationException;
 import task.graphModel.Edge;
 import task.graphModel.Graph;
 import task.graphModel.Vertex;
@@ -26,6 +27,9 @@ public class AdjacencyListGraph<V, E extends Number> implements Graph<V, E> {
 
     @Override
     public void removeVertex(Vertex<V> node) {
+        if (!adjacencyMap.keySet().contains(node)) {
+            throw new GraphOperationException("Removing vertex doesn't exist.");
+        }
         adjacencyMap.remove(node);
         adjacencyMap.values()
             .forEach(edges -> edges.removeIf(edge -> edge.getFrom().equals(node) 
@@ -34,6 +38,9 @@ public class AdjacencyListGraph<V, E extends Number> implements Graph<V, E> {
 
     @Override
     public void changeVertex(Vertex<V> node, V newName) {
+        if (!adjacencyMap.keySet().contains(node)) {
+            throw new GraphOperationException("Changing vertex doesn't exist.");
+        }
         node.setName(newName);
     }
 
@@ -45,11 +52,17 @@ public class AdjacencyListGraph<V, E extends Number> implements Graph<V, E> {
 
     @Override
     public void removeEdge(Edge<V, E> edge) {
+        if (!adjacencyMap.keySet().contains(edge.getFrom())) {
+            throw new GraphOperationException("Removing edge doesn't exist.");
+        }
         adjacencyMap.get(edge.getFrom()).remove(edge);
     }
 
     @Override
     public void changeEdge(Edge<V, E> edge, E newWeight) {
+        if (!adjacencyMap.keySet().contains(edge.getFrom())) {
+            throw new GraphOperationException("Changing edge doesn't exist.");
+        }
         edge.setWeight(newWeight);
     }
 

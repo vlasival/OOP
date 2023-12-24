@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import task.exceptions.GraphOperationException;
 import task.graphModel.Edge;
 import task.graphModel.Graph;
 import task.graphModel.Vertex;
@@ -18,6 +17,12 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
         vertices = new ArrayList<>();
         edges = new ArrayList<>();
         adjacencyMatrix = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            adjacencyMatrix.add(new ArrayList<E>());
+            for (int j = 0; j < size; j++) {
+                adjacencyMatrix.get(i).add(null);
+            }
+        }
     }
 
     @Override
@@ -30,7 +35,8 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
     @Override
     public void removeVertex(Vertex<V> node) {
         if (!vertices.contains(node)) {
-            throw new GraphOperationException("Removing vertex doesn't exist.");
+            System.err.println("Removing vertex doesn't exist.");
+            return;
         }
         int index = vertices.indexOf(node);
         vertices.remove(index);
@@ -45,7 +51,8 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
     @Override
     public void changeVertex(Vertex<V> node, V newName) {
         if (!vertices.contains(node)) {
-            throw new GraphOperationException("Changing vertex doesn't exist.");
+            System.err.println("Changing vertex doesn't exist.");
+            return;
         }
         node.setName(newName);
     }
@@ -53,7 +60,8 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
     @Override
     public void addEdge(Vertex<V> from, Vertex<V> to, E weight) {
         if (!vertices.contains(from) || !vertices.contains(to)) {
-            throw new GraphOperationException("Edge's vertices don't exist.");
+            System.err.println("Edge's vertices don't exist.");
+            return;
         }
         var newEdge = new Edge<>(from, to, weight);
         edges.add(newEdge);
@@ -63,7 +71,8 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
     @Override
     public void removeEdge(Edge<V,E> edge) {
         if (!edges.contains(edge)) {
-            throw new GraphOperationException("Removing edge doesn't exist.");
+            System.err.println("Removing edge doesn't exist.");
+            return;
         }
         edges.remove(edge);
         int from = vertices.indexOf(edge.getFrom());
@@ -74,7 +83,8 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
     @Override
     public void changeEdge(Edge<V,E> edge, E newWeight) {
         if (!edges.contains(edge)) {
-            throw new GraphOperationException("Changing edge doesn't exist.");
+            System.err.println("Changing edge doesn't exist.");
+            return;
         }
         edge.setWeight(newWeight);
         int from = vertices.indexOf(edge.getFrom());
