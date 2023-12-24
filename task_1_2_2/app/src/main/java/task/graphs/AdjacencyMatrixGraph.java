@@ -3,7 +3,6 @@ package task.graphs;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import task.graphmodel.Edge;
 import task.graphmodel.Graph;
 import task.graphmodel.Vertex;
