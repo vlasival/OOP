@@ -60,4 +60,7 @@ public class ReaderMatrix {
             }
         }
     }
+
+    public class InvalidMatrixException {
+    }
 }

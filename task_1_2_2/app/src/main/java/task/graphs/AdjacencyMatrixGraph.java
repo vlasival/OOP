@@ -13,23 +13,29 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
     private List<Edge<V,E>> edges;
     private List<List<E>> adjacencyMatrix;
 
-    public AdjacencyMatrixGraph(int size) {
+    public AdjacencyMatrixGraph() {
         vertices = new ArrayList<>();
         edges = new ArrayList<>();
         adjacencyMatrix = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
+    }
+
+    private void upscaleMatrix(int newSize) {
+        for (int i = adjacencyMatrix.size(); i < newSize; i++) {
             adjacencyMatrix.add(new ArrayList<E>());
-            for (int j = 0; j < size; j++) {
+        }
+        for (int i = 0; i < adjacencyMatrix.size(); i++) {
+            while (adjacencyMatrix.get(i).size() < newSize) {
                 adjacencyMatrix.get(i).add(null);
             }
         }
     }
 
     @Override
-    public void addVertex(V data) {
-        var newVertex = new Vertex<V>(data);
+    public Vertex<V> addVertex(V data) {
+        Vertex<V> newVertex = new Vertex<V>(data);
         vertices.add(newVertex);
-        adjacencyMatrix.add(new ArrayList<E>());
+        upscaleMatrix(vertices.size());
+        return newVertex;
     }
 
     @Override
@@ -46,6 +52,9 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
             }
         }
         adjacencyMatrix.remove(index);
+        for (int i = 0; i < adjacencyMatrix.size(); i++) {
+            adjacencyMatrix.get(i).remove(index);
+        }
     }
 
     @Override
@@ -58,14 +67,18 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
     }
 
     @Override
-    public void addEdge(Vertex<V> from, Vertex<V> to, E weight) {
+    public Edge<V,E> addEdge(Vertex<V> from, Vertex<V> to, E weight) {
+        upscaleMatrix(vertices.size());
         if (!vertices.contains(from) || !vertices.contains(to)) {
             System.err.println("Edge's vertices don't exist.");
-            return;
+            return null;
         }
-        var newEdge = new Edge<>(from, to, weight);
+        Edge<V,E> newEdge = new Edge<>(from, to, weight);
         edges.add(newEdge);
-        adjacencyMatrix.get(vertices.indexOf(from)).set(vertices.indexOf(to), weight);
+        int indexFrom = vertices.indexOf(from);
+        int indexTo = vertices.indexOf(to);
+        adjacencyMatrix.get(indexFrom).set(indexTo, weight);
+        return newEdge;
     }
 
     @Override
@@ -95,6 +108,11 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
     @Override
     public List<Vertex<V>> getVertices() {
         return vertices;
+    }
+
+    @Override
+    public List<Edge<V, E>> getEdges() {
+        return edges;
     }
 
     @Override

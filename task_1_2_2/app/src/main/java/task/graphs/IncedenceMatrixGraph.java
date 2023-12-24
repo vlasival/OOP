@@ -3,7 +3,6 @@ package task.graphs;
 import java.util.ArrayList;
 import java.util.List;
 
-import task.exceptions.GraphOperationException;
 import task.graphModel.Edge;
 import task.graphModel.Graph;
 import task.graphModel.Vertex;
@@ -20,16 +19,18 @@ public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
     }
 
     @Override
-    public void addVertex(V data) {
-        var newVertex = new Vertex<>(data);
+    public Vertex<V> addVertex(V data) {
+        Vertex<V> newVertex = new Vertex<>(data);
         vertices.add(newVertex);
         incedenceMatrix.add(new ArrayList<>());
+        return newVertex;
     }
 
     @Override
     public void removeVertex(Vertex<V> node) {
         if (!vertices.contains(node)) {
-            throw new GraphOperationException("Removing vertex doesn't exist.");
+            System.err.println("Removing vertex doesn't exist.");
+            return;
         }
         var index = vertices.indexOf(node);
         for (var i : edges) {
@@ -44,26 +45,30 @@ public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
     @Override
     public void changeVertex(Vertex<V> node, V newName) {
         if (!vertices.contains(node)) {
-            throw new GraphOperationException("Removing vertex doesn't exist.");
+            System.err.println("Removing vertex doesn't exist.");
+            return;
         }
         node.setName(newName);
     }
 
     @Override
-    public void addEdge(Vertex<V> from, Vertex<V> to, E weight) {
-        edges.add(new Edge<>(from, to, weight));
+    public Edge<V,E> addEdge(Vertex<V> from, Vertex<V> to, E weight) {
+        Edge<V,E> newEdge = new Edge<>(from, to, weight);
+        edges.add(newEdge);
         for (int i = 0; i < incedenceMatrix.size(); i++) {
             incedenceMatrix.get(i).add(false);
         }
         var indexFrom = vertices.indexOf(from);
         int currLineSize = incedenceMatrix.get(indexFrom).size();
         incedenceMatrix.get(indexFrom).set(currLineSize - 1, true);
+        return newEdge;
     }
 
     @Override
     public void removeEdge(Edge<V, E> edge) {
         if (!edges.contains(edge)) {
-            throw new GraphOperationException("Removing edge doesn't exist.");
+            System.err.println("Removing edge doesn't exist.");
+            return;
         }
         var index = edges.indexOf(edge);
         for (int i = 0; i < incedenceMatrix.size(); i++) {
@@ -75,7 +80,8 @@ public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
     @Override
     public void changeEdge(Edge<V, E> edge, E newWeight) {
         if (!edges.contains(edge)) {
-            throw new GraphOperationException("Changing edge doesn't exist.");
+            System.err.println("Changing edge doesn't exist.");
+            return;
         }
         edge.setWeight(newWeight);
     }
@@ -83,6 +89,11 @@ public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
     @Override
     public List<Vertex<V>> getVertices() {
         return vertices;
+    }
+
+    @Override
+    public List<Edge<V, E>> getEdges() {
+        return edges;
     }
 
     @Override

@@ -15,7 +15,7 @@ public interface Graph<V, E extends Number> {
      * @param data the data to be stored in the new vertex
      * @return the newly added vertex
      */
-    void addVertex(V data);
+    Vertex<V> addVertex(V data);
 
     /**
      * Removes the specified vertex from the graph.
@@ -40,7 +40,7 @@ public interface Graph<V, E extends Number> {
      * @param weight the weight associated with the new edge
      * @return the newly added edge
      */
-    void addEdge(Vertex<V> from, Vertex<V> to, E weight);
+    Edge<V,E> addEdge(Vertex<V> from, Vertex<V> to, E weight);
 
     /**
      * Removes the specified edge from the graph.
@@ -65,7 +65,14 @@ public interface Graph<V, E extends Number> {
     List<Vertex<V>> getVertices();
 
     /**
-     * Gets a list of edges connected to the specified vertex in the graph.
+     * Gets a list of all edges in the graph.
+     *
+     * @return a list of edges in the graph
+     */
+    List<Edge<V,E>> getEdges();
+
+    /**
+     * Gets a list of outgoing edges from the specified vertex in the graph.
      *
      * @param node the vertex for which to retrieve connected edges
      * @return a list of edges connected to the specified vertex
