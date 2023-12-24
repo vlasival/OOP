@@ -2,22 +2,47 @@ package task.graphs;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import task.graphModel.Edge;
 import task.graphModel.Graph;
 import task.graphModel.Vertex;
 
+/**
+ * Implementation of the Graph interface using an incidence matrix representation.
+ *
+ * @param <V> the type of data stored in the vertices
+ * @param <E> the type of weight associated with the edges (must extend Number)
+ */
 public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
-    private List<List<Boolean>> incedenceMatrix;
-    private List<Vertex<V>> vertices;
-    private List<Edge<V,E>> edges;
+    /**
+     * 2D list to represent the incidence matrix.
+     */
+    private final List<List<Boolean>> incedenceMatrix;
 
+    /**
+     * List to store vertices in the graph.
+     */
+    private final List<Vertex<V>> vertices;
+
+    /**
+     * List to store edges in the graph.
+     */
+    private final List<Edge<V, E>> edges;
+
+    /**
+     * Constructs a new IncedenceMatrixGraph with empty lists for vertices, edges, and the incidence matrix.
+     */
     public IncedenceMatrixGraph() {
         vertices = new ArrayList<>();
         edges = new ArrayList<>();
         incedenceMatrix = new ArrayList<>();
     }
 
+    /**
+     * Adds a new vertex with the specified data to the graph.
+     *
+     * @param data the data to be stored in the new vertex
+     * @return the newly added vertex
+     */
     @Override
     public Vertex<V> addVertex(V data) {
         Vertex<V> newVertex = new Vertex<>(data);
@@ -26,6 +51,11 @@ public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
         return newVertex;
     }
 
+    /**
+     * Removes the specified vertex from the graph.
+     *
+     * @param node the vertex to be removed
+     */
     @Override
     public void removeVertex(Vertex<V> node) {
         if (!vertices.contains(node)) {
@@ -42,6 +72,12 @@ public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
         vertices.remove(index);
     }
 
+    /**
+     * Changes the data of the specified vertex in the graph.
+     *
+     * @param node    the vertex whose data is to be changed
+     * @param newName the new data to be assigned to the vertex
+     */
     @Override
     public void changeVertex(Vertex<V> node, V newName) {
         if (!vertices.contains(node)) {
@@ -51,6 +87,14 @@ public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
         node.setName(newName);
     }
 
+    /**
+     * Adds a new edge with the specified source, destination vertices, and weight to the graph.
+     *
+     * @param from   the source vertex of the new edge
+     * @param to     the destination vertex of the new edge
+     * @param weight the weight associated with the new edge
+     * @return the newly added edge
+     */
     @Override
     public Edge<V,E> addEdge(Vertex<V> from, Vertex<V> to, E weight) {
         Edge<V,E> newEdge = new Edge<>(from, to, weight);
@@ -64,6 +108,11 @@ public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
         return newEdge;
     }
 
+    /**
+     * Removes the specified edge from the graph.
+     *
+     * @param edge the edge to be removed
+     */
     @Override
     public void removeEdge(Edge<V, E> edge) {
         if (!edges.contains(edge)) {
@@ -77,6 +126,12 @@ public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
         edges.remove(index);
     }
 
+    /**
+     * Changes the weight of the specified edge in the graph.
+     *
+     * @param edge      the edge whose weight is to be changed
+     * @param newWeight the new weight to be assigned to the edge
+     */
     @Override
     public void changeEdge(Edge<V, E> edge, E newWeight) {
         if (!edges.contains(edge)) {
@@ -86,16 +141,32 @@ public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
         edge.setWeight(newWeight);
     }
 
+    /**
+     * Gets a list of all vertices in the graph.
+     *
+     * @return a list of vertices in the graph
+     */
     @Override
     public List<Vertex<V>> getVertices() {
         return vertices;
     }
 
+    /**
+     * Gets a list of all edges in the graph.
+     *
+     * @return a list of edges in the graph
+     */
     @Override
     public List<Edge<V, E>> getEdges() {
         return edges;
     }
 
+    /**
+     * Gets a list of outgoing edges from the specified vertex in the graph.
+     *
+     * @param node the vertex for which to retrieve connected edges
+     * @return a list of edges connected to the specified vertex
+     */
     @Override
     public List<Edge<V, E>> getIncidentEdges(Vertex<V> node) {
         List<Edge<V,E>> listEges = new ArrayList<Edge<V,E>>();

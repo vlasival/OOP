@@ -1,22 +1,20 @@
 package task.entryPoint;
 
-
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-
-import task.graphModel.Edge;
 import task.graphModel.Graph;
-import task.graphModel.Vertex;
-import task.graphs.AdjacencyListGraph;
 import task.graphs.AdjacencyMatrixGraph;
-import task.graphs.IncedenceMatrixGraph;
-import task.graphs.SortingAlgorithm;
 import task.resources.ReaderMatrix;
 
-
-
+/**
+ * Main class.
+ */
 public class Main {
+    /**
+     * Entry point.
+     *
+     * @param args agruments
+     * @throws IOException exception
+     */
     @ExcludeFromJacocoGeneratedReport
     public static void main(String[] args) throws IOException {
         Graph<String, Integer> graph = new AdjacencyMatrixGraph<>();

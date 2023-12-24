@@ -3,22 +3,46 @@ package task.graphs;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import task.graphModel.Edge;
 import task.graphModel.Graph;
 import task.graphModel.Vertex;
 
+/**
+ * Implementation of the Graph interface using an adjacency matrix representation.
+ *
+ * @param <V> the type of data stored in the vertices
+ * @param <E> the type of weight associated with the edges (must extend Number)
+ */
 public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
-    private List<Vertex<V>> vertices;
-    private List<Edge<V,E>> edges;
-    private List<List<E>> adjacencyMatrix;
+    /**
+     * List to store vertices in the graph.
+     */
+    private final List<Vertex<V>> vertices;
 
+    /**
+     * List to store edges in the graph.
+     */
+    private final List<Edge<V, E>> edges;
+
+    /**
+     * 2D list to represent the adjacency matrix.
+     */
+    private final List<List<E>> adjacencyMatrix;
+
+    /**
+     * Constructs a new AdjacencyMatrixGraph with empty lists for vertices, edges, and the adjacency matrix.
+     */
     public AdjacencyMatrixGraph() {
         vertices = new ArrayList<>();
         edges = new ArrayList<>();
         adjacencyMatrix = new ArrayList<>();
     }
 
+    /**
+     * Helper method to resize the adjacency matrix to the specified size.
+     *
+     * @param newSize the new size for the adjacency matrix
+     */
     private void upscaleMatrix(int newSize) {
         for (int i = adjacencyMatrix.size(); i < newSize; i++) {
             adjacencyMatrix.add(new ArrayList<E>());
@@ -30,6 +54,12 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
         }
     }
 
+    /**
+     * Adds a new vertex with the specified data to the graph.
+     *
+     * @param data the data to be stored in the new vertex
+     * @return the newly added vertex
+     */
     @Override
     public Vertex<V> addVertex(V data) {
         Vertex<V> newVertex = new Vertex<V>(data);
@@ -38,6 +68,11 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
         return newVertex;
     }
 
+    /**
+     * Removes the specified vertex from the graph.
+     *
+     * @param node the vertex to be removed
+     */
     @Override
     public void removeVertex(Vertex<V> node) {
         if (!vertices.contains(node)) {
@@ -57,6 +92,12 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
         }
     }
 
+    /**
+     * Changes the data of the specified vertex in the graph.
+     *
+     * @param node    the vertex whose data is to be changed
+     * @param newName the new data to be assigned to the vertex
+     */
     @Override
     public void changeVertex(Vertex<V> node, V newName) {
         if (!vertices.contains(node)) {
@@ -66,6 +107,14 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
         node.setName(newName);
     }
 
+    /**
+     * Adds a new edge with the specified source, destination vertices, and weight to the graph.
+     *
+     * @param from   the source vertex of the new edge
+     * @param to     the destination vertex of the new edge
+     * @param weight the weight associated with the new edge
+     * @return the newly added edge
+     */
     @Override
     public Edge<V,E> addEdge(Vertex<V> from, Vertex<V> to, E weight) {
         upscaleMatrix(vertices.size());
@@ -81,6 +130,11 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
         return newEdge;
     }
 
+    /**
+     * Removes the specified edge from the graph.
+     *
+     * @param edge the edge to be removed
+     */
     @Override
     public void removeEdge(Edge<V,E> edge) {
         if (!edges.contains(edge)) {
@@ -93,6 +147,12 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
         adjacencyMatrix.get(from).set(to, null);
     }
 
+    /**
+     * Changes the weight of the specified edge in the graph.
+     *
+     * @param edge      the edge whose weight is to be changed
+     * @param newWeight the new weight to be assigned to the edge
+     */
     @Override
     public void changeEdge(Edge<V,E> edge, E newWeight) {
         if (!edges.contains(edge)) {
@@ -105,16 +165,32 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
         adjacencyMatrix.get(from).set(to, newWeight);
     }
 
+    /**
+     * Gets a list of all vertices in the graph.
+     *
+     * @return a list of vertices in the graph
+     */
     @Override
     public List<Vertex<V>> getVertices() {
         return vertices;
     }
 
+    /**
+     * Gets a list of all edges in the graph.
+     *
+     * @return a list of edges in the graph
+     */
     @Override
     public List<Edge<V, E>> getEdges() {
         return edges;
     }
 
+    /**
+     * Gets a list of outgoing edges from the specified vertex in the graph.
+     *
+     * @param node the vertex for which to retrieve connected edges
+     * @return a list of edges connected to the specified vertex
+     */
     @Override
     public List<Edge<V, E>> getIncidentEdges(Vertex<V> node) {
         return edges.stream()

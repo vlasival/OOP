@@ -4,12 +4,25 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
-
 import task.graphModel.Edge;
 import task.graphModel.Graph;
 import task.graphModel.Vertex;
 
+/**
+ * Sorting algorithms for weighted graphs.
+ *
+ * @param <V> the type of data stored in the vertices
+ * @param <E> the type of weight associated with the edges (must extend Number)
+ */
 public class SortingAlgorithm<V, E extends Number> {
+
+    /**
+     * Applies Dijkstra's algorithm to find the shortest paths from a source vertex to all other vertices in a graph.
+     *
+     * @param graph  the graph to analyze
+     * @param source the source vertex
+     * @return a map of vertices to their respective shortest distances from the source
+     */
     public static <V, E extends Number> Map<Vertex<V>, Double> dijkstra(Graph<V, E> graph, Vertex<V> source) {
         Map<Vertex<V>, Double> distances = new HashMap<>();
         PriorityQueue<Vertex<V>> minHeap = new PriorityQueue<>(Comparator.comparingDouble(distances::get));
@@ -34,6 +47,13 @@ public class SortingAlgorithm<V, E extends Number> {
         return distances;
     }
 
+    /**
+     * Applies the Bellman-Ford algorithm to find the shortest paths from a source vertex to all other vertices in a graph.
+     *
+     * @param graph  the graph to analyze
+     * @param source the source vertex
+     * @return a map of vertices to their respective shortest distances from the source, or null if a negative cycle is detected
+     */
     public static <V, E extends Number> Map<Vertex<V>, Double> bellmanFord(Graph<V, E> graph, Vertex<V> source) {
         Map<Vertex<V>, Double> distances = new HashMap<>();
         distances.put(source, 0.0);

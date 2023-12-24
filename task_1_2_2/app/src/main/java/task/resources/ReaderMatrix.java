@@ -5,15 +5,24 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 import java.util.List;
-
 import task.exceptions.IncorrectMatrixException;
 import task.graphModel.Graph;
 import task.graphModel.Vertex;
 
+/**
+ * Utility class for reading matrices from files and populating graphs.
+ */
 public class ReaderMatrix {
     private static String[][] values;
     private static String[] verticesName;
 
+    /**
+     * Parses a string into a numeric value, either Integer or Double.
+     *
+     * @param value the string to parse
+     * @return the numeric value
+     * @throws IncorrectMatrixException if the string is not a valid number
+     */
     private static Number parseNumber(String value) {
         try {
             if (value.contains(".")) {
@@ -26,6 +35,12 @@ public class ReaderMatrix {
         }
     }
 
+    /**
+     * Reads a matrix from a file and populates the class variables.
+     *
+     * @param pathname the path to the file
+     * @throws IncorrectMatrixException if there are issues reading the file or parsing the matrix
+     */
     private static void readMatrixFromFile(String pathname) {
         try {
             List<String> lines = Files.readAllLines(Paths.get(pathname));
@@ -44,6 +59,15 @@ public class ReaderMatrix {
         }
     }
 
+    /**
+     * Reads a matrix from a file, creates vertices in the graph, and adds edges based on the matrix.
+     *
+     * @param graph    the graph to populate
+     * @param pathname the path to the file containing the matrix
+     * @param <V>      the type of data stored in the vertices
+     * @param <E>      the type of weight associated with the edges (must extend Number)
+     * @throws IncorrectMatrixException if there are issues reading the file or parsing the matrix
+     */
     public static <V, E extends Number> void fillGraphFromFile(Graph<V, E> graph, String pathname) {
         readMatrixFromFile(pathname);
         for (int i = 0; i < verticesName.length; i++) {
