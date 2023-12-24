@@ -88,9 +88,15 @@ loadScripts(document, 'script');</script>
 <div class="inheritance">task.graphs.SortingAlgorithm&lt;V,<wbr>E&gt;</div>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>V</code> - the type of data stored in the vertices</dd>
+<dd><code>E</code> - the type of weight associated with the edges (must extend Number)</dd>
+</dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">SortingAlgorithm&lt;V,<wbr>E extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>&gt;</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Sorting algorithms for weighted graphs.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -122,12 +128,16 @@ loadScripts(document, 'script');</script>
 E extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>&gt;<br><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../graphModel/Vertex.html" title="class in task.graphModel">Vertex</a>&lt;V&gt;,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#bellmanFord(task.graphModel.Graph,task.graphModel.Vertex)" class="member-name-link">bellmanFord</a><wbr>(<a href="../graphModel/Graph.html" title="interface in task.graphModel">Graph</a>&lt;V,<wbr>E&gt;&nbsp;graph,
  <a href="../graphModel/Vertex.html" title="class in task.graphModel">Vertex</a>&lt;V&gt;&nbsp;source)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Applies the Bellman-Ford algorithm to find the shortest paths from a source vertex to all other vertices in a graph.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;V,<wbr>
 E extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>&gt;<br><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../graphModel/Vertex.html" title="class in task.graphModel">Vertex</a>&lt;V&gt;,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#dijkstra(task.graphModel.Graph,task.graphModel.Vertex)" class="member-name-link">dijkstra</a><wbr>(<a href="../graphModel/Graph.html" title="interface in task.graphModel">Graph</a>&lt;V,<wbr>E&gt;&nbsp;graph,
  <a href="../graphModel/Vertex.html" title="class in task.graphModel">Vertex</a>&lt;V&gt;&nbsp;source)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Applies Dijkstra's algorithm to find the shortest paths from a source vertex to all other vertices in a graph.</div>
+</div>
 </div>
 </div>
 </div>
@@ -166,6 +176,14 @@ E extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/
 E extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>&gt;</span>
 <span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../graphModel/Vertex.html" title="class in task.graphModel">Vertex</a>&lt;V&gt;,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;</span>&nbsp;<span class="element-name">dijkstra</span><wbr><span class="parameters">(<a href="../graphModel/Graph.html" title="interface in task.graphModel">Graph</a>&lt;V,<wbr>E&gt;&nbsp;graph,
  <a href="../graphModel/Vertex.html" title="class in task.graphModel">Vertex</a>&lt;V&gt;&nbsp;source)</span></div>
+<div class="block">Applies Dijkstra's algorithm to find the shortest paths from a source vertex to all other vertices in a graph.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>graph</code> - the graph to analyze</dd>
+<dd><code>source</code> - the source vertex</dd>
+<dt>Returns:</dt>
+<dd>a map of vertices to their respective shortest distances from the source</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -175,6 +193,14 @@ E extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/
 E extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>&gt;</span>
 <span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../graphModel/Vertex.html" title="class in task.graphModel">Vertex</a>&lt;V&gt;,<wbr><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;</span>&nbsp;<span class="element-name">bellmanFord</span><wbr><span class="parameters">(<a href="../graphModel/Graph.html" title="interface in task.graphModel">Graph</a>&lt;V,<wbr>E&gt;&nbsp;graph,
  <a href="../graphModel/Vertex.html" title="class in task.graphModel">Vertex</a>&lt;V&gt;&nbsp;source)</span></div>
+<div class="block">Applies the Bellman-Ford algorithm to find the shortest paths from a source vertex to all other vertices in a graph.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>graph</code> - the graph to analyze</dd>
+<dd><code>source</code> - the source vertex</dd>
+<dt>Returns:</dt>
+<dd>a map of vertices to their respective shortest distances from the source, or null if a negative cycle is detected</dd>
+</dl>
 </section>
 </li>
 </ul>

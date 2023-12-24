@@ -91,6 +91,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">ReaderMatrix</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Utility class for reading matrices from files and populating graphs.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -137,7 +138,9 @@ loadScripts(document, 'script');</script>
 E extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>&gt;<br>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#fillGraphFromFile(task.graphModel.Graph,java.lang.String)" class="member-name-link">fillGraphFromFile</a><wbr>(<a href="../graphModel/Graph.html" title="interface in task.graphModel">Graph</a>&lt;V,<wbr>E&gt;&nbsp;graph,
  <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pathname)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Reads a matrix from a file, creates vertices in the graph, and adds edges based on the matrix.</div>
+</div>
 </div>
 </div>
 </div>
@@ -175,6 +178,17 @@ E extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;V,<wbr>
 E extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>&gt;</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">fillGraphFromFile</span><wbr><span class="parameters">(<a href="../graphModel/Graph.html" title="interface in task.graphModel">Graph</a>&lt;V,<wbr>E&gt;&nbsp;graph,
  <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pathname)</span></div>
+<div class="block">Reads a matrix from a file, creates vertices in the graph, and adds edges based on the matrix.</div>
+<dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>V</code> - the type of data stored in the vertices</dd>
+<dd><code>E</code> - the type of weight associated with the edges (must extend Number)</dd>
+<dt>Parameters:</dt>
+<dd><code>graph</code> - the graph to populate</dd>
+<dd><code>pathname</code> - the path to the file containing the matrix</dd>
+<dt>Throws:</dt>
+<dd><code><a href="../exceptions/IncorrectMatrixException.html" title="class in task.exceptions">IncorrectMatrixException</a></code> - if there are issues reading the file or parsing the matrix</dd>
+</dl>
 </section>
 </li>
 </ul>

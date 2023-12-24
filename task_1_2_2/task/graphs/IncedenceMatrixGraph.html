@@ -89,6 +89,11 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>V</code> - the type of data stored in the vertices</dd>
+<dd><code>E</code> - the type of weight associated with the edges (must extend Number)</dd>
+</dl>
+<dl class="notes">
 <dt>All Implemented Interfaces:</dt>
 <dd><code><a href="../graphModel/Graph.html" title="interface in task.graphModel">Graph</a>&lt;V,<wbr>E&gt;</code></dd>
 </dl>
@@ -96,6 +101,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">IncedenceMatrixGraph&lt;V,<wbr>E extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>&gt;</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="../graphModel/Graph.html" title="interface in task.graphModel">Graph</a>&lt;V,<wbr>E&gt;</span></div>
+<div class="block">Implementation of the Graph interface using an incidence matrix representation.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -108,7 +114,9 @@ implements <a href="../graphModel/Graph.html" title="interface in task.graphMode
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">IncedenceMatrixGraph</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructs a new IncedenceMatrixGraph with empty lists for vertices, edges, and the incidence matrix.</div>
+</div>
 </div>
 </section>
 </li>
@@ -193,6 +201,7 @@ implements <a href="../graphModel/Graph.html" title="interface in task.graphMode
 <section class="detail" id="&lt;init&gt;()">
 <h3>IncedenceMatrixGraph</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">IncedenceMatrixGraph</span>()</div>
+<div class="block">Constructs a new IncedenceMatrixGraph with empty lists for vertices, edges, and the incidence matrix.</div>
 </section>
 </li>
 </ul>
@@ -207,7 +216,6 @@ implements <a href="../graphModel/Graph.html" title="interface in task.graphMode
 <section class="detail" id="addVertex(V)">
 <h3 id="addVertex(java.lang.Object)">addVertex</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../graphModel/Vertex.html" title="class in task.graphModel">Vertex</a>&lt;<a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">V</a>&gt;</span>&nbsp;<span class="element-name">addVertex</span><wbr><span class="parameters">(<a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">V</a>&nbsp;data)</span></div>
-<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../graphModel/Graph.html#addVertex(V)">Graph</a></code></span></div>
 <div class="block">Adds a new vertex with the specified data to the graph.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -223,7 +231,6 @@ implements <a href="../graphModel/Graph.html" title="interface in task.graphMode
 <section class="detail" id="removeVertex(task.graphModel.Vertex)">
 <h3>removeVertex</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removeVertex</span><wbr><span class="parameters">(<a href="../graphModel/Vertex.html" title="class in task.graphModel">Vertex</a>&lt;<a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">V</a>&gt;&nbsp;node)</span></div>
-<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../graphModel/Graph.html#removeVertex(task.graphModel.Vertex)">Graph</a></code></span></div>
 <div class="block">Removes the specified vertex from the graph.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -238,7 +245,6 @@ implements <a href="../graphModel/Graph.html" title="interface in task.graphMode
 <h3 id="changeVertex(task.graphModel.Vertex,java.lang.Object)">changeVertex</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">changeVertex</span><wbr><span class="parameters">(<a href="../graphModel/Vertex.html" title="class in task.graphModel">Vertex</a>&lt;<a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">V</a>&gt;&nbsp;node,
  <a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">V</a>&nbsp;newName)</span></div>
-<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../graphModel/Graph.html#changeVertex(task.graphModel.Vertex,V)">Graph</a></code></span></div>
 <div class="block">Changes the data of the specified vertex in the graph.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -255,7 +261,6 @@ implements <a href="../graphModel/Graph.html" title="interface in task.graphMode
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../graphModel/Edge.html" title="class in task.graphModel">Edge</a>&lt;<a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">V</a>,<wbr><a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">E</a>&gt;</span>&nbsp;<span class="element-name">addEdge</span><wbr><span class="parameters">(<a href="../graphModel/Vertex.html" title="class in task.graphModel">Vertex</a>&lt;<a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">V</a>&gt;&nbsp;from,
  <a href="../graphModel/Vertex.html" title="class in task.graphModel">Vertex</a>&lt;<a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">V</a>&gt;&nbsp;to,
  <a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">E</a>&nbsp;weight)</span></div>
-<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../graphModel/Graph.html#addEdge(task.graphModel.Vertex,task.graphModel.Vertex,E)">Graph</a></code></span></div>
 <div class="block">Adds a new edge with the specified source, destination vertices, and weight to the graph.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -273,7 +278,6 @@ implements <a href="../graphModel/Graph.html" title="interface in task.graphMode
 <section class="detail" id="removeEdge(task.graphModel.Edge)">
 <h3>removeEdge</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removeEdge</span><wbr><span class="parameters">(<a href="../graphModel/Edge.html" title="class in task.graphModel">Edge</a>&lt;<a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">V</a>,<wbr><a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">E</a>&gt;&nbsp;edge)</span></div>
-<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../graphModel/Graph.html#removeEdge(task.graphModel.Edge)">Graph</a></code></span></div>
 <div class="block">Removes the specified edge from the graph.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -288,7 +292,6 @@ implements <a href="../graphModel/Graph.html" title="interface in task.graphMode
 <h3 id="changeEdge(task.graphModel.Edge,java.lang.Number)">changeEdge</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">changeEdge</span><wbr><span class="parameters">(<a href="../graphModel/Edge.html" title="class in task.graphModel">Edge</a>&lt;<a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">V</a>,<wbr><a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">E</a>&gt;&nbsp;edge,
  <a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">E</a>&nbsp;newWeight)</span></div>
-<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../graphModel/Graph.html#changeEdge(task.graphModel.Edge,E)">Graph</a></code></span></div>
 <div class="block">Changes the weight of the specified edge in the graph.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -303,7 +306,6 @@ implements <a href="../graphModel/Graph.html" title="interface in task.graphMode
 <section class="detail" id="getVertices()">
 <h3>getVertices</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../graphModel/Vertex.html" title="class in task.graphModel">Vertex</a>&lt;<a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">V</a>&gt;&gt;</span>&nbsp;<span class="element-name">getVertices</span>()</div>
-<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../graphModel/Graph.html#getVertices()">Graph</a></code></span></div>
 <div class="block">Gets a list of all vertices in the graph.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -317,7 +319,6 @@ implements <a href="../graphModel/Graph.html" title="interface in task.graphMode
 <section class="detail" id="getEdges()">
 <h3>getEdges</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../graphModel/Edge.html" title="class in task.graphModel">Edge</a>&lt;<a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">V</a>,<wbr><a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">E</a>&gt;&gt;</span>&nbsp;<span class="element-name">getEdges</span>()</div>
-<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../graphModel/Graph.html#getEdges()">Graph</a></code></span></div>
 <div class="block">Gets a list of all edges in the graph.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -331,7 +332,6 @@ implements <a href="../graphModel/Graph.html" title="interface in task.graphMode
 <section class="detail" id="getIncidentEdges(task.graphModel.Vertex)">
 <h3>getIncidentEdges</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../graphModel/Edge.html" title="class in task.graphModel">Edge</a>&lt;<a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">V</a>,<wbr><a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">E</a>&gt;&gt;</span>&nbsp;<span class="element-name">getIncidentEdges</span><wbr><span class="parameters">(<a href="../graphModel/Vertex.html" title="class in task.graphModel">Vertex</a>&lt;<a href="IncedenceMatrixGraph.html" title="type parameter in IncedenceMatrixGraph">V</a>&gt;&nbsp;node)</span></div>
-<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../graphModel/Graph.html#getIncidentEdges(task.graphModel.Vertex)">Graph</a></code></span></div>
 <div class="block">Gets a list of outgoing edges from the specified vertex in the graph.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
