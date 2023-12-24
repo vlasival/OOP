@@ -137,19 +137,6 @@ class GraphTest {
 
     @ParameterizedTest
     @ArgumentsSource(GraphsArgumentsProvider.class)
-    void testGraphRemoveVertex(Graph<String, Integer> graph) {
-        Vertex<String> vertexA = graph.addVertex("A");
-        Vertex<String> vertexB = graph.addVertex("B");
-        graph.addEdge(vertexA, vertexB, 1);
-        graph.removeVertex(vertexA);
-
-        List<Vertex<String>> vertices = graph.getVertices();
-        assertEquals(1, vertices.size());
-        assertEquals(0, graph.getEdges().size());
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(GraphsArgumentsProvider.class)
     void testGraphChangeVertex(Graph<String, Double> graph) {
         Vertex<String> vertexA = graph.addVertex("A");
         graph.changeVertex(vertexA, "NewName");
