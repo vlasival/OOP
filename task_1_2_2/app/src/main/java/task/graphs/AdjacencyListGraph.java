@@ -6,9 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import task.graphmodel.Edge;
-import task.graphmodel.Graph;
-import task.graphmodel.Vertex;
+
+import task.graphmodel1.Edge;
+import task.graphmodel1.Graph;
+import task.graphmodel1.Vertex;
 
 /**
  * Implementation of the Graph interface using an adjacency list representation.

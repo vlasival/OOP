@@ -1,4 +1,4 @@
-package task.graphmodel;
+package task.graphmodel1;
 
 import java.util.List;
 
