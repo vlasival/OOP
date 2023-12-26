@@ -1,4 +1,4 @@
-package task.graphmodel1;
+package task.graphmodel;
 
 /**
  * Represents an edge in a graph connecting two vertices with a specified weight.

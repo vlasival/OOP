@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-import task.graphmodel1.Edge;
-import task.graphmodel1.Graph;
-import task.graphmodel1.Vertex;
+import task.graphmodel.Edge;
+import task.graphmodel.Graph;
+import task.graphmodel.Vertex;
 
 /**
  * Sorting algorithms for weighted graphs.

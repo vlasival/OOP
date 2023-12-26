@@ -3,9 +3,9 @@ package task.graphs;
 import java.util.ArrayList;
 import java.util.List;
 
-import task.graphmodel1.Edge;
-import task.graphmodel1.Graph;
-import task.graphmodel1.Vertex;
+import task.graphmodel.Edge;
+import task.graphmodel.Graph;
+import task.graphmodel.Vertex;
 
 /**
  * Implementation of the Graph interface using an incidence matrix representation.

@@ -6,8 +6,8 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 import java.util.List;
 import task.exceptions.IncorrectMatrixException;
-import task.graphmodel1.Graph;
-import task.graphmodel1.Vertex;
+import task.graphmodel.Graph;
+import task.graphmodel.Vertex;
 
 /**
  * Utility class for reading matrices from files and populating graphs.

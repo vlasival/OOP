@@ -1,4 +1,4 @@
-package task.entryPoint1;
+package task.entrypoint;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
