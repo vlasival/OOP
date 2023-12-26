@@ -154,10 +154,24 @@ public class AdjacencyListGraph<V, E extends Number> implements Graph<V, E> {
      * @return a list of edges connected to the specified vertex
      */
     @Override
-    public List<Edge<V, E>> getIncidentEdges(Vertex<V> node) {
+    public List<Edge<V, E>> getOutcomeEdges(Vertex<V> node) {
         return adjacencyMap.values().stream()
                 .flatMap(list -> list.stream())
                 .filter(edge -> edge.getFrom().equals(node))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Gets a list of incoming edges from the specified vertex in the graph.
+     *
+     * @param node the vertex for which to retrieve connected edges
+     * @return a list of edges connected to the specified vertex
+     */
+    @Override
+    public List<Edge<V, E>> getIncomeEdges(Vertex<V> node) {
+        return adjacencyMap.values().stream()
+                .flatMap(list -> list.stream())
+                .filter(edge -> edge.getTo().equals(node))
                 .collect(Collectors.toList());
     }
 }

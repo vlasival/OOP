@@ -77,7 +77,14 @@ public interface Graph<V, E extends Number> {
      * @param node the vertex for which to retrieve connected edges
      * @return a list of edges connected to the specified vertex
      */
-    List<Edge<V, E>> getIncidentEdges(Vertex<V> node);
+    List<Edge<V, E>> getOutcomeEdges(Vertex<V> node);
 
+    /**
+     * Gets a list of incoming edges from the specified vertex in the graph.
+     *
+     * @param node the vertex for which to retrieve connected edges
+     * @return a list of edges connected to the specified vertex
+     */
+    List<Edge<V, E>> getIncomeEdges(Vertex<V> node);
     
 }

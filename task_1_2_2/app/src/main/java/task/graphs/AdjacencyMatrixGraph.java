@@ -83,7 +83,7 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
         }
         int index = vertices.indexOf(node);
         vertices.remove(index);
-        for (var i : edges) {
+        for (var i : getOutcomeEdges(node)) {
             if (i.getFrom().equals(node) || i.getTo().equals(node)) {
                 removeEdge(i);
             }
@@ -194,10 +194,22 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
      * @return a list of edges connected to the specified vertex
      */
     @Override
-    public List<Edge<V, E>> getIncidentEdges(Vertex<V> node) {
+    public List<Edge<V, E>> getOutcomeEdges(Vertex<V> node) {
         return edges.stream()
                 .filter(edge -> edge.getFrom().equals(node))
                 .collect(Collectors.toList());
     }
     
+    /**
+     * Gets a list of incoming edges from the specified vertex in the graph.
+     *
+     * @param node the vertex for which to retrieve connected edges
+     * @return a list of edges connected to the specified vertex
+     */
+    @Override
+    public List<Edge<V, E>> getIncomeEdges(Vertex<V> node) {
+        return edges.stream()
+                .filter(edge -> edge.getTo().equals(node))
+                .collect(Collectors.toList());
+    }
 }

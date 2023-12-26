@@ -102,11 +102,13 @@ public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
         Edge<V, E> newEdge = new Edge<>(from, to, weight);
         edges.add(newEdge);
         for (int i = 0; i < incedenceMatrix.size(); i++) {
-            incedenceMatrix.get(i).add(false);
+            incedenceMatrix.get(i).add(null);
         }
         var indexFrom = vertices.indexOf(from);
+        var indexTo = vertices.indexOf(to);
         int currLineSize = incedenceMatrix.get(indexFrom).size();
         incedenceMatrix.get(indexFrom).set(currLineSize - 1, true);
+        incedenceMatrix.get(indexTo).set(currLineSize - 1, false);
         return newEdge;
     }
 
@@ -170,12 +172,31 @@ public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
      * @return a list of edges connected to the specified vertex
      */
     @Override
-    public List<Edge<V, E>> getIncidentEdges(Vertex<V> node) {
+    public List<Edge<V, E>> getOutcomeEdges(Vertex<V> node) {
         List<Edge<V, E>> listEges = new ArrayList<Edge<V, E>>();
         var index = vertices.indexOf(node);
         for (int i = 0; i < edges.size(); i++) {
             var tmp = incedenceMatrix.get(index).get(i);
-            if (tmp) {
+            if (tmp != null && tmp == true) {
+                listEges.add(edges.get(i));
+            }
+        }
+        return listEges;
+    }
+
+    /**
+     * Gets a list of incoming edges from the specified vertex in the graph.
+     *
+     * @param node the vertex for which to retrieve connected edges
+     * @return a list of edges connected to the specified vertex
+     */
+    @Override
+    public List<Edge<V, E>> getIncomeEdges(Vertex<V> node) {
+        List<Edge<V, E>> listEges = new ArrayList<Edge<V, E>>();
+        var index = vertices.indexOf(node);
+        for (int i = 0; i < edges.size(); i++) {
+            var tmp = incedenceMatrix.get(index).get(i);
+            if (tmp != null && tmp == false) {
                 listEges.add(edges.get(i));
             }
         }

@@ -192,7 +192,7 @@ class GraphTest {
         graph.addEdge(vertexA, vertexB, (short) 2);
         graph.addEdge(vertexA, vertexC, (short) 3);
 
-        List<Edge<String, Short>> incidentEdges = graph.getIncidentEdges(vertexA);
+        List<Edge<String, Short>> incidentEdges = graph.getOutcomeEdges(vertexA);
         assertEquals(2, incidentEdges.size());
     }
 
@@ -280,12 +280,12 @@ class GraphTest {
         assertEquals(7, graph.getVertices().size());
 
         // Проверяем ребра и веса
-        assertEquals(3, graph.getIncidentEdges(graph.getVertices().get(0)).size());
-        assertEquals(2, graph.getIncidentEdges(graph.getVertices().get(1)).size());
-        assertEquals(4, graph.getIncidentEdges(graph.getVertices().get(2)).size());
-        assertEquals(3, graph.getIncidentEdges(graph.getVertices().get(3)).size());
-        assertEquals(2, graph.getIncidentEdges(graph.getVertices().get(4)).size());
-        assertEquals(2, graph.getIncidentEdges(graph.getVertices().get(5)).size());
-        assertEquals(4, graph.getIncidentEdges(graph.getVertices().get(6)).size());
+        assertEquals(3, graph.getOutcomeEdges(graph.getVertices().get(0)).size());
+        assertEquals(2, graph.getOutcomeEdges(graph.getVertices().get(1)).size());
+        assertEquals(4, graph.getOutcomeEdges(graph.getVertices().get(2)).size());
+        assertEquals(3, graph.getOutcomeEdges(graph.getVertices().get(3)).size());
+        assertEquals(2, graph.getOutcomeEdges(graph.getVertices().get(4)).size());
+        assertEquals(2, graph.getOutcomeEdges(graph.getVertices().get(5)).size());
+        assertEquals(4, graph.getOutcomeEdges(graph.getVertices().get(6)).size());
     }
 }

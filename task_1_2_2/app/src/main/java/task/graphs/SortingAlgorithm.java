@@ -38,7 +38,7 @@ public class SortingAlgorithm<V, E extends Number> {
         while (!minHeap.isEmpty()) {
             Vertex<V> current = minHeap.poll();
 
-            for (Edge<V, E> edge : graph.getIncidentEdges(current)) {
+            for (Edge<V, E> edge : graph.getOutcomeEdges(current)) {
                 Vertex<V> neighbor = edge.getTo();
                 double newDistance = distances.get(current) + edge.getWeight().doubleValue();
 
