@@ -13,6 +13,9 @@ import task.graphmodel.Graph;
 import task.graphs.AdjacencyMatrixGraph;
 import task.graphs.ReaderMatrix;
 
+/**
+ * Class tests reading graph representation from file.
+ */
 public class ReadingFromFileTest {
     @Test
     void testFillGraphFromFileWithInvalidFile() {

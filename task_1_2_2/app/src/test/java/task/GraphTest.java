@@ -1,6 +1,7 @@
 package task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -17,6 +18,9 @@ import task.graphs.AdjacencyMatrixGraph;
 import task.graphs.IncedenceMatrixGraph;
 import task.graphs.ReaderMatrix;
 
+/**
+ * Сlass tests the main methods described in the interface Graph.
+ */
 class GraphTest {
     static class GraphsArgumentsProvider implements ArgumentsProvider {
         @Override

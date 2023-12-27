@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import task.graphmodel.Edge;
 import task.graphmodel.Vertex;
 
+/**
+ * Сlass tests methods of graph components.
+ */
 class GraphModelTest {
     @Test
     void testEdgeGetWeight() {

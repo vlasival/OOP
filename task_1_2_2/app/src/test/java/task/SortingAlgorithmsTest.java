@@ -20,6 +20,9 @@ import task.graphs.IncedenceMatrixGraph;
 import task.graphs.ReaderMatrix;
 import task.graphs.SortingAlgorithms;
 
+/**
+ * Class tests graph's sorting algorithms.
+ */
 public class SortingAlgorithmsTest {
 
     static class GraphsArgumentsProvider implements ArgumentsProvider {
