@@ -49,7 +49,7 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
 <dt><a href="task/graphmodel/Graph.html#addEdge(task.graphmodel.Vertex,task.graphmodel.Vertex,E)" class="member-name-link">addEdge(Vertex&lt;V&gt;, Vertex&lt;V&gt;, E)</a> - Method in interface task.graphmodel.<a href="task/graphmodel/Graph.html" title="interface in task.graphmodel">Graph</a></dt>
@@ -104,7 +104,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:B">B</h2>
 <dl class="index">
-<dt><a href="task/graphs/SortingAlgorithm.html#bellmanFord(task.graphmodel.Graph,task.graphmodel.Vertex)" class="member-name-link">bellmanFord(Graph&lt;V, E&gt;, Vertex&lt;V&gt;)</a> - Static method in class task.graphs.<a href="task/graphs/SortingAlgorithm.html" title="class in task.graphs">SortingAlgorithm</a></dt>
+<dt><a href="task/graphs/SortingAlgorithms.html#bellmanFord(task.graphmodel.Graph,task.graphmodel.Vertex)" class="member-name-link">bellmanFord(Graph&lt;V, E&gt;, Vertex&lt;V&gt;)</a> - Static method in class task.graphs.<a href="task/graphs/SortingAlgorithms.html" title="class in task.graphs">SortingAlgorithms</a></dt>
 <dd>
 <div class="block">Applies the Bellman-Ford algorithm to find the shortest paths 
  from a source vertex to all other vertices in a graph.</div>
@@ -147,7 +147,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:D">D</h2>
 <dl class="index">
-<dt><a href="task/graphs/SortingAlgorithm.html#dijkstra(task.graphmodel.Graph,task.graphmodel.Vertex)" class="member-name-link">dijkstra(Graph&lt;V, E&gt;, Vertex&lt;V&gt;)</a> - Static method in class task.graphs.<a href="task/graphs/SortingAlgorithm.html" title="class in task.graphs">SortingAlgorithm</a></dt>
+<dt><a href="task/graphs/SortingAlgorithms.html#dijkstra(task.graphmodel.Graph,task.graphmodel.Vertex)" class="member-name-link">dijkstra(Graph&lt;V, E&gt;, Vertex&lt;V&gt;)</a> - Static method in class task.graphs.<a href="task/graphs/SortingAlgorithms.html" title="class in task.graphs">SortingAlgorithms</a></dt>
 <dd>
 <div class="block">Applies Dijkstra's algorithm to find the shortest paths 
  from a source vertex to all other vertices in a graph.</div>
@@ -163,14 +163,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Constructs a new edge with the specified source and destination vertices and weight.</div>
 </dd>
-<dt><a href="task/entrypoint/ExcludeFromJacocoGeneratedReport.html" class="type-name-link" title="annotation interface in task.entrypoint">ExcludeFromJacocoGeneratedReport</a> - Annotation Interface in <a href="task/entrypoint/package-summary.html">task.entrypoint</a></dt>
-<dd>
-<div class="block">Excluding From Jacoco Test Report interface.</div>
-</dd>
 </dl>
 <h2 class="title" id="I:F">F</h2>
 <dl class="index">
-<dt><a href="task/resources/ReaderMatrix.html#fillGraphFromFile(task.graphmodel.Graph,java.lang.String)" class="member-name-link">fillGraphFromFile(Graph&lt;V, E&gt;, String)</a> - Static method in class task.resources.<a href="task/resources/ReaderMatrix.html" title="class in task.resources">ReaderMatrix</a></dt>
+<dt><a href="task/graphs/ReaderMatrix.html#fillGraphFromFile(task.graphmodel.Graph,java.lang.String)" class="member-name-link">fillGraphFromFile(Graph&lt;V, E&gt;, String)</a> - Static method in class task.graphs.<a href="task/graphs/ReaderMatrix.html" title="class in task.graphs">ReaderMatrix</a></dt>
 <dd>
 <div class="block">Reads a matrix from a file, creates vertices in the graph, 
  and adds edges based on the matrix.</div>
@@ -274,6 +270,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Constructs a new GraphException with the specified detail message.</div>
 </dd>
+<dt><a href="task/exceptions/GraphException.html#%3Cinit%3E(java.lang.String,java.lang.Throwable)" class="member-name-link">GraphException(String, Throwable)</a> - Constructor for exception class task.exceptions.<a href="task/exceptions/GraphException.html" title="class in task.exceptions">GraphException</a></dt>
+<dd>
+<div class="block">Constructs a new GraphException with the specified detail message and cause.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
@@ -298,27 +298,18 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Constructs a new IncorrectMatrixException with the specified detail message.</div>
 </dd>
-</dl>
-<h2 class="title" id="I:M">M</h2>
-<dl class="index">
-<dt><a href="task/entrypoint/Main.html#main(java.lang.String%5B%5D)" class="member-name-link">main(String[])</a> - Static method in class task.entrypoint.<a href="task/entrypoint/Main.html" title="class in task.entrypoint">Main</a></dt>
+<dt><a href="task/exceptions/IncorrectMatrixException.html#%3Cinit%3E(java.lang.String,java.lang.Throwable)" class="member-name-link">IncorrectMatrixException(String, Throwable)</a> - Constructor for exception class task.exceptions.<a href="task/exceptions/IncorrectMatrixException.html" title="class in task.exceptions">IncorrectMatrixException</a></dt>
 <dd>
-<div class="block">Entry point.</div>
+<div class="block">Constructs a new IncorrectMatrixException with the specified detail message and cause.</div>
 </dd>
-<dt><a href="task/entrypoint/Main.html" class="type-name-link" title="class in task.entrypoint">Main</a> - Class in <a href="task/entrypoint/package-summary.html">task.entrypoint</a></dt>
-<dd>
-<div class="block">Main class.</div>
-</dd>
-<dt><a href="task/entrypoint/Main.html#%3Cinit%3E()" class="member-name-link">Main()</a> - Constructor for class task.entrypoint.<a href="task/entrypoint/Main.html" title="class in task.entrypoint">Main</a></dt>
-<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
-<dt><a href="task/resources/ReaderMatrix.html" class="type-name-link" title="class in task.resources">ReaderMatrix</a> - Class in <a href="task/resources/package-summary.html">task.resources</a></dt>
+<dt><a href="task/graphs/ReaderMatrix.html" class="type-name-link" title="class in task.graphs">ReaderMatrix</a> - Class in <a href="task/graphs/package-summary.html">task.graphs</a></dt>
 <dd>
 <div class="block">Utility class for reading matrices from files and populating graphs.</div>
 </dd>
-<dt><a href="task/resources/ReaderMatrix.html#%3Cinit%3E()" class="member-name-link">ReaderMatrix()</a> - Constructor for class task.resources.<a href="task/resources/ReaderMatrix.html" title="class in task.resources">ReaderMatrix</a></dt>
+<dt><a href="task/graphs/ReaderMatrix.html#%3Cinit%3E()" class="member-name-link">ReaderMatrix()</a> - Constructor for class task.graphs.<a href="task/graphs/ReaderMatrix.html" title="class in task.graphs">ReaderMatrix</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="task/graphmodel/Graph.html#removeEdge(task.graphmodel.Edge)" class="member-name-link">removeEdge(Edge&lt;V, E&gt;)</a> - Method in interface task.graphmodel.<a href="task/graphmodel/Graph.html" title="interface in task.graphmodel">Graph</a></dt>
 <dd>
@@ -371,24 +362,20 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Sets the weight of the edge.</div>
 </dd>
-<dt><a href="task/graphs/SortingAlgorithm.html" class="type-name-link" title="class in task.graphs">SortingAlgorithm</a>&lt;<a href="task/graphs/SortingAlgorithm.html" title="type parameter in SortingAlgorithm">V</a>,<wbr><a href="task/graphs/SortingAlgorithm.html" title="type parameter in SortingAlgorithm">E</a> extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>&gt; - Class in <a href="task/graphs/package-summary.html">task.graphs</a></dt>
+<dt><a href="task/graphs/SortingAlgorithms.html" class="type-name-link" title="class in task.graphs">SortingAlgorithms</a>&lt;<a href="task/graphs/SortingAlgorithms.html" title="type parameter in SortingAlgorithms">V</a>,<wbr><a href="task/graphs/SortingAlgorithms.html" title="type parameter in SortingAlgorithms">E</a> extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>&gt; - Class in <a href="task/graphs/package-summary.html">task.graphs</a></dt>
 <dd>
 <div class="block">Sorting algorithms for weighted graphs.</div>
 </dd>
-<dt><a href="task/graphs/SortingAlgorithm.html#%3Cinit%3E()" class="member-name-link">SortingAlgorithm()</a> - Constructor for class task.graphs.<a href="task/graphs/SortingAlgorithm.html" title="class in task.graphs">SortingAlgorithm</a></dt>
+<dt><a href="task/graphs/SortingAlgorithms.html#%3Cinit%3E()" class="member-name-link">SortingAlgorithms()</a> - Constructor for class task.graphs.<a href="task/graphs/SortingAlgorithms.html" title="class in task.graphs">SortingAlgorithms</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
-<dt><a href="task/entrypoint/package-summary.html">task.entrypoint</a> - package task.entrypoint</dt>
-<dd>&nbsp;</dd>
 <dt><a href="task/exceptions/package-summary.html">task.exceptions</a> - package task.exceptions</dt>
 <dd>&nbsp;</dd>
 <dt><a href="task/graphmodel/package-summary.html">task.graphmodel</a> - package task.graphmodel</dt>
 <dd>&nbsp;</dd>
 <dt><a href="task/graphs/package-summary.html">task.graphs</a> - package task.graphs</dt>
-<dd>&nbsp;</dd>
-<dt><a href="task/resources/package-summary.html">task.resources</a> - package task.resources</dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:V">V</h2>
@@ -402,7 +389,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Constructs a new vertex with the specified name.</div>
 </dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a></main>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a></main>
 </div>
 </div>
 </body>

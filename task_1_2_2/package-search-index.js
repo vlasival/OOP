@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"task.entrypoint"},{"l":"task.exceptions"},{"l":"task.graphmodel"},{"l":"task.graphs"},{"l":"task.resources"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"task.exceptions"},{"l":"task.graphmodel"},{"l":"task.graphs"}];updateSearchResults();
