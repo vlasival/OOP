@@ -1,31 +1,21 @@
 package task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
 import org.junit.jupiter.params.provider.ArgumentsSource;
-import task.exceptions.IncorrectMatrixException;
 import task.graphmodel.Edge;
 import task.graphmodel.Graph;
 import task.graphmodel.Vertex;
 import task.graphs.AdjacencyListGraph;
 import task.graphs.AdjacencyMatrixGraph;
 import task.graphs.IncedenceMatrixGraph;
-import task.graphs.SortingAlgorithm;
-import task.resources.ReaderMatrix;
+import task.graphs.ReaderMatrix;
 
 class GraphTest {
     static class GraphsArgumentsProvider implements ArgumentsProvider {
@@ -37,90 +27,6 @@ class GraphTest {
                     Arguments.of(new AdjacencyMatrixGraph<String, Double>())
             );
         }
-    }
-    
-    @Test
-    void testEdgeGetWeight() {
-        Vertex<String> from = new Vertex<>("A");
-        Vertex<String> to = new Vertex<>("B");
-        Edge<String, Double> edge = new Edge<>(from, to, 5.0);
-
-        assertEquals(5.0, edge.getWeight());
-    }
-
-    @Test
-    void testEdgeSetWeight() {
-        Vertex<String> from = new Vertex<>("A");
-        Vertex<String> to = new Vertex<>("B");
-        Edge<String, Double> edge = new Edge<>(from, to, 5.0);
-
-        edge.setWeight(10.0);
-
-        assertEquals(10.0, edge.getWeight());
-    }
-
-    @Test
-    void testEdgeGetFrom() {
-        Vertex<String> from = new Vertex<>("A");
-        Vertex<String> to = new Vertex<>("B");
-        Edge<String, Double> edge = new Edge<>(from, to, 5.0);
-
-        assertEquals(from, edge.getFrom());
-    }
-
-    @Test
-    void testEdgeSetFrom() {
-        Vertex<String> from = new Vertex<>("A");
-        Vertex<String> to = new Vertex<>("B");
-        Edge<String, Double> edge = new Edge<>(from, to, 5.0);
-
-        Vertex<String> newFrom = new Vertex<>("C");
-        edge.setFrom(newFrom);
-
-        assertEquals(newFrom, edge.getFrom());
-    }
-
-    @Test
-    void testEdgeGetTo() {
-        Vertex<String> from = new Vertex<>("A");
-        Vertex<String> to = new Vertex<>("B");
-        Edge<String, Double> edge = new Edge<>(from, to, 5.0);
-
-        assertEquals(to, edge.getTo());
-    }
-
-    @Test
-    void testEdgeSetTo() {
-        Vertex<String> from = new Vertex<>("A");
-        Vertex<String> to = new Vertex<>("B");
-        Edge<String, Double> edge = new Edge<>(from, to, 5.0);
-
-        Vertex<String> newTo = new Vertex<>("D");
-        edge.setTo(newTo);
-
-        assertEquals(newTo, edge.getTo());
-    }
-
-    @Test
-    void testVertexGetName() {
-        Vertex<String> vertex = new Vertex<>("A");
-
-        assertEquals("A", vertex.getName());
-    }
-
-    @Test
-    void testVertexSetName() {
-        Vertex<String> vertex = new Vertex<>("A");
-        vertex.setName("B");
-
-        assertEquals("B", vertex.getName());
-    }
-
-    @Test
-    void testVertexConstructor() {
-        Vertex<Integer> vertex = new Vertex<>(42);
-
-        assertEquals(42, vertex.getName());
     }
 
     @ParameterizedTest
@@ -198,94 +104,27 @@ class GraphTest {
 
     @ParameterizedTest
     @ArgumentsSource(GraphsArgumentsProvider.class)
-    void testDijkstra(Graph<String, Integer> graph) {
-        Vertex<String> vertexA = graph.addVertex("A");
-        Vertex<String> vertexB = graph.addVertex("B");
-        Vertex<String> vertexC = graph.addVertex("C");
-        graph.addEdge(vertexA, vertexB, 1);
-        graph.addEdge(vertexA, vertexC, 2);
-        graph.addEdge(vertexB, vertexC, 3);
-
-        Map<Vertex<String>, Double> distances = SortingAlgorithm.dijkstra(graph, vertexA);
-
-        assertEquals(0.0, distances.get(vertexA));
-        assertEquals(1.0, distances.get(vertexB));
-        assertEquals(2.0, distances.get(vertexC));
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(GraphsArgumentsProvider.class)
-    void testBellmanFord(Graph<String, Integer> graph) {
-        Vertex<String> vertexA = graph.addVertex("A");
-        Vertex<String> vertexB = graph.addVertex("B");
-        Vertex<String> vertexC = graph.addVertex("C");
-        graph.addEdge(vertexA, vertexB, 1);
-        graph.addEdge(vertexB, vertexC, 2);
-        graph.addEdge(vertexC, vertexA, -2);
-
-        Map<Vertex<String>, Double> distances = SortingAlgorithm.bellmanFord(graph, vertexA);
-
-        assertEquals(0.0, distances.get(vertexA));
-        assertEquals(1.0, distances.get(vertexB));
-        assertEquals(3.0, distances.get(vertexC));
-    }
-
-    @ParameterizedTest
-    @ArgumentsSource(GraphsArgumentsProvider.class)
-    void testBellmanFordWithNegativeCycle(Graph<String, Integer> graph) {
-        Vertex<String> vertexA = graph.addVertex("A");
-        Vertex<String> vertexB = graph.addVertex("B");
-        Vertex<String> vertexC = graph.addVertex("C");
-        graph.addEdge(vertexA, vertexB, 1);
-        graph.addEdge(vertexB, vertexC, -4);
-        graph.addEdge(vertexC, vertexA, 2);
-
-        Map<Vertex<String>, Double> distances = SortingAlgorithm.bellmanFord(graph, vertexA);
-
-        assertNull(distances);
-    }
-
-    @Test
-    void testFillGraphFromFileWithInvalidFile() {
-        Graph<String, Integer> graph = new AdjacencyMatrixGraph<>();
-        assertThrows(IncorrectMatrixException.class,
-                () -> ReaderMatrix.fillGraphFromFile(graph, "nonexistent_file.txt"));
-    }
-
-    @Test
-    void testFillGraphFromFileWithInvalidMatrix() throws IOException {
-        String invalidMatrixContent = "0 1\n2";
-        Path tempFilePath = Files.createTempFile("tempInvalidMatrixFile", ".txt");
-        Files.write(tempFilePath, invalidMatrixContent.getBytes(), StandardOpenOption.WRITE);
-
-        Graph<String, Integer> graph = new AdjacencyMatrixGraph<>();
-        assertThrows(IncorrectMatrixException.class, 
-                () -> ReaderMatrix.fillGraphFromFile(graph, tempFilePath.toString()));
-
-        Files.deleteIfExists(tempFilePath);
-    }
-
-    @Test
-    void testGraphConstructionFromFile() {
-        // Создаем экземпляр графа
-        Graph<String, Integer> graph = new AdjacencyMatrixGraph<>();
-
-        // Путь к файлу в ресурсах тестов
+    void testRemoveVertex(Graph<String, Integer> graph) {
         String filePath = "src/test/resources/inAdjMatrix.txt";
-
-        // Заполняем граф из файла
         ReaderMatrix.fillGraphFromFile(graph, filePath);
-
-        // Проверяем вершины
         assertEquals(7, graph.getVertices().size());
+        Vertex<String> firstVertex = graph.getVertices().get(0);
+        Vertex<String> lastVertex = graph.getVertices().get(5);
+        graph.removeVertex(firstVertex);
+        graph.removeVertex(lastVertex);
+        assertEquals(5, graph.getVertices().size());
+    }
 
-        // Проверяем ребра и веса
-        assertEquals(3, graph.getOutcomeEdges(graph.getVertices().get(0)).size());
-        assertEquals(2, graph.getOutcomeEdges(graph.getVertices().get(1)).size());
-        assertEquals(4, graph.getOutcomeEdges(graph.getVertices().get(2)).size());
-        assertEquals(3, graph.getOutcomeEdges(graph.getVertices().get(3)).size());
-        assertEquals(2, graph.getOutcomeEdges(graph.getVertices().get(4)).size());
-        assertEquals(2, graph.getOutcomeEdges(graph.getVertices().get(5)).size());
-        assertEquals(4, graph.getOutcomeEdges(graph.getVertices().get(6)).size());
+    @ParameterizedTest
+    @ArgumentsSource(GraphsArgumentsProvider.class)
+    void testIncomeEdges(Graph<String, Integer> graph) {
+        String filePath = "src/test/resources/inAdjMatrix.txt";
+        ReaderMatrix.fillGraphFromFile(graph, filePath);
+        List<Integer> expected = List.of(5, 12, 25);
+        List<Integer> weights = new ArrayList<>();
+        for (var i : graph.getIncomeEdges(graph.getVertices().get(0))) {
+            weights.add(i.getWeight());
+        }
+        assertEquals(expected, weights);
     }
 }

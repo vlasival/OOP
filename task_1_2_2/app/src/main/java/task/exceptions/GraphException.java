@@ -20,4 +20,14 @@ public class GraphException extends RuntimeException {
     public GraphException(String message) {
         super(message);
     }
+
+    /**
+     * Constructs a new GraphException with the specified detail message and cause.
+     *
+     * @param message the detail message
+     * @param cause previous exception
+     */
+    public GraphException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

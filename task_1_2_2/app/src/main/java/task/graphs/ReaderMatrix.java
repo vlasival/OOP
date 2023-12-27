@@ -1,8 +1,7 @@
-package task.resources;
+package task.graphs;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 import java.util.List;
 import task.exceptions.IncorrectMatrixException;
@@ -51,11 +50,9 @@ public class ReaderMatrix {
                 values[i] = lines.get(i + 1).split("\\s+");
             }
         } catch (IOException e) {
-            throw new IncorrectMatrixException("Cannot open file.");
+            throw new IncorrectMatrixException("Cannot open file.", e);
         } catch (IndexOutOfBoundsException e) {
-            throw new IncorrectMatrixException("The matrix is set incorrectly.");
-        } catch (InvalidPathException e) {
-            throw new IncorrectMatrixException("Incorrect path to file.");
+            throw new IncorrectMatrixException("The matrix is set incorrectly.", e);
         }
     }
 

@@ -4,7 +4,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
-
 import task.graphmodel.Edge;
 import task.graphmodel.Graph;
 import task.graphmodel.Vertex;
@@ -15,7 +14,7 @@ import task.graphmodel.Vertex;
  * @param <V> the type of data stored in the vertices
  * @param <E> the type of weight associated with the edges (must extend Number)
  */
-public class SortingAlgorithm<V, E extends Number> {
+public class SortingAlgorithms<V, E extends Number> {
 
     /**
      * Applies Dijkstra's algorithm to find the shortest paths 

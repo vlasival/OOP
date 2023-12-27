@@ -2,7 +2,6 @@ package task.graphs;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import task.graphmodel.Edge;
 import task.graphmodel.Graph;
 import task.graphmodel.Vertex;
@@ -65,10 +64,11 @@ public class IncedenceMatrixGraph<V, E extends Number> implements Graph<V, E> {
             return;
         }
         var index = vertices.indexOf(node);
-        for (var i : edges) {
-            if (i.getFrom().equals(node) || i.getTo().equals(node)) {
-                removeEdge(i);
-            }
+        for (var i : getIncomeEdges(node)) {
+            removeEdge(i);
+        }
+        for (var i : getOutcomeEdges(node)) {
+            removeEdge(i);
         }
         incedenceMatrix.remove(index);
         vertices.remove(index);

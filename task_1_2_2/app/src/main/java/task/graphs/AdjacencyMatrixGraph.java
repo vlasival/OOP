@@ -3,7 +3,6 @@ package task.graphs;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import task.graphmodel.Edge;
 import task.graphmodel.Graph;
 import task.graphmodel.Vertex;
@@ -82,16 +81,17 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
             return;
         }
         int index = vertices.indexOf(node);
-        vertices.remove(index);
         for (var i : getOutcomeEdges(node)) {
-            if (i.getFrom().equals(node) || i.getTo().equals(node)) {
-                removeEdge(i);
-            }
+            removeEdge(i);
+        }
+        for (var i : getIncomeEdges(node)) {
+            removeEdge(i);
         }
         adjacencyMatrix.remove(index);
         for (int i = 0; i < adjacencyMatrix.size(); i++) {
             adjacencyMatrix.get(i).remove(index);
         }
+        vertices.remove(index);
     }
 
     /**
@@ -143,10 +143,10 @@ public class AdjacencyMatrixGraph<V, E extends Number> implements Graph<V, E> {
             System.err.println("Removing edge doesn't exist.");
             return;
         }
-        edges.remove(edge);
         int from = vertices.indexOf(edge.getFrom());
         int to = vertices.indexOf(edge.getTo());
         adjacencyMatrix.get(from).set(to, null);
+        edges.remove(edge);
     }
 
     /**

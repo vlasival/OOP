@@ -21,4 +21,14 @@ public class IncorrectMatrixException extends GraphException {
     public IncorrectMatrixException(String message) {
         super(message);
     }
+
+    /**
+     * Constructs a new IncorrectMatrixException with the specified detail message and cause.
+     *
+     * @param message the detail message
+     * @param cause previous exception
+     */
+    public IncorrectMatrixException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }
