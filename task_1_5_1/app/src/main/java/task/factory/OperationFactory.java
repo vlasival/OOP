@@ -15,6 +15,7 @@ import task.operations.Substraction;
  * Factory class create objects of arithmetical operations classes.
  */
 public class OperationFactory {
+    
     /**
      * Method creates class instances.
      *

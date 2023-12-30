@@ -4,6 +4,7 @@ package task.exceptions;
  * Custom exception class for handling incorrect log arguments.
  */
 public class LogLessZeroArgumentException extends CalculationException {
+    
     /**
      * Constructs a LogLessZeroArgumentException without parameters.
      */
