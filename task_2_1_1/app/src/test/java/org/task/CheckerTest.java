@@ -1,6 +1,7 @@
 package org.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,5 +47,33 @@ public class CheckerTest {
         assertFalse(checker.hasNonPrime(numbers));
     }
 
+    @ParameterizedTest
+    @ArgumentsSource(CheckerArgumentsProvider.class)
+    void lastNonPrimeInBigMassiveTest(Checker checker) {
+        numbers.add(2222222);
+        assertTrue(checker.hasNonPrime(numbers));
+    }
     
+    @ParameterizedTest
+    @ArgumentsSource(CheckerArgumentsProvider.class)
+    void zeroElementsTest(Checker checker) {
+        List<Integer> test = new ArrayList<>();
+        assertFalse(checker.hasNonPrime(test));
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(CheckerArgumentsProvider.class)
+    void unoPrimeElementTest(Checker checker) {
+        List<Integer> test = new ArrayList<>();
+        test.add(7);
+        assertFalse(checker.hasNonPrime(test));
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(CheckerArgumentsProvider.class)
+    void unoNonPrimeElementTest(Checker checker) {
+        List<Integer> test = new ArrayList<>();
+        test.add(123);
+        assertTrue(checker.hasNonPrime(test));
+    }
 }

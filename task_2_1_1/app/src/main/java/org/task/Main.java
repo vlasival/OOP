@@ -28,10 +28,10 @@ public class Main {
 
         SequentalChecker checker1 = new SequentalChecker();
         ParallelStreamChecker checker2 = new ParallelStreamChecker();
-        ThreadChecker checker3 = new ThreadChecker(6);
+        ThreadChecker checker3 = new ThreadChecker(4);
 
         startTime = System.currentTimeMillis();
-        boolean resultSequential = checker1.hasNonPrime(numbers);
+        boolean resultSequential = checker1.hasNonPrime(new ArrayList<>());
         endTime = System.currentTimeMillis();
         System.out.println("Sequential execution time: " + (endTime - startTime) + " milliseconds");
         System.out.println("Has non-prime number (Sequential): " + resultSequential);
