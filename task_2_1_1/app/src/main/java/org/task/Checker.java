@@ -14,11 +14,13 @@ public abstract class Checker {
      * @return true if the number is prime, otherwise false
      */
     public static boolean isPrime(int number) {
-        if (number <= 1)
+        if (number <= 1) {
             return false;
+        }
         for (int i = 2; i * i <= number; i++) {
-            if (number % i == 0)
+            if (number % i == 0) {
                 return false;
+            }
         }
         return true;
     }

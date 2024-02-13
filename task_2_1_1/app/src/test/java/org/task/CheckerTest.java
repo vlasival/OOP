@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -17,6 +16,9 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 
+/**
+ * Testing class.
+ */
 @TestInstance(Lifecycle.PER_CLASS)
 public class CheckerTest {
     
@@ -37,7 +39,7 @@ public class CheckerTest {
     void fillingPrimeNumbersList() {
         int prime = 1000000007;
         numbers = new ArrayList<>();
-        for(int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 100000; i++) {
             numbers.add(prime);
         }
     }

@@ -18,7 +18,7 @@ public class Main {
     public static void main(String[] args) {
         int prime = 1000000007;
         List<Integer> numbers = new ArrayList<>();
-        for(int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 100000; i++) {
             numbers.add(prime);
         }
         // numbers.add(200);
@@ -27,25 +27,24 @@ public class Main {
         long endTime;
 
         SequentalChecker checker1 = new SequentalChecker();
-        ParallelStreamChecker checker2 = new ParallelStreamChecker();
-        ThreadChecker checker3 = new ThreadChecker(4);
-
         startTime = System.currentTimeMillis();
         boolean resultSequential = checker1.hasNonPrime(new ArrayList<>());
         endTime = System.currentTimeMillis();
-        System.out.println("Sequential execution time: " + (endTime - startTime) + " milliseconds");
+        System.out.println("Sequential time: " + (endTime - startTime) + " milliseconds");
         System.out.println("Has non-prime number (Sequential): " + resultSequential);
 
+        ParallelStreamChecker checker2 = new ParallelStreamChecker();
         startTime = System.currentTimeMillis();
         boolean resultParallelStream = checker2.hasNonPrime(numbers);
         endTime = System.currentTimeMillis();
-        System.out.println("ParallelStream execution time: " + (endTime - startTime) + " milliseconds");
+        System.out.println("ParallelStream time: " + (endTime - startTime) + " milliseconds");
         System.out.println("Has non-prime number (ParallelStream): " + resultParallelStream);
 
+        ThreadChecker checker3 = new ThreadChecker(4);
         startTime = System.currentTimeMillis();
         boolean resultThreads = checker3.hasNonPrime(numbers);
         endTime = System.currentTimeMillis();
-        System.out.println("Threads execution time: " + (endTime - startTime) + " milliseconds");
+        System.out.println("Threads time: " + (endTime - startTime) + " milliseconds");
         System.out.println("Has non-prime number (Threads): " + resultThreads);
     }
 }
