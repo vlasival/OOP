@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -75,5 +76,23 @@ public class CheckerTest {
         List<Integer> test = new ArrayList<>();
         test.add(123);
         assertTrue(checker.hasNonPrime(test));
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(CheckerArgumentsProvider.class)
+    void lessThanZeroNumbersTest(Checker checker) {
+        List<Integer> test = new ArrayList<>();
+        for (int i = 0; i > -100; i--) {
+            test.add(i);
+        }
+        assertTrue(checker.hasNonPrime(test));
+    }
+
+    @Test
+    void lessThanOneThreadTest() {
+        ThreadChecker checker = new ThreadChecker(0);
+        List<Integer> test = new ArrayList<>();
+        test.add(6);
+        assertFalse(checker.hasNonPrime(test));
     }
 }
