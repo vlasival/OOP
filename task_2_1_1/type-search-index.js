@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"org.task","l":"Checker"},{"p":"org.task","l":"ExcludeFromJacocoGeneratedReport"},{"p":"org.task","l":"Main"},{"p":"org.task","l":"ParallelStreamChecker"},{"p":"org.task","l":"SequentalChecker"},{"p":"org.task","l":"ThreadChecker"}];updateSearchResults();
