@@ -1,10 +1,12 @@
 package org.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -22,7 +24,9 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
 @TestInstance(Lifecycle.PER_CLASS)
 public class CheckerTest {
     
-    List<Integer> numbers;
+    List<Integer> primeNumbers;
+
+    List<Integer> randomNumbers;
 
     static class CheckerArgumentsProvider implements ArgumentsProvider {
         @Override
@@ -30,31 +34,46 @@ public class CheckerTest {
             return Stream.of(
                         Arguments.of(new SequentalChecker()),
                         Arguments.of(new ParallelStreamChecker()),
-                        Arguments.of(new ThreadChecker(4))
+                        Arguments.of(new ThreadChecker(4)),
+                        Arguments.of(new ThreadChecker(1))
                 );
         }
     }
 
     @BeforeAll
     void fillingPrimeNumbersList() {
-        int prime = 1000000007;
-        numbers = new ArrayList<>();
+        final int prime = 1000000007;
+        primeNumbers = new ArrayList<>();
         for (int i = 0; i < 100000; i++) {
-            numbers.add(prime);
+            primeNumbers.add(prime);
+        }
+
+        Random random = new Random();
+        randomNumbers = new ArrayList<>();
+        randomNumbers.add(123);
+        for (int i = 0; i < 123; i++) {
+            int randomNumber = random.nextInt(prime);
+            randomNumbers.add(randomNumber);
         }
     }
 
     @ParameterizedTest
     @ArgumentsSource(CheckerArgumentsProvider.class)
+    void randomNumbersTest(Checker checker) {
+        assertTrue(checker.hasNonPrime(randomNumbers));
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(CheckerArgumentsProvider.class)
     void bigPrimeMassiveTest(Checker checker) {
-        assertFalse(checker.hasNonPrime(numbers));
+        assertFalse(checker.hasNonPrime(primeNumbers));
     }
 
     @ParameterizedTest
     @ArgumentsSource(CheckerArgumentsProvider.class)
     void lastNonPrimeInBigMassiveTest(Checker checker) {
-        numbers.add(2222222);
-        assertTrue(checker.hasNonPrime(numbers));
+        primeNumbers.add(2222222);
+        assertTrue(checker.hasNonPrime(primeNumbers));
     }
     
     @ParameterizedTest
@@ -92,9 +111,9 @@ public class CheckerTest {
 
     @Test
     void lessThanOneThreadTest() {
-        ThreadChecker checker = new ThreadChecker(0);
-        List<Integer> test = new ArrayList<>();
-        test.add(6);
-        assertFalse(checker.hasNonPrime(test));
+        assertThrows(IllegalArgumentException.class, () -> {
+            ThreadChecker checker = new ThreadChecker(0);
+            checker.hasNonPrime(randomNumbers);
+        });
     }
 }

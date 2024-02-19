@@ -10,14 +10,18 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class ThreadChecker extends Checker {
 
     /** The number of threads to use for checking. */
-    int threadCount;
+    private final int threadCount;
 
     /**
      * Constructs a new ThreadChecker object with the specified number of threads.
      *
      * @param threadCount the number of threads to use for checking
+     * @throws IllegalArgumentException if the specified thread count is less than 1
      */
     public ThreadChecker(int threadCount) {
+        if (threadCount < 1) {
+            throw new IllegalArgumentException("Thread count must be > 1");
+        }
         this.threadCount = threadCount;
     }
 
@@ -30,21 +34,16 @@ public class ThreadChecker extends Checker {
      */
     @Override
     public boolean hasNonPrime(List<Integer> numbers) {
-        if (threadCount < 1) {
-            System.err.println("Thread count < 1");
-            return false;
-        }
-
         AtomicBoolean flag = new AtomicBoolean(false);
         Thread[] threads = new Thread[threadCount];
         int chunkSize = numbers.size() / threadCount;
         int overflow = numbers.size() % threadCount;
-        int tmp = 0;
+        int startIndex = 0;
         for (int i = 0; i < threadCount; i++) {
-            final int start = tmp;
-            final int end = overflow > 0 ? tmp + chunkSize + 1 : tmp + chunkSize;
+            final int start = startIndex;
+            final int end = overflow > 0 ? startIndex + chunkSize + 1 : startIndex + chunkSize;
             overflow--;
-            tmp = end;
+            startIndex = end;
             threads[i] = new Thread(() -> {
                 for (int j = start; j < end; j++) {
                     if (!isPrime(numbers.get(j))) {

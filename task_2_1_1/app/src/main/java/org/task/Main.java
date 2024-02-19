@@ -10,41 +10,41 @@ import java.util.List;
 public class Main {
 
     /**
+     * The timer for any type of checker.
+     *
+     * @param checker is object of Checker subclass.
+     * @return time of checking (in milliseconds).
+     */
+    @ExcludeFromJacocoGeneratedReport
+    public static long timerChecker(Checker checker, List<Integer> numbers) {
+        long startTime;
+        long endTime;
+        startTime = System.currentTimeMillis();
+        checker.hasNonPrime(numbers);
+        endTime = System.currentTimeMillis();
+        return endTime - startTime;
+    }
+
+    /**
      * The main method to execute the program.
      *
      * @param args (not used)
      */
     @ExcludeFromJacocoGeneratedReport
     public static void main(String[] args) {
-        int prime = 1000000007;
+        final int prime = 1000000007;
         List<Integer> numbers = new ArrayList<>();
         for (int i = 0; i < 100000; i++) {
             numbers.add(prime);
         }
-        // numbers.add(200);
-
-        long startTime;
-        long endTime;
 
         SequentalChecker checker1 = new SequentalChecker();
-        startTime = System.currentTimeMillis();
-        boolean resultSequential = checker1.hasNonPrime(new ArrayList<>());
-        endTime = System.currentTimeMillis();
-        System.out.println("Sequential time: " + (endTime - startTime) + " milliseconds");
-        System.out.println("Has non-prime number (Sequential): " + resultSequential);
+        System.out.println("Sequential time: " + timerChecker(checker1, numbers) + " milliseconds");
 
         ParallelStreamChecker checker2 = new ParallelStreamChecker();
-        startTime = System.currentTimeMillis();
-        boolean resultParallelStream = checker2.hasNonPrime(numbers);
-        endTime = System.currentTimeMillis();
-        System.out.println("ParallelStream time: " + (endTime - startTime) + " milliseconds");
-        System.out.println("Has non-prime number (ParallelStream): " + resultParallelStream);
+        System.out.println("ParallelStream time: " + timerChecker(checker2, numbers) + " milliseconds");
 
         ThreadChecker checker3 = new ThreadChecker(4);
-        startTime = System.currentTimeMillis();
-        boolean resultThreads = checker3.hasNonPrime(numbers);
-        endTime = System.currentTimeMillis();
-        System.out.println("Threads time: " + (endTime - startTime) + " milliseconds");
-        System.out.println("Has non-prime number (Threads): " + resultThreads);
+        System.out.println("Thread time: " + timerChecker(checker3, numbers) + " milliseconds");
     }
 }
