@@ -39,12 +39,18 @@ public class Main {
         }
 
         SequentalChecker checker1 = new SequentalChecker();
-        System.out.println("Sequential time: " + timerChecker(checker1, numbers) + " milliseconds");
+        System.out.println("Sequential time: " 
+                        + timerChecker(checker1, numbers) 
+                        + " milliseconds");
 
         ParallelStreamChecker checker2 = new ParallelStreamChecker();
-        System.out.println("ParallelStream time: " + timerChecker(checker2, numbers) + " milliseconds");
+        System.out.println("ParallelStream time: " 
+                        + timerChecker(checker2, numbers) 
+                        + " milliseconds");
 
         ThreadChecker checker3 = new ThreadChecker(4);
-        System.out.println("Thread time: " + timerChecker(checker3, numbers) + " milliseconds");
+        System.out.println("Thread time: " 
+                        + timerChecker(checker3, numbers) 
+                        + " milliseconds");
     }
 }

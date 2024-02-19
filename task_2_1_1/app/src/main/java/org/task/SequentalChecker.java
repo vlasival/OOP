@@ -17,8 +17,9 @@ public class SequentalChecker extends Checker {
      */
     public boolean hasNonPrime(List<Integer> numbers) {
         for (int number : numbers) {
-            if (!isPrime(number))
+            if (!isPrime(number)) {
                 return true;
+            }
         }
         return false;
     }
