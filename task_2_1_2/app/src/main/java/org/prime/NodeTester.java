@@ -20,13 +20,14 @@ public class NodeTester {
         int time = -1;
         System.out.println("Starting test worker " + address);
         try (Socket socket = new Socket(address, port);
-             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream())) {
+             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
+             DataInputStream inputStream = new DataInputStream(socket.getInputStream())) {
+                
             outputStream.writeObject(message);
             System.out.println("Message sent to node: " + address);
 
-            // socket.setSoTimeout(timeout);
+            socket.setSoTimeout(timeout);
 
-            DataInputStream inputStream = new DataInputStream(socket.getInputStream());
             time = (int) inputStream.readLong();
             System.out.println("Response from node: " + address + ", execution time: " + time + " ms");
         } catch (IOException e) {

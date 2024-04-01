@@ -24,7 +24,7 @@ public class Master {
         return activeDevices;
     }
 
-    public void findAndTestNodes() throws IOException {
+    public void findActiveNodes() throws IOException {
         Broadcaster broadcaster = new Broadcaster(BROADCAST_PORT);
         broadcaster.doBroadcast();
 
@@ -79,7 +79,7 @@ public class Master {
         Master master = new Master(8888);
         boolean result = false;
         try {
-            master.findAndTestNodes();
+            master.findActiveNodes();
             result = master.checkPrime(numbers);
         } catch (IOException e) {
             e.printStackTrace();
