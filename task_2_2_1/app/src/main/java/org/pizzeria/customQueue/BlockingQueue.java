@@ -61,7 +61,7 @@ public class BlockingQueue<T> implements IBlockingQueue<T> {
     /**
      * Method puts an element into the queue. Blocks if the queue is full.
      *
-     * @param item element to be added to the queue
+     * @param n element to be added to the queue
      */
     @Override
     public List<T> getSome(int n) throws InterruptedException {
