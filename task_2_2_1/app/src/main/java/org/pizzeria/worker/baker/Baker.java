@@ -1,15 +1,27 @@
 package org.pizzeria.worker.baker;
 
 import org.pizzeria.customQueue.IBlockingQueue;
-import org.pizzeria.logger.ILogger;
+import org.pizzeria.io.logger.ILogger;
 import org.pizzeria.state.Order;
 import org.pizzeria.worker.Worker;
 
+/**
+ * Baker class.
+ */
 public class Baker extends Worker {
 
     private final IBlockingQueue<Order> orders;
     private final IBlockingQueue<Order> storage;
 
+    /**
+     * Constructor.
+     *
+     * @param name worker name
+     * @param workingTime time
+     * @param logger logger
+     * @param orders orders
+     * @param storage storage
+     */
     public Baker(String name,
                 long workingTime, 
                 ILogger logger,
@@ -20,6 +32,9 @@ public class Baker extends Worker {
         this.storage = storage;
     }
 
+    /**
+     * Running method.
+     */
     @Override
     public void run() {
         try {
@@ -30,7 +45,6 @@ public class Baker extends Worker {
                 Thread.sleep(workingTime);
                 logger.log("Baked " + order.name() + " with id: " + order.id());
                 storage.put(order);
-                logger.log(order.name() + " with id: " + order.id() + " in storage");
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
