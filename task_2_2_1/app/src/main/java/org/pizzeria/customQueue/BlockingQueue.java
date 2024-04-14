@@ -1,5 +1,6 @@
 package org.pizzeria.customQueue;
 
+import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.concurrent.Semaphore;
 /**
  * Thread-safe custom blocking queue implementation.
  */
-public class BlockingQueue<T> implements IBlockingQueue<T> {
+public class BlockingQueue<T> implements IBlockingQueue<T>, Serializable {
 
     private final Queue<T> queue;
     private final Semaphore spaceAvailable;
@@ -36,7 +37,7 @@ public class BlockingQueue<T> implements IBlockingQueue<T> {
     public void put(T item) throws InterruptedException {
         spaceAvailable.acquire();
         synchronized (queue) {
-            queue.add(item);
+            queue.offer(item);
         }
         spaceOccupied.release();
     }
@@ -54,6 +55,9 @@ public class BlockingQueue<T> implements IBlockingQueue<T> {
         synchronized (queue) {
             item = queue.poll();
         }
+        synchronized (this) {
+            notifyAll();
+        }
         spaceAvailable.release();
         return item;
     }
@@ -67,15 +71,15 @@ public class BlockingQueue<T> implements IBlockingQueue<T> {
      */
     @Override
     public List<T> getSome(int n) throws InterruptedException {
-        spaceOccupied.acquire();
         List<T> items = new ArrayList<>();
         synchronized (queue) {
             while (n > 0 && !queue.isEmpty()) {
+                spaceOccupied.acquire();
                 items.add(queue.poll());
+                spaceAvailable.release();
                 n--;
             }
         }
-        spaceAvailable.release();
         return items;
     }
 

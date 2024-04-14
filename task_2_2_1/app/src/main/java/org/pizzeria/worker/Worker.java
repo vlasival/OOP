@@ -1,5 +1,7 @@
 package org.pizzeria.worker;
 
+import java.util.Random;
+
 import org.pizzeria.io.logger.ILogger;
 
 /**
@@ -11,7 +13,7 @@ import org.pizzeria.io.logger.ILogger;
  */
 public abstract class Worker extends Thread {
 
-    protected long workingTime;
+    protected int workingExperience;
     
     protected final ILogger logger;
     
@@ -19,18 +21,23 @@ public abstract class Worker extends Thread {
     
     protected volatile boolean canWork;
 
+    protected static int maxWorkingTime = 10000;
+
+    protected Random random;
+
     /**
-     * Constructs a new Worker object with the given name, workingTime, and logger.
+     * Constructs a new Worker object with the given name, workingExperience, and logger.
      *
      * @param name         the name of the worker
-     * @param workingTime  the working time of the worker
+     * @param workingExperience  the working experience of the worker
      * @param logger       the logger used for logging
      */
-    public Worker(String name, long workingTime, ILogger logger) {
+    public Worker(String name, int workingExperience, ILogger logger) {
         this.logger = logger;
-        this.workingTime = workingTime;
+        this.workingExperience = workingExperience;
         this.name = name;
         this.canWork = true;
+        this.random = new Random();
     }
 
     /**
@@ -38,8 +45,8 @@ public abstract class Worker extends Thread {
      *
      * @return the working time of the worker
      */
-    public long getWorkingTime() {
-        return workingTime;
+    public int getWorkingExperience() {
+        return workingExperience;
     }
 
     /**

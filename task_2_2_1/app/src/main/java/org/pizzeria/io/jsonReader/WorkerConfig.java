@@ -6,7 +6,7 @@ package org.pizzeria.io.jsonReader;
 public class WorkerConfig {
     private String name;
     private int capacity;
-    private long workingTime;
+    private int workingExperience;
 
     /**
      * Getter.
@@ -22,8 +22,8 @@ public class WorkerConfig {
      *
      * @return working time
      */
-    public long getWorkingTime() {
-        return workingTime;
+    public int getWorkingExperience() {
+        return workingExperience;
     }
 
     /**

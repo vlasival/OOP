@@ -28,9 +28,9 @@ public class WorkerFactory {
             IBlockingQueue<Order> storage
     ) {
         String name = config.getName();
-        long workingTime = config.getWorkingTime();
+        int workingExperience = config.getWorkingExperience();
         int capacity = config.getCapacity();
-        return createWorker(type, name, workingTime, capacity, orders, storage);
+        return createWorker(type, name, workingExperience, capacity, orders, storage);
     }
 
     /**
@@ -38,7 +38,7 @@ public class WorkerFactory {
      *
      * @param type type
      * @param name name
-     * @param workingTime time
+     * @param workingExperience time
      * @param capacity cap
      * @param orders ord
      * @param storage storage
@@ -47,7 +47,7 @@ public class WorkerFactory {
     public Worker createWorker(
             WorkerType type,
             String name,
-            long workingTime,
+            int workingExperience,
             int capacity,
             IBlockingQueue<Order> orders, 
             IBlockingQueue<Order> storage
@@ -56,11 +56,11 @@ public class WorkerFactory {
         Worker worker = null;
         switch (type) {
             case Baker:
-                worker = new Baker(name, workingTime, 
+                worker = new Baker(name, workingExperience, 
                                 new Logger(Baker.class, name), orders, storage);
                 break;
             case Courier:
-                worker = new Courier(name, workingTime, capacity, 
+                worker = new Courier(name, workingExperience, capacity, 
                                 new Logger(Courier.class, name), storage);
                 break;
         }

@@ -18,4 +18,14 @@ public class StateTest {
         } catch (InterruptedException e) {
         }
     }
+
+    @Test
+    void testGetOrders() {
+        
+    }
+
+    @Test
+    void testGetStorage() {
+        
+    }
 }

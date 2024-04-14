@@ -16,21 +16,30 @@ public class Courier extends Worker {
      * Constructs a new Courier with the name, working time, capacity, logger, and storage.
      * 
      * @param name the name of the courier
-     * @param workingTime the time it takes for the courier to complete a delivery
+     * @param workingExperience the working experience of the worker
      * @param capacity the maximum number of orders the courier can hold in the bag
      * @param logger the logger to log messages
      * @param storage the storage from which the courier retrieves orders
      */
     public Courier(
         String name, 
-        long workingTime, 
+        int workingExperience, 
         int capacity, 
         ILogger logger, 
         IBlockingQueue<Order> storage
     ) {
-        super(name, workingTime, logger);
+        super(name, workingExperience, logger);
         this.storage = storage;
         this.capacity = capacity;
+    }
+
+    /**
+     * Calculates sleep time based on working experience and random value.
+     *
+     * @return calculated sleep time
+     */
+    private int calculateSleepTime() {
+        return (maxWorkingTime + random.nextInt(maxWorkingTime)) / workingExperience;
     }
 
     /**
@@ -41,8 +50,19 @@ public class Courier extends Worker {
      */
     private void deliverOrder() throws InterruptedException {
         logger.log("Delivering.");
-        Thread.sleep(workingTime);
+        Thread.sleep(calculateSleepTime());
         logger.log("Ready to take delivery.");
+    }
+
+    /**
+     * Generator log based on current order and available space in bag.
+     *
+     * @param order current order
+     * @param bag available space in bag
+     * @return string of log message
+     */
+    private String generateCurrentLog(Order order, int bag) {
+        return "Got " + order.name() + " with id: " + order.id() + ". Bag space remain: " + bag;
     }
 
     /**
@@ -64,8 +84,7 @@ public class Courier extends Worker {
                 while (bag > 0 && !storage.isEmpty()) {
                     Order order = storage.get();
                     bag--;
-                    logger.log("Got " + order.name() + " with id: " + order.id()
-                                + ". Bag space remain: " + bag);
+                    logger.log(generateCurrentLog(order, bag));
                 }
                 deliverOrder();
             }

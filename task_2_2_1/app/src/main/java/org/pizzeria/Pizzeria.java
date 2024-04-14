@@ -1,10 +1,11 @@
 package org.pizzeria;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import org.pizzeria.io.jsonReader.JsonFileReader;
 import org.pizzeria.io.jsonReader.PizzeriaConfig;
@@ -29,8 +30,7 @@ public class Pizzeria {
     private List<Worker> couriers;
     private List<Thread> bakerThreads;
     private List<Thread> courierThreads;
-    private final Lock storageLock = new ReentrantLock();
-    private final Condition storageEmptyCondition = storageLock.newCondition();
+    private String nameOfSerializeFile = "app\\src\\main\\java\\org\\pizzeria\\temp\\pizzeria.ser";
 
     /**
      * Constructs a new Pizzeria object with the specified configuration file.
@@ -47,6 +47,8 @@ public class Pizzeria {
 
         state = new State(storageSize, orderListSize);
 
+        loadOldStateFromFile(nameOfSerializeFile);
+
         bakerThreads = new ArrayList<>();
         courierThreads = new ArrayList<>();
 
@@ -58,6 +60,39 @@ public class Pizzeria {
 
         bakers = createWorkers(WorkerType.Baker, config.getBakers());
         couriers = createWorkers(WorkerType.Courier, config.getCouriers());
+    }
+
+    private void loadOldStateFromFile(String filename) {
+        try {
+            State oldState = State.deserializeState(filename);
+            if (oldState == null) {
+                return;
+            }
+
+            if (oldState.getOrders().isEmpty() && oldState.getStorage().isEmpty()) {
+                return;
+            }
+
+            while (!oldState.getOrders().isEmpty()) {
+                try {
+                    state.getOrders().put(oldState.getOrders().get());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            
+            while (!oldState.getStorage().isEmpty()) {
+                try {
+                    state.getStorage().put(oldState.getStorage().get());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            return;
+        }
     }
 
     /**
@@ -79,6 +114,24 @@ public class Pizzeria {
         stopWorkers(couriers);
 
         joinThreads(courierThreads);
+
+        serializeState();
+    }
+
+    private void serializeState() {
+        if (state.getOrders().isEmpty() && state.getStorage().isEmpty()) {
+            Path filePath = Paths.get(nameOfSerializeFile);
+            try {
+                Files.deleteIfExists(filePath);
+            } catch (IOException ignored) { } 
+            return;
+        }
+
+        try {
+            State.serializeState(state, nameOfSerializeFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -141,7 +194,7 @@ public class Pizzeria {
             Worker worker = factory.createWorker(
                     type,
                     workerConfig.getName(),
-                    workerConfig.getWorkingTime(),
+                    workerConfig.getWorkingExperience(),
                     workerConfig.getCapacity(),
                     state.getOrders(),
                     state.getStorage());
@@ -183,10 +236,14 @@ public class Pizzeria {
      */
     private void joinThreads(List<Thread> threads) {
         for (Thread thread : threads) {
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            boolean retry = true;
+            while (retry) {
+                try {
+                    thread.join();
+                    retry = false;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -195,13 +252,14 @@ public class Pizzeria {
      * Waits until the storage is empty.
      */
     private void waitUntilStorageIsEmpty() {
-        storageLock.lock();
-        try {
+        synchronized (state.getStorage()) {
             while (!state.getStorage().isEmpty()) {
-                storageEmptyCondition.awaitUninterruptibly();
+                try {
+                    state.getStorage().wait();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
             }
-        } finally {
-            storageLock.unlock();
         }
     }
 }
