@@ -1,17 +1,17 @@
 {
     "couriers": [
-        {  "name": "C1", "workingTime": 1000 , "capacity": 5 },
-        {  "name": "C2", "workingTime": 1500 , "capacity": 5 },
-        {  "name": "C3", "workingTime": 1200 , "capacity": 5 }
+        {  "name": "C1", "workingTime": 1 , "capacity": 5 },
+        {  "name": "C2", "workingTime": 1 , "capacity": 5 },
+        {  "name": "C3", "workingTime": 1 , "capacity": 5 }
     ],
     "bakers": [
-      { "name": "B1", "workingTime": 1000 },
-      { "name": "B2", "workingTime": 2000 },
-      { "name": "B3", "workingTime": 3000 }
+      { "name": "B1", "workingTime": 1 },
+      { "name": "B2", "workingTime": 1 },
+      { "name": "B3", "workingTime": 1 }
     ],
     "storageSize": 10,
     "orderListSize": 50,
     "startOrdersCount": 10,
-    "workingTime": 10000
+    "workingTime": 1
   }
   

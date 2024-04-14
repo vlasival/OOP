@@ -6,7 +6,7 @@ import org.pizzeria.state.Order;
 import org.pizzeria.worker.Worker;
 
 /**
- * Baker class.
+ * Baker class that extends the Worker class.
  */
 public class Baker extends Worker {
 
@@ -14,37 +14,48 @@ public class Baker extends Worker {
     private final IBlockingQueue<Order> storage;
 
     /**
-     * Constructor.
+     * Constructor for creating a Baker object.
      *
-     * @param name worker name
-     * @param workingTime time
-     * @param logger logger
-     * @param orders orders
-     * @param storage storage
+     * @param name the name of the baker worker
+     * @param workingTime the time taken to bake an order
+     * @param logger the logger used for logging messages
+     * @param orders the queue of orders to be baked
+     * @param storage the queue for storing the baked orders
      */
-    public Baker(String name,
-                long workingTime, 
-                ILogger logger,
-                IBlockingQueue<Order> orders, 
-                IBlockingQueue<Order> storage) {
+    public Baker(String name, long workingTime, ILogger logger,
+                 IBlockingQueue<Order> orders, IBlockingQueue<Order> storage) {
         super(name, workingTime, logger);
         this.orders = orders;
         this.storage = storage;
     }
 
     /**
-     * Running method.
+     * Bakes an order and puts it in the storage queue.
+     *
+     * @param order the order to be baked
+     * @throws InterruptedException if the thread is interrupted while sleeping
+     */
+    private void bakeOrder(Order order) throws InterruptedException {
+        logger.log("Baking " + order.name() + " with id: " + order.id());
+        Thread.sleep(workingTime);
+        logger.log("Baked " + order.name() + " with id: " + order.id());
+        storage.put(order);
+        logger.log("Ready to take order.");
+    }
+
+    /**
+     * The running method that is executed when the thread starts.
+     * It continuously checks for orders in the queue and bakes them.
      */
     @Override
     public void run() {
         try {
             while (canWork) {
-                logger.log("Ready to take order.");
+                if (orders.isEmpty()) {
+                    continue;
+                }
                 Order order = orders.get();
-                logger.log("Baking " + order.name() + " with id: " + order.id());
-                Thread.sleep(workingTime);
-                logger.log("Baked " + order.name() + " with id: " + order.id());
-                storage.put(order);
+                bakeOrder(order);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

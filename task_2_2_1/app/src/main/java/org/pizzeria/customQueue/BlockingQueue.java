@@ -2,18 +2,18 @@ package org.pizzeria.customQueue;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.Semaphore;
 
 /**
- * Thread-safe custom dequeue. It uses a semaphore for synchronization.
+ * Thread-safe custom blocking queue implementation.
  */
 public class BlockingQueue<T> implements IBlockingQueue<T> {
 
-    private final Deque<T> deque;
-    private final Semaphore freeSpace;
-    private final Semaphore occupiedSpace;
+    private final Queue<T> queue;
+    private final Semaphore spaceAvailable;
+    private final Semaphore spaceOccupied;
 
     /**
      * Constructor.
@@ -21,70 +21,73 @@ public class BlockingQueue<T> implements IBlockingQueue<T> {
      * @param size size of the queue
      */
     public BlockingQueue(int size) {
-        deque = new ArrayDeque<>(size);
-        freeSpace = new Semaphore(size);
-        occupiedSpace = new Semaphore(0);
+        queue = new ArrayDeque<>(size);
+        spaceAvailable = new Semaphore(size);
+        spaceOccupied = new Semaphore(0);
     }
 
     /**
-     * Method puts an element into the queue. Blocks if the queue is full.
+     * Puts an element into the queue. Blocks if the queue is full.
      *
      * @param item element to be added to the queue
+     * @throws InterruptedException if the thread is interrupted while waiting to put an item into the queue
      */
     @Override
     public void put(T item) throws InterruptedException {
-        freeSpace.acquire();
-        synchronized(deque) {
-            deque.addLast(item);
+        spaceAvailable.acquire();
+        synchronized (queue) {
+            queue.add(item);
         }
-        occupiedSpace.release();
+        spaceOccupied.release();
     }
 
     /**
-     * Method gets an element from the queue.
+     * Gets an element from the queue. Blocks if the queue is empty.
      *
      * @return element from the queue
-     * If the queue is empty, it waits until an element is available
-     * If the queue is not empty, it returns the first element
+     * @throws InterruptedException if the thread is interrupted while waiting to get an item from the queue
      */
     @Override
     public T get() throws InterruptedException {
-        occupiedSpace.acquire();
-        T item = null;
-        synchronized(deque) {
-            item = deque.removeFirst();
+        spaceOccupied.acquire();
+        T item;
+        synchronized (queue) {
+            item = queue.poll();
         }
-        freeSpace.release();
+        spaceAvailable.release();
         return item;
     }
 
     /**
-     * Method puts an element into the queue. Blocks if the queue is full.
+     * Gets a specified number of elements from the queue. Blocks if the queue is empty.
      *
-     * @param n element to be added to the queue
+     * @param n the number of elements to get from the queue
+     * @return list of elements from the queue
+     * @throws InterruptedException if the thread is interrupted while waiting to get elements from the queue
      */
     @Override
     public List<T> getSome(int n) throws InterruptedException {
-        occupiedSpace.acquire();
+        spaceOccupied.acquire();
         List<T> items = new ArrayList<>();
-        synchronized(deque) {
-            for (int i = 0; i < n; i++) {
-                if (deque.size() == 0) {
-                    break;
-                }
-                items.add(deque.removeFirst());
+        synchronized (queue) {
+            while (n > 0 && !queue.isEmpty()) {
+                items.add(queue.poll());
+                n--;
             }
         }
-        freeSpace.release();
+        spaceAvailable.release();
         return items;
     }
 
     /**
-     * Method returns the size of the queue.
+     * Checks whether the queue is empty or not.
+     *
+     * @return true if the queue is empty, false otherwise
      */
     @Override
-    public int getSize() {
-        return deque.size();
+    public boolean isEmpty() {
+        synchronized (queue) {
+            return queue.isEmpty();
+        }
     }
-
 }
