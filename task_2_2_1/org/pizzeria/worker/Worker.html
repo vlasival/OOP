@@ -128,7 +128,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code>protected boolean</code></div>
 <div class="col-second even-row-color"><code><a href="#canWork" class="member-name-link">canWork</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected final <a href="../io/logger/ILogger.html" title="interface in org.pizzeria.io.logger">ILogger</a></code></div>
+<div class="col-first odd-row-color"><code>protected final <a href="../io/logger/InLogger.html" title="interface in org.pizzeria.io.logger">InLogger</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#logger" class="member-name-link">logger</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>protected static int</code></div>
@@ -157,9 +157,9 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,int,org.pizzeria.io.logger.ILogger)" class="member-name-link">Worker</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,int,org.pizzeria.io.logger.InLogger)" class="member-name-link">Worker</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  int&nbsp;workingExperience,
- <a href="../io/logger/ILogger.html" title="interface in org.pizzeria.io.logger">ILogger</a>&nbsp;logger)</code></div>
+ <a href="../io/logger/InLogger.html" title="interface in org.pizzeria.io.logger">InLogger</a>&nbsp;logger)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Constructs a new Worker object with the given name, workingExperience, and logger.</div>
 </div>
@@ -226,7 +226,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="logger">
 <h3>logger</h3>
-<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="../io/logger/ILogger.html" title="interface in org.pizzeria.io.logger">ILogger</a></span>&nbsp;<span class="element-name">logger</span></div>
+<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="../io/logger/InLogger.html" title="interface in org.pizzeria.io.logger">InLogger</a></span>&nbsp;<span class="element-name">logger</span></div>
 </section>
 </li>
 <li>
@@ -262,11 +262,11 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(java.lang.String,int,org.pizzeria.io.logger.ILogger)">
+<section class="detail" id="&lt;init&gt;(java.lang.String,int,org.pizzeria.io.logger.InLogger)">
 <h3>Worker</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Worker</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  int&nbsp;workingExperience,
- <a href="../io/logger/ILogger.html" title="interface in org.pizzeria.io.logger">ILogger</a>&nbsp;logger)</span></div>
+ <a href="../io/logger/InLogger.html" title="interface in org.pizzeria.io.logger">InLogger</a>&nbsp;logger)</span></div>
 <div class="block">Constructs a new Worker object with the given name, workingExperience, and logger.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -318,7 +318,6 @@ loadScripts(document, 'script');</script>
 <h3>run</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">run</span>()</div>
 <div class="block">Overrides the run() method from the Thread class.
-
  This method represents the main logic of the worker, and should be implemented by subclasses.</div>
 <dl class="notes">
 <dt>Specified by:</dt>

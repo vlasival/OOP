@@ -65,7 +65,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/pizzeria/worker/WorkerType.html#Baker" class="member-name-link">Baker</a> - Enum constant in enum class org.pizzeria.worker.<a href="org/pizzeria/worker/WorkerType.html" title="enum class in org.pizzeria.worker">WorkerType</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="org/pizzeria/worker/baker/Baker.html#%3Cinit%3E(java.lang.String,int,org.pizzeria.io.logger.ILogger,org.pizzeria.queue.InBlockingQueue,org.pizzeria.queue.InBlockingQueue)" class="member-name-link">Baker(String, int, ILogger, InBlockingQueue&lt;Order&gt;, InBlockingQueue&lt;Order&gt;)</a> - Constructor for class org.pizzeria.worker.baker.<a href="org/pizzeria/worker/baker/Baker.html" title="class in org.pizzeria.worker.baker">Baker</a></dt>
+<dt><a href="org/pizzeria/worker/baker/Baker.html#%3Cinit%3E(java.lang.String,int,org.pizzeria.io.logger.InLogger,org.pizzeria.queue.InBlockingQueue,org.pizzeria.queue.InBlockingQueue)" class="member-name-link">Baker(String, int, InLogger, InBlockingQueue&lt;Order&gt;, InBlockingQueue&lt;Order&gt;)</a> - Constructor for class org.pizzeria.worker.baker.<a href="org/pizzeria/worker/baker/Baker.html" title="class in org.pizzeria.worker.baker">Baker</a></dt>
 <dd>
 <div class="block">Constructor for creating a Baker object.</div>
 </dd>
@@ -80,7 +80,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/pizzeria/worker/WorkerType.html#Courier" class="member-name-link">Courier</a> - Enum constant in enum class org.pizzeria.worker.<a href="org/pizzeria/worker/WorkerType.html" title="enum class in org.pizzeria.worker">WorkerType</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="org/pizzeria/worker/courier/Courier.html#%3Cinit%3E(java.lang.String,int,int,org.pizzeria.io.logger.ILogger,org.pizzeria.queue.InBlockingQueue)" class="member-name-link">Courier(String, int, int, ILogger, InBlockingQueue&lt;Order&gt;)</a> - Constructor for class org.pizzeria.worker.courier.<a href="org/pizzeria/worker/courier/Courier.html" title="class in org.pizzeria.worker.courier">Courier</a></dt>
+<dt><a href="org/pizzeria/worker/courier/Courier.html#%3Cinit%3E(java.lang.String,int,int,org.pizzeria.io.logger.InLogger,org.pizzeria.queue.InBlockingQueue)" class="member-name-link">Courier(String, int, int, InLogger, InBlockingQueue&lt;Order&gt;)</a> - Constructor for class org.pizzeria.worker.courier.<a href="org/pizzeria/worker/courier/Courier.html" title="class in org.pizzeria.worker.courier">Courier</a></dt>
 <dd>
 <div class="block">Constructs a new Courier with the name, working time, capacity, logger, and storage.</div>
 </dd>
@@ -195,13 +195,13 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the value of the <code>id</code> record component.</div>
 </dd>
-<dt><a href="org/pizzeria/io/logger/ILogger.html" class="type-name-link" title="interface in org.pizzeria.io.logger">ILogger</a> - Interface in <a href="org/pizzeria/io/logger/package-summary.html">org.pizzeria.io.logger</a></dt>
-<dd>
-<div class="block">Interface of logger.</div>
-</dd>
 <dt><a href="org/pizzeria/queue/InBlockingQueue.html" class="type-name-link" title="interface in org.pizzeria.queue">InBlockingQueue&lt;T&gt;</a> - Interface in <a href="org/pizzeria/queue/package-summary.html">org.pizzeria.queue</a></dt>
 <dd>
 <div class="block">Interface for a custom blocking queue.</div>
+</dd>
+<dt><a href="org/pizzeria/io/logger/InLogger.html" class="type-name-link" title="interface in org.pizzeria.io.logger">InLogger</a> - Interface in <a href="org/pizzeria/io/logger/package-summary.html">org.pizzeria.io.logger</a></dt>
+<dd>
+<div class="block">Interface of logger.</div>
 </dd>
 <dt><a href="org/pizzeria/queue/CustomBlockingQueue.html#isEmpty()" class="member-name-link">isEmpty()</a> - Method in class org.pizzeria.queue.<a href="org/pizzeria/queue/CustomBlockingQueue.html" title="class in org.pizzeria.queue">CustomBlockingQueue</a></dt>
 <dd>
@@ -225,7 +225,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:L">L</h2>
 <dl class="index">
-<dt><a href="org/pizzeria/io/logger/ILogger.html#log(java.lang.String)" class="member-name-link">log(String)</a> - Method in interface org.pizzeria.io.logger.<a href="org/pizzeria/io/logger/ILogger.html" title="interface in org.pizzeria.io.logger">ILogger</a></dt>
+<dt><a href="org/pizzeria/io/logger/InLogger.html#log(java.lang.String)" class="member-name-link">log(String)</a> - Method in interface org.pizzeria.io.logger.<a href="org/pizzeria/io/logger/InLogger.html" title="interface in org.pizzeria.io.logger">InLogger</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/pizzeria/io/logger/Logger.html#log(java.lang.String)" class="member-name-link">log(String)</a> - Method in class org.pizzeria.io.logger.<a href="org/pizzeria/io/logger/Logger.html" title="class in org.pizzeria.io.logger">Logger</a></dt>
 <dd>
@@ -399,7 +399,7 @@ the order they are declared.</div>
 <dd>
 <div class="block">The Worker class is an abstract class that represents a worker in a pizzeria.</div>
 </dd>
-<dt><a href="org/pizzeria/worker/Worker.html#%3Cinit%3E(java.lang.String,int,org.pizzeria.io.logger.ILogger)" class="member-name-link">Worker(String, int, ILogger)</a> - Constructor for class org.pizzeria.worker.<a href="org/pizzeria/worker/Worker.html" title="class in org.pizzeria.worker">Worker</a></dt>
+<dt><a href="org/pizzeria/worker/Worker.html#%3Cinit%3E(java.lang.String,int,org.pizzeria.io.logger.InLogger)" class="member-name-link">Worker(String, int, InLogger)</a> - Constructor for class org.pizzeria.worker.<a href="org/pizzeria/worker/Worker.html" title="class in org.pizzeria.worker">Worker</a></dt>
 <dd>
 <div class="block">Constructs a new Worker object with the given name, workingExperience, and logger.</div>
 </dd>
