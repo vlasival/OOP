@@ -8,7 +8,14 @@ import org.pizzeria.io.jsonReader.PizzeriaConfig;
 
 import com.google.gson.Gson;
 
+/**
+ * A unit test class for handling the Pizzeria's configuration.
+ */
 public class ConfigTest {
+    /**
+     * A unit test method that tests reading from a json config file
+     * and asserts the configuration file parameters.
+     */
     @Test
     void mainTest() {
         JsonFileReader reader = new JsonFileReader("pizzconf.json");

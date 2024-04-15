@@ -23,12 +23,19 @@ public class LoggerTest {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
+    /**
+     * Sets up the test case by redirecting System.out to outputStreamCaptor
+     * and instantiating the Logger object for testing.
+     */
     @BeforeEach
     public void setup() {
         System.setOut(new PrintStream(outputStreamCaptor));
         logger = new Logger(Pizzeria.class, "KFC");
     }
 
+    /**
+     * Tests whether the logger logs the message with the expected format.
+     */
     @Test
     public void shouldLogMessageWithCurrentTimeAndClassNameAndName() {
         String message = "Pizza is ready";
@@ -42,6 +49,10 @@ public class LoggerTest {
         assertTrue(outputStreamCaptor.toString().trim().contains(message));
     }
     
+    /**
+     * Restores the original System.out and cleans up 
+     * the logger object after all tests are executed.
+     */
     @AfterAll
     public void tearDown() {
         System.setOut(standardOut);

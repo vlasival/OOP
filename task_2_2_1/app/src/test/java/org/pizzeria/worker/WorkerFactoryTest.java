@@ -13,6 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
+/**
+ * Test class for WorkerFactory.
+ */
 public class WorkerFactoryTest {
 
     @Mock
@@ -26,6 +29,9 @@ public class WorkerFactoryTest {
 
     private WorkerFactory workerFactory;
 
+    /**
+     * Set up method to initialize the test environment.
+     */
     @SuppressWarnings("deprecation")
     @BeforeEach
     public void init() {
@@ -33,6 +39,9 @@ public class WorkerFactoryTest {
         workerFactory = new WorkerFactory();
     }
 
+    /**
+     * Test method for creating a Baker worker.
+     */
     @Test
     public void createWorker_Baker_Type_Test() {
         when(workerConfig.getName()).thenReturn("John");
@@ -49,6 +58,9 @@ public class WorkerFactoryTest {
         assertEquals(5, worker.getWorkingExperience());
     }
 
+    /**
+     * Test method for creating a Courier worker.
+     */
     @Test
     public void createWorker_Courier_Type_Test() {
         when(workerConfig.getName()).thenReturn("Johannes");
@@ -65,6 +77,9 @@ public class WorkerFactoryTest {
         assertEquals(15, worker.getWorkingExperience());
     }
 
+    /**
+     * Test method for creating an unknown worker type.
+     */
     @Test
     public void createWorker_Unknown_Type_Test() {
         when(workerConfig.getName()).thenReturn("John");

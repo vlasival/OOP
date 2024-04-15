@@ -12,6 +12,9 @@ import org.pizzeria.io.logger.Logger;
 import org.pizzeria.state.Order;
 import org.pizzeria.worker.baker.Baker;
 
+/**
+ * Test class for the Baker class.
+ */
 @TestInstance(Lifecycle.PER_CLASS)
 public class BakerTest {
 
@@ -19,6 +22,9 @@ public class BakerTest {
     IBlockingQueue<Order> orders;
     IBlockingQueue<Order> storage;
 
+    /**
+     * Sets up the test environment by initializing the necessary objects.
+     */
     @BeforeAll
     public void setup() {
         orders = new BlockingQueue<>(5);
@@ -33,12 +39,18 @@ public class BakerTest {
         );
     }
 
+    /**
+     * Helper method to add one order to the orders queue.
+     */
     private void putOneOrder() {
         try {
             orders.put(new Order(1, "null"));
         } catch (InterruptedException ignored) { }
     }
 
+    /**
+     * Helper method to wait for the baker to finish processing all orders.
+     */
     private void waitForBaker() {
         synchronized (orders) {
             try {
@@ -47,6 +59,9 @@ public class BakerTest {
         }
     }
 
+    /**
+     * Tests the bakeOrder() method of the Baker class.
+     */
     @Test
     public void testBakeOrder() {
         Thread thread = new Thread(baker);

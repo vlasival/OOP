@@ -13,7 +13,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-
+/**
+ * Javadoc for the StateTest class.
+ */
 @TestInstance(Lifecycle.PER_CLASS)
 public class StateTest {
 
@@ -21,22 +23,37 @@ public class StateTest {
     @SuppressWarnings("unused")
     private Order order; 
 
+    /**
+     * Sets up the state and order before each test method execution.
+     */
     @BeforeEach
     public void setUp() {
         state = new State(5, 10);
         order = new Order(0, "order");
     }
 
+     /**
+     * Test case to check the size of orders.
+     */
     @Test
     public void testGetOrders() {
         assertEquals(state.getOrders().size(), 0);
     }
 
+    /**
+     * Test case to check the size of storage.
+     */
     @Test
     public void testGetStorage() {
         assertEquals(state.getStorage().size(), 0);
     }
 
+    /**
+     * Test case for serialization and deserialization.
+     *
+     * @throws IOException If an I/O error occurs.
+     * @throws ClassNotFoundException If the class is not found during deserialization.
+     */
     @Test
     public void testSerialization() throws IOException, ClassNotFoundException {
         String filename = "state.ser";
@@ -46,6 +63,9 @@ public class StateTest {
         assertEquals(resultState.getStorage().size(), state.getStorage().size());
     }
 
+    /**
+     * Method to remove the file after all test methods have executed.
+     */
     @AfterAll
     void removeFile() {
         Path filePath = Paths.get("state.ser");

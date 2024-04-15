@@ -9,11 +9,18 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.pizzeria.customQueue.BlockingQueue;
 
+
+/**
+ * This class contains unit tests for the BlockingQueue class.
+ */
 @TestInstance(Lifecycle.PER_CLASS)
 public class BlockingQueueTest {
     
     BlockingQueue<String> queue;
 
+    /**
+     * Fills the blocking queue with initial values before running the tests.
+     */
     @BeforeAll
     void filling() {
         queue = new BlockingQueue<>(10);
@@ -25,6 +32,10 @@ public class BlockingQueueTest {
         } catch (InterruptedException e) { }
     }
 
+    /**
+     * Tests the put method of the BlockingQueue class.
+     * Verifies that the queue is not empty after putting an element.
+     */
     @Test
     void putTest() {
         try {
@@ -37,6 +48,10 @@ public class BlockingQueueTest {
        
     }
 
+    /**
+     * Tests the get method of the BlockingQueue class.
+     * Verifies that the returned value is equal to the expected value.
+     */
     @Test
     void getTest() {
         String str = null;

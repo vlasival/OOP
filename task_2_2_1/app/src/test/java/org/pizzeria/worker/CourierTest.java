@@ -12,12 +12,18 @@ import org.pizzeria.io.logger.Logger;
 import org.pizzeria.state.Order;
 import org.pizzeria.worker.courier.Courier;
 
+/**
+ * This class represents a test class for the Courier class.
+ */
 @TestInstance(Lifecycle.PER_CLASS)
 public class CourierTest {
 
     Courier courier;
     IBlockingQueue<Order> storage;
 
+    /**
+     * Sets up the test case by initializing the storage and courier objects.
+     */
     @BeforeAll
     public void setup() {
 
@@ -31,12 +37,18 @@ public class CourierTest {
         );
     }
 
+    /**
+     * Puts a single order into the storage.
+     */
     private void putOneOrder() {
         try {
             storage.put(new Order(1, "null"));
         } catch (InterruptedException ignored) { }
     }
 
+    /**
+     * Waits for the courier to complete its operation.
+     */
     private void waitForCourier() {
         synchronized (storage) {
             try {
@@ -45,6 +57,9 @@ public class CourierTest {
         }
     }
 
+    /**
+     * Tests the bakeOrder method of the Courier class.
+     */
     @Test
     public void testBakeOrder() {
         Thread thread = new Thread(courier);
