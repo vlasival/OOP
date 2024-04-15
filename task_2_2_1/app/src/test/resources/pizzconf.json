@@ -11,7 +11,7 @@
     ],
     "storageSize": 10,
     "orderListSize": 50,
-    "startOrdersCount": 10,
-    "workingTime": 1
+    "startOrdersCount": 4,
+    "workingTime": 5000
   }
   

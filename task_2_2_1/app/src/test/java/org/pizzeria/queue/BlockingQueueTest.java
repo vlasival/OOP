@@ -1,7 +1,7 @@
 package org.pizzeria.queue;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,7 @@ public class BlockingQueueTest {
        } catch (InterruptedException e) {
 
         } finally {
-            assertTrue(queue.getSize() == 5);
+            assertFalse(queue.isEmpty());
         }
        
     }

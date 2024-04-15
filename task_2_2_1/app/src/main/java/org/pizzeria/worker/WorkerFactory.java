@@ -53,7 +53,12 @@ public class WorkerFactory {
             IBlockingQueue<Order> storage
         ) {
 
+        if (type == null) {
+            return null;
+        }
+        
         Worker worker = null;
+
         switch (type) {
             case Baker:
                 worker = new Baker(name, workingExperience, 

@@ -20,7 +20,7 @@ public class ConfigTest {
         int startOrdersCount = config.getStartOrdersCount();
         assertEquals(storageSize, 10);
         assertEquals(orderListSize, 50);
-        assertEquals(workingTime, 10000);
-        assertEquals(startOrdersCount, 10);
+        assertEquals(workingTime, 5000);
+        assertEquals(startOrdersCount, 4);
     }
 }

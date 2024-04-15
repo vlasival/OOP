@@ -19,7 +19,11 @@ public class JsonFileReader {
      * @param filename name of file
      */
     public JsonFileReader(String filename) {
-        jsonString = readFromResources(filename);
+        try {
+            jsonString = readFromResources(filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -36,8 +40,9 @@ public class JsonFileReader {
      *
      * @param filePath name of file
      * @return string with content of file
+     * @throws IOException if cannot open a file
      */
-    private static String readFromResources(String filePath) {
+    private static String readFromResources(String filePath) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
         try (InputStream inputStream 
                 = JsonFileReader.class.getClassLoader().getResourceAsStream(filePath);
@@ -47,9 +52,7 @@ public class JsonFileReader {
             while ((line = reader.readLine()) != null) {
                 contentBuilder.append(line);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } 
         return contentBuilder.toString();
     }
     

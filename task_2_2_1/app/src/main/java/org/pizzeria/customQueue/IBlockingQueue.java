@@ -24,14 +24,6 @@ public interface IBlockingQueue<T> {
     T get() throws InterruptedException;
 
     /**
-     * Gets some items from the queue.
-     *
-     * @return A list of the items from the queue
-     * @throws InterruptedException if the thread was interrupted
-     */
-    List<T> getSome(int n) throws InterruptedException;
-
-    /**
      * Checks whether the queue is empty or not.
      *
      * @return true if the queue is empty, false otherwise

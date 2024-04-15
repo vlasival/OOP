@@ -63,35 +63,28 @@ public class BlockingQueue<T> implements IBlockingQueue<T>, Serializable {
     }
 
     /**
-     * Gets a specified number of elements from the queue. Blocks if the queue is empty.
-     *
-     * @param n the number of elements to get from the queue
-     * @return list of elements from the queue
-     * @throws InterruptedException if the thread is interrupted while waiting to get elements from the queue
-     */
-    @Override
-    public List<T> getSome(int n) throws InterruptedException {
-        List<T> items = new ArrayList<>();
-        synchronized (queue) {
-            while (n > 0 && !queue.isEmpty()) {
-                spaceOccupied.acquire();
-                items.add(queue.poll());
-                spaceAvailable.release();
-                n--;
-            }
-        }
-        return items;
-    }
-
-    /**
      * Checks whether the queue is empty or not.
      *
      * @return true if the queue is empty, false otherwise
      */
     @Override
     public boolean isEmpty() {
+        synchronized (this) {
+            notifyAll();
+        }
         synchronized (queue) {
             return queue.isEmpty();
+        }
+    }
+
+    /**
+     * Returns the number of elements in the queue.
+     *
+     * @return the number of elements in the queue
+     */
+    public int size() {
+        synchronized (queue) {
+            return queue.size();
         }
     }
 }

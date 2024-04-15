@@ -30,7 +30,7 @@ public class Pizzeria {
     private List<Worker> couriers;
     private List<Thread> bakerThreads;
     private List<Thread> courierThreads;
-    private String nameOfSerializeFile = "app\\src\\main\\java\\org\\pizzeria\\temp\\pizzeria.ser";
+    private String nameOfSerializeFile = "app/src/main/java/org/pizzeria/temp/pizzeria.ser";
 
     /**
      * Constructs a new Pizzeria object with the specified configuration file.
@@ -60,6 +60,10 @@ public class Pizzeria {
 
         bakers = createWorkers(WorkerType.Baker, config.getBakers());
         couriers = createWorkers(WorkerType.Courier, config.getCouriers());
+    }
+
+    public String getNameOfSerializeFile() {
+        return nameOfSerializeFile;
     }
 
     private void loadOldStateFromFile(String filename) {
