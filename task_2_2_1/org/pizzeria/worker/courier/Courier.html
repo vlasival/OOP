@@ -132,11 +132,11 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,int,int,org.pizzeria.io.logger.ILogger,org.pizzeria.customQueue.IBlockingQueue)" class="member-name-link">Courier</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,int,int,org.pizzeria.io.logger.ILogger,org.pizzeria.queue.InBlockingQueue)" class="member-name-link">Courier</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  int&nbsp;workingExperience,
  int&nbsp;capacity,
  <a href="../../io/logger/ILogger.html" title="interface in org.pizzeria.io.logger">ILogger</a>&nbsp;logger,
- <a href="../../customQueue/IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;<a href="../../state/Order.html" title="class in org.pizzeria.state">Order</a>&gt;&nbsp;storage)</code></div>
+ <a href="../../queue/InBlockingQueue.html" title="interface in org.pizzeria.queue">InBlockingQueue</a>&lt;<a href="../../state/Order.html" title="class in org.pizzeria.state">Order</a>&gt;&nbsp;storage)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Constructs a new Courier with the name, working time, capacity, logger, and storage.</div>
 </div>
@@ -183,13 +183,13 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(java.lang.String,int,int,org.pizzeria.io.logger.ILogger,org.pizzeria.customQueue.IBlockingQueue)">
+<section class="detail" id="&lt;init&gt;(java.lang.String,int,int,org.pizzeria.io.logger.ILogger,org.pizzeria.queue.InBlockingQueue)">
 <h3>Courier</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Courier</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  int&nbsp;workingExperience,
  int&nbsp;capacity,
  <a href="../../io/logger/ILogger.html" title="interface in org.pizzeria.io.logger">ILogger</a>&nbsp;logger,
- <a href="../../customQueue/IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;<a href="../../state/Order.html" title="class in org.pizzeria.state">Order</a>&gt;&nbsp;storage)</span></div>
+ <a href="../../queue/InBlockingQueue.html" title="interface in org.pizzeria.queue">InBlockingQueue</a>&lt;<a href="../../state/Order.html" title="class in org.pizzeria.state">Order</a>&gt;&nbsp;storage)</span></div>
 <div class="block">Constructs a new Courier with the name, working time, capacity, logger, and storage.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -214,7 +214,6 @@ loadScripts(document, 'script');</script>
 <h3>run</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">run</span>()</div>
 <div class="block">Overrides the run method of the Worker class.
- 
  Gets orders from the storage until the courier can work.
  For each order, logs a message that includes the order's name, id, the remaining bag space.
  Delivers the order after the bag is full or there are no more orders in the storage.

@@ -65,17 +65,9 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/pizzeria/worker/WorkerType.html#Baker" class="member-name-link">Baker</a> - Enum constant in enum class org.pizzeria.worker.<a href="org/pizzeria/worker/WorkerType.html" title="enum class in org.pizzeria.worker">WorkerType</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="org/pizzeria/worker/baker/Baker.html#%3Cinit%3E(java.lang.String,int,org.pizzeria.io.logger.ILogger,org.pizzeria.customQueue.IBlockingQueue,org.pizzeria.customQueue.IBlockingQueue)" class="member-name-link">Baker(String, int, ILogger, IBlockingQueue&lt;Order&gt;, IBlockingQueue&lt;Order&gt;)</a> - Constructor for class org.pizzeria.worker.baker.<a href="org/pizzeria/worker/baker/Baker.html" title="class in org.pizzeria.worker.baker">Baker</a></dt>
+<dt><a href="org/pizzeria/worker/baker/Baker.html#%3Cinit%3E(java.lang.String,int,org.pizzeria.io.logger.ILogger,org.pizzeria.queue.InBlockingQueue,org.pizzeria.queue.InBlockingQueue)" class="member-name-link">Baker(String, int, ILogger, InBlockingQueue&lt;Order&gt;, InBlockingQueue&lt;Order&gt;)</a> - Constructor for class org.pizzeria.worker.baker.<a href="org/pizzeria/worker/baker/Baker.html" title="class in org.pizzeria.worker.baker">Baker</a></dt>
 <dd>
 <div class="block">Constructor for creating a Baker object.</div>
-</dd>
-<dt><a href="org/pizzeria/customQueue/BlockingQueue.html" class="type-name-link" title="class in org.pizzeria.customQueue">BlockingQueue&lt;T&gt;</a> - Class in <a href="org/pizzeria/customQueue/package-summary.html">org.pizzeria.customQueue</a></dt>
-<dd>
-<div class="block">Thread-safe custom blocking queue implementation.</div>
-</dd>
-<dt><a href="org/pizzeria/customQueue/BlockingQueue.html#%3Cinit%3E(int)" class="member-name-link">BlockingQueue(int)</a> - Constructor for class org.pizzeria.customQueue.<a href="org/pizzeria/customQueue/BlockingQueue.html" title="class in org.pizzeria.customQueue">BlockingQueue</a></dt>
-<dd>
-<div class="block">Constructor.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:C">C</h2>
@@ -88,17 +80,25 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/pizzeria/worker/WorkerType.html#Courier" class="member-name-link">Courier</a> - Enum constant in enum class org.pizzeria.worker.<a href="org/pizzeria/worker/WorkerType.html" title="enum class in org.pizzeria.worker">WorkerType</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="org/pizzeria/worker/courier/Courier.html#%3Cinit%3E(java.lang.String,int,int,org.pizzeria.io.logger.ILogger,org.pizzeria.customQueue.IBlockingQueue)" class="member-name-link">Courier(String, int, int, ILogger, IBlockingQueue&lt;Order&gt;)</a> - Constructor for class org.pizzeria.worker.courier.<a href="org/pizzeria/worker/courier/Courier.html" title="class in org.pizzeria.worker.courier">Courier</a></dt>
+<dt><a href="org/pizzeria/worker/courier/Courier.html#%3Cinit%3E(java.lang.String,int,int,org.pizzeria.io.logger.ILogger,org.pizzeria.queue.InBlockingQueue)" class="member-name-link">Courier(String, int, int, ILogger, InBlockingQueue&lt;Order&gt;)</a> - Constructor for class org.pizzeria.worker.courier.<a href="org/pizzeria/worker/courier/Courier.html" title="class in org.pizzeria.worker.courier">Courier</a></dt>
 <dd>
 <div class="block">Constructs a new Courier with the name, working time, capacity, logger, and storage.</div>
 </dd>
-<dt><a href="org/pizzeria/worker/WorkerFactory.html#createWorker(org.pizzeria.worker.WorkerType,java.lang.String,int,int,org.pizzeria.customQueue.IBlockingQueue,org.pizzeria.customQueue.IBlockingQueue)" class="member-name-link">createWorker(WorkerType, String, int, int, IBlockingQueue&lt;Order&gt;, IBlockingQueue&lt;Order&gt;)</a> - Method in class org.pizzeria.worker.<a href="org/pizzeria/worker/WorkerFactory.html" title="class in org.pizzeria.worker">WorkerFactory</a></dt>
+<dt><a href="org/pizzeria/worker/WorkerFactory.html#createWorker(org.pizzeria.worker.WorkerType,java.lang.String,int,int,org.pizzeria.queue.InBlockingQueue,org.pizzeria.queue.InBlockingQueue)" class="member-name-link">createWorker(WorkerType, String, int, int, InBlockingQueue&lt;Order&gt;, InBlockingQueue&lt;Order&gt;)</a> - Method in class org.pizzeria.worker.<a href="org/pizzeria/worker/WorkerFactory.html" title="class in org.pizzeria.worker">WorkerFactory</a></dt>
 <dd>
-<div class="block">Full method</div>
+<div class="block">Full method.</div>
 </dd>
-<dt><a href="org/pizzeria/worker/WorkerFactory.html#createWorker(org.pizzeria.worker.WorkerType,org.pizzeria.io.jsonReader.WorkerConfig,org.pizzeria.customQueue.IBlockingQueue,org.pizzeria.customQueue.IBlockingQueue)" class="member-name-link">createWorker(WorkerType, WorkerConfig, IBlockingQueue&lt;Order&gt;, IBlockingQueue&lt;Order&gt;)</a> - Method in class org.pizzeria.worker.<a href="org/pizzeria/worker/WorkerFactory.html" title="class in org.pizzeria.worker">WorkerFactory</a></dt>
+<dt><a href="org/pizzeria/worker/WorkerFactory.html#createWorker(org.pizzeria.worker.WorkerType,org.pizzeria.io.json.WorkerConfig,org.pizzeria.queue.InBlockingQueue,org.pizzeria.queue.InBlockingQueue)" class="member-name-link">createWorker(WorkerType, WorkerConfig, InBlockingQueue&lt;Order&gt;, InBlockingQueue&lt;Order&gt;)</a> - Method in class org.pizzeria.worker.<a href="org/pizzeria/worker/WorkerFactory.html" title="class in org.pizzeria.worker">WorkerFactory</a></dt>
 <dd>
 <div class="block">Method create worker.</div>
+</dd>
+<dt><a href="org/pizzeria/queue/CustomBlockingQueue.html" class="type-name-link" title="class in org.pizzeria.queue">CustomBlockingQueue&lt;T&gt;</a> - Class in <a href="org/pizzeria/queue/package-summary.html">org.pizzeria.queue</a></dt>
+<dd>
+<div class="block">Thread-safe custom blocking queue implementation.</div>
+</dd>
+<dt><a href="org/pizzeria/queue/CustomBlockingQueue.html#%3Cinit%3E(int)" class="member-name-link">CustomBlockingQueue(int)</a> - Constructor for class org.pizzeria.queue.<a href="org/pizzeria/queue/CustomBlockingQueue.html" title="class in org.pizzeria.queue">CustomBlockingQueue</a></dt>
+<dd>
+<div class="block">Constructor.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:D">D</h2>
@@ -117,31 +117,31 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
-<dt><a href="org/pizzeria/customQueue/BlockingQueue.html#get()" class="member-name-link">get()</a> - Method in class org.pizzeria.customQueue.<a href="org/pizzeria/customQueue/BlockingQueue.html" title="class in org.pizzeria.customQueue">BlockingQueue</a></dt>
+<dt><a href="org/pizzeria/queue/CustomBlockingQueue.html#get()" class="member-name-link">get()</a> - Method in class org.pizzeria.queue.<a href="org/pizzeria/queue/CustomBlockingQueue.html" title="class in org.pizzeria.queue">CustomBlockingQueue</a></dt>
 <dd>
 <div class="block">Gets an element from the queue.</div>
 </dd>
-<dt><a href="org/pizzeria/customQueue/IBlockingQueue.html#get()" class="member-name-link">get()</a> - Method in interface org.pizzeria.customQueue.<a href="org/pizzeria/customQueue/IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a></dt>
+<dt><a href="org/pizzeria/queue/InBlockingQueue.html#get()" class="member-name-link">get()</a> - Method in interface org.pizzeria.queue.<a href="org/pizzeria/queue/InBlockingQueue.html" title="interface in org.pizzeria.queue">InBlockingQueue</a></dt>
 <dd>
 <div class="block">Gets an item from the queue.</div>
 </dd>
-<dt><a href="org/pizzeria/io/jsonReader/PizzeriaConfig.html#getBakers()" class="member-name-link">getBakers()</a> - Method in class org.pizzeria.io.jsonReader.<a href="org/pizzeria/io/jsonReader/PizzeriaConfig.html" title="class in org.pizzeria.io.jsonReader">PizzeriaConfig</a></dt>
+<dt><a href="org/pizzeria/io/json/PizzeriaConfig.html#getBakers()" class="member-name-link">getBakers()</a> - Method in class org.pizzeria.io.json.<a href="org/pizzeria/io/json/PizzeriaConfig.html" title="class in org.pizzeria.io.json">PizzeriaConfig</a></dt>
 <dd>
 <div class="block">Getter.</div>
 </dd>
-<dt><a href="org/pizzeria/io/jsonReader/WorkerConfig.html#getCapacity()" class="member-name-link">getCapacity()</a> - Method in class org.pizzeria.io.jsonReader.<a href="org/pizzeria/io/jsonReader/WorkerConfig.html" title="class in org.pizzeria.io.jsonReader">WorkerConfig</a></dt>
+<dt><a href="org/pizzeria/io/json/WorkerConfig.html#getCapacity()" class="member-name-link">getCapacity()</a> - Method in class org.pizzeria.io.json.<a href="org/pizzeria/io/json/WorkerConfig.html" title="class in org.pizzeria.io.json">WorkerConfig</a></dt>
 <dd>
 <div class="block">Getter.</div>
 </dd>
-<dt><a href="org/pizzeria/io/jsonReader/PizzeriaConfig.html#getCouriers()" class="member-name-link">getCouriers()</a> - Method in class org.pizzeria.io.jsonReader.<a href="org/pizzeria/io/jsonReader/PizzeriaConfig.html" title="class in org.pizzeria.io.jsonReader">PizzeriaConfig</a></dt>
+<dt><a href="org/pizzeria/io/json/PizzeriaConfig.html#getCouriers()" class="member-name-link">getCouriers()</a> - Method in class org.pizzeria.io.json.<a href="org/pizzeria/io/json/PizzeriaConfig.html" title="class in org.pizzeria.io.json">PizzeriaConfig</a></dt>
 <dd>
 <div class="block">Getter.</div>
 </dd>
-<dt><a href="org/pizzeria/io/jsonReader/WorkerConfig.html#getName()" class="member-name-link">getName()</a> - Method in class org.pizzeria.io.jsonReader.<a href="org/pizzeria/io/jsonReader/WorkerConfig.html" title="class in org.pizzeria.io.jsonReader">WorkerConfig</a></dt>
+<dt><a href="org/pizzeria/io/json/WorkerConfig.html#getName()" class="member-name-link">getName()</a> - Method in class org.pizzeria.io.json.<a href="org/pizzeria/io/json/WorkerConfig.html" title="class in org.pizzeria.io.json">WorkerConfig</a></dt>
 <dd>
 <div class="block">Getter.</div>
 </dd>
-<dt><a href="org/pizzeria/io/jsonReader/PizzeriaConfig.html#getOrderListSize()" class="member-name-link">getOrderListSize()</a> - Method in class org.pizzeria.io.jsonReader.<a href="org/pizzeria/io/jsonReader/PizzeriaConfig.html" title="class in org.pizzeria.io.jsonReader">PizzeriaConfig</a></dt>
+<dt><a href="org/pizzeria/io/json/PizzeriaConfig.html#getOrderListSize()" class="member-name-link">getOrderListSize()</a> - Method in class org.pizzeria.io.json.<a href="org/pizzeria/io/json/PizzeriaConfig.html" title="class in org.pizzeria.io.json">PizzeriaConfig</a></dt>
 <dd>
 <div class="block">Getter.</div>
 </dd>
@@ -149,7 +149,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Getter for orders queue.</div>
 </dd>
-<dt><a href="org/pizzeria/io/jsonReader/PizzeriaConfig.html#getStartOrdersCount()" class="member-name-link">getStartOrdersCount()</a> - Method in class org.pizzeria.io.jsonReader.<a href="org/pizzeria/io/jsonReader/PizzeriaConfig.html" title="class in org.pizzeria.io.jsonReader">PizzeriaConfig</a></dt>
+<dt><a href="org/pizzeria/io/json/PizzeriaConfig.html#getStartOrdersCount()" class="member-name-link">getStartOrdersCount()</a> - Method in class org.pizzeria.io.json.<a href="org/pizzeria/io/json/PizzeriaConfig.html" title="class in org.pizzeria.io.json">PizzeriaConfig</a></dt>
 <dd>
 <div class="block">Getter.</div>
 </dd>
@@ -161,7 +161,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Getter for storage queue.</div>
 </dd>
-<dt><a href="org/pizzeria/io/jsonReader/PizzeriaConfig.html#getStorageSize()" class="member-name-link">getStorageSize()</a> - Method in class org.pizzeria.io.jsonReader.<a href="org/pizzeria/io/jsonReader/PizzeriaConfig.html" title="class in org.pizzeria.io.jsonReader">PizzeriaConfig</a></dt>
+<dt><a href="org/pizzeria/io/json/PizzeriaConfig.html#getStorageSize()" class="member-name-link">getStorageSize()</a> - Method in class org.pizzeria.io.json.<a href="org/pizzeria/io/json/PizzeriaConfig.html" title="class in org.pizzeria.io.json">PizzeriaConfig</a></dt>
 <dd>
 <div class="block">Getter.</div>
 </dd>
@@ -169,7 +169,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Retrieves the name of the worker.</div>
 </dd>
-<dt><a href="org/pizzeria/io/jsonReader/WorkerConfig.html#getWorkingExperience()" class="member-name-link">getWorkingExperience()</a> - Method in class org.pizzeria.io.jsonReader.<a href="org/pizzeria/io/jsonReader/WorkerConfig.html" title="class in org.pizzeria.io.jsonReader">WorkerConfig</a></dt>
+<dt><a href="org/pizzeria/io/json/WorkerConfig.html#getWorkingExperience()" class="member-name-link">getWorkingExperience()</a> - Method in class org.pizzeria.io.json.<a href="org/pizzeria/io/json/WorkerConfig.html" title="class in org.pizzeria.io.json">WorkerConfig</a></dt>
 <dd>
 <div class="block">Getter.</div>
 </dd>
@@ -177,7 +177,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Retrieves the working time of the worker.</div>
 </dd>
-<dt><a href="org/pizzeria/io/jsonReader/PizzeriaConfig.html#getWorkingTime()" class="member-name-link">getWorkingTime()</a> - Method in class org.pizzeria.io.jsonReader.<a href="org/pizzeria/io/jsonReader/PizzeriaConfig.html" title="class in org.pizzeria.io.jsonReader">PizzeriaConfig</a></dt>
+<dt><a href="org/pizzeria/io/json/PizzeriaConfig.html#getWorkingTime()" class="member-name-link">getWorkingTime()</a> - Method in class org.pizzeria.io.json.<a href="org/pizzeria/io/json/PizzeriaConfig.html" title="class in org.pizzeria.io.json">PizzeriaConfig</a></dt>
 <dd>
 <div class="block">Getter.</div>
 </dd>
@@ -191,10 +191,6 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
-<dt><a href="org/pizzeria/customQueue/IBlockingQueue.html" class="type-name-link" title="interface in org.pizzeria.customQueue">IBlockingQueue&lt;T&gt;</a> - Interface in <a href="org/pizzeria/customQueue/package-summary.html">org.pizzeria.customQueue</a></dt>
-<dd>
-<div class="block">Interface for a custom blocking queue.</div>
-</dd>
 <dt><a href="org/pizzeria/state/Order.html#id()" class="member-name-link">id()</a> - Method in record class org.pizzeria.state.<a href="org/pizzeria/state/Order.html" title="class in org.pizzeria.state">Order</a></dt>
 <dd>
 <div class="block">Returns the value of the <code>id</code> record component.</div>
@@ -203,22 +199,26 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Interface of logger.</div>
 </dd>
-<dt><a href="org/pizzeria/customQueue/BlockingQueue.html#isEmpty()" class="member-name-link">isEmpty()</a> - Method in class org.pizzeria.customQueue.<a href="org/pizzeria/customQueue/BlockingQueue.html" title="class in org.pizzeria.customQueue">BlockingQueue</a></dt>
+<dt><a href="org/pizzeria/queue/InBlockingQueue.html" class="type-name-link" title="interface in org.pizzeria.queue">InBlockingQueue&lt;T&gt;</a> - Interface in <a href="org/pizzeria/queue/package-summary.html">org.pizzeria.queue</a></dt>
+<dd>
+<div class="block">Interface for a custom blocking queue.</div>
+</dd>
+<dt><a href="org/pizzeria/queue/CustomBlockingQueue.html#isEmpty()" class="member-name-link">isEmpty()</a> - Method in class org.pizzeria.queue.<a href="org/pizzeria/queue/CustomBlockingQueue.html" title="class in org.pizzeria.queue">CustomBlockingQueue</a></dt>
 <dd>
 <div class="block">Checks whether the queue is empty or not.</div>
 </dd>
-<dt><a href="org/pizzeria/customQueue/IBlockingQueue.html#isEmpty()" class="member-name-link">isEmpty()</a> - Method in interface org.pizzeria.customQueue.<a href="org/pizzeria/customQueue/IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a></dt>
+<dt><a href="org/pizzeria/queue/InBlockingQueue.html#isEmpty()" class="member-name-link">isEmpty()</a> - Method in interface org.pizzeria.queue.<a href="org/pizzeria/queue/InBlockingQueue.html" title="interface in org.pizzeria.queue">InBlockingQueue</a></dt>
 <dd>
 <div class="block">Checks whether the queue is empty or not.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:J">J</h2>
 <dl class="index">
-<dt><a href="org/pizzeria/io/jsonReader/JsonFileReader.html" class="type-name-link" title="class in org.pizzeria.io.jsonReader">JsonFileReader</a> - Class in <a href="org/pizzeria/io/jsonReader/package-summary.html">org.pizzeria.io.jsonReader</a></dt>
+<dt><a href="org/pizzeria/io/json/JsonFileReader.html" class="type-name-link" title="class in org.pizzeria.io.json">JsonFileReader</a> - Class in <a href="org/pizzeria/io/json/package-summary.html">org.pizzeria.io.json</a></dt>
 <dd>
 <div class="block">Class reader of json.</div>
 </dd>
-<dt><a href="org/pizzeria/io/jsonReader/JsonFileReader.html#%3Cinit%3E(java.lang.String)" class="member-name-link">JsonFileReader(String)</a> - Constructor for class org.pizzeria.io.jsonReader.<a href="org/pizzeria/io/jsonReader/JsonFileReader.html" title="class in org.pizzeria.io.jsonReader">JsonFileReader</a></dt>
+<dt><a href="org/pizzeria/io/json/JsonFileReader.html#%3Cinit%3E(java.lang.String)" class="member-name-link">JsonFileReader(String)</a> - Constructor for class org.pizzeria.io.json.<a href="org/pizzeria/io/json/JsonFileReader.html" title="class in org.pizzeria.io.json">JsonFileReader</a></dt>
 <dd>
 <div class="block">Constructor.</div>
 </dd>
@@ -278,11 +278,11 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/pizzeria/package-summary.html">org.pizzeria</a> - package org.pizzeria</dt>
 <dd>&nbsp;</dd>
-<dt><a href="org/pizzeria/customQueue/package-summary.html">org.pizzeria.customQueue</a> - package org.pizzeria.customQueue</dt>
-<dd>&nbsp;</dd>
-<dt><a href="org/pizzeria/io/jsonReader/package-summary.html">org.pizzeria.io.jsonReader</a> - package org.pizzeria.io.jsonReader</dt>
+<dt><a href="org/pizzeria/io/json/package-summary.html">org.pizzeria.io.json</a> - package org.pizzeria.io.json</dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/pizzeria/io/logger/package-summary.html">org.pizzeria.io.logger</a> - package org.pizzeria.io.logger</dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/pizzeria/queue/package-summary.html">org.pizzeria.queue</a> - package org.pizzeria.queue</dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/pizzeria/state/package-summary.html">org.pizzeria.state</a> - package org.pizzeria.state</dt>
 <dd>&nbsp;</dd>
@@ -303,17 +303,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Constructs a new Pizzeria object with the specified configuration file.</div>
 </dd>
-<dt><a href="org/pizzeria/io/jsonReader/PizzeriaConfig.html" class="type-name-link" title="class in org.pizzeria.io.jsonReader">PizzeriaConfig</a> - Class in <a href="org/pizzeria/io/jsonReader/package-summary.html">org.pizzeria.io.jsonReader</a></dt>
+<dt><a href="org/pizzeria/io/json/PizzeriaConfig.html" class="type-name-link" title="class in org.pizzeria.io.json">PizzeriaConfig</a> - Class in <a href="org/pizzeria/io/json/package-summary.html">org.pizzeria.io.json</a></dt>
 <dd>
 <div class="block">Class  to store configuration for a pizzeria.</div>
 </dd>
-<dt><a href="org/pizzeria/io/jsonReader/PizzeriaConfig.html#%3Cinit%3E()" class="member-name-link">PizzeriaConfig()</a> - Constructor for class org.pizzeria.io.jsonReader.<a href="org/pizzeria/io/jsonReader/PizzeriaConfig.html" title="class in org.pizzeria.io.jsonReader">PizzeriaConfig</a></dt>
+<dt><a href="org/pizzeria/io/json/PizzeriaConfig.html#%3Cinit%3E()" class="member-name-link">PizzeriaConfig()</a> - Constructor for class org.pizzeria.io.json.<a href="org/pizzeria/io/json/PizzeriaConfig.html" title="class in org.pizzeria.io.json">PizzeriaConfig</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="org/pizzeria/customQueue/BlockingQueue.html#put(T)" class="member-name-link">put(T)</a> - Method in class org.pizzeria.customQueue.<a href="org/pizzeria/customQueue/BlockingQueue.html" title="class in org.pizzeria.customQueue">BlockingQueue</a></dt>
+<dt><a href="org/pizzeria/queue/CustomBlockingQueue.html#put(T)" class="member-name-link">put(T)</a> - Method in class org.pizzeria.queue.<a href="org/pizzeria/queue/CustomBlockingQueue.html" title="class in org.pizzeria.queue">CustomBlockingQueue</a></dt>
 <dd>
 <div class="block">Puts an element into the queue.</div>
 </dd>
-<dt><a href="org/pizzeria/customQueue/IBlockingQueue.html#put(T)" class="member-name-link">put(T)</a> - Method in interface org.pizzeria.customQueue.<a href="org/pizzeria/customQueue/IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a></dt>
+<dt><a href="org/pizzeria/queue/InBlockingQueue.html#put(T)" class="member-name-link">put(T)</a> - Method in interface org.pizzeria.queue.<a href="org/pizzeria/queue/InBlockingQueue.html" title="interface in org.pizzeria.queue">InBlockingQueue</a></dt>
 <dd>
 <div class="block">Puts an item into the queue.</div>
 </dd>
@@ -342,16 +342,18 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
 <dt><a href="org/pizzeria/Pizzeria.html#serializeState(java.lang.String)" class="member-name-link">serializeState(String)</a> - Method in class org.pizzeria.<a href="org/pizzeria/Pizzeria.html" title="class in org.pizzeria">Pizzeria</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Method serializes current pizzeria state.</div>
+</dd>
 <dt><a href="org/pizzeria/state/State.html#serializeState(org.pizzeria.state.State,java.lang.String)" class="member-name-link">serializeState(State, String)</a> - Static method in class org.pizzeria.state.<a href="org/pizzeria/state/State.html" title="class in org.pizzeria.state">State</a></dt>
 <dd>
 <div class="block">Serializator.</div>
 </dd>
-<dt><a href="org/pizzeria/customQueue/BlockingQueue.html#size()" class="member-name-link">size()</a> - Method in class org.pizzeria.customQueue.<a href="org/pizzeria/customQueue/BlockingQueue.html" title="class in org.pizzeria.customQueue">BlockingQueue</a></dt>
+<dt><a href="org/pizzeria/queue/CustomBlockingQueue.html#size()" class="member-name-link">size()</a> - Method in class org.pizzeria.queue.<a href="org/pizzeria/queue/CustomBlockingQueue.html" title="class in org.pizzeria.queue">CustomBlockingQueue</a></dt>
 <dd>
 <div class="block">Returns the number of elements in the queue.</div>
 </dd>
-<dt><a href="org/pizzeria/customQueue/IBlockingQueue.html#size()" class="member-name-link">size()</a> - Method in interface org.pizzeria.customQueue.<a href="org/pizzeria/customQueue/IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a></dt>
+<dt><a href="org/pizzeria/queue/InBlockingQueue.html#size()" class="member-name-link">size()</a> - Method in interface org.pizzeria.queue.<a href="org/pizzeria/queue/InBlockingQueue.html" title="interface in org.pizzeria.queue">InBlockingQueue</a></dt>
 <dd>
 <div class="block">Returns the number of elements in the queue.</div>
 </dd>
@@ -370,7 +372,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
-<dt><a href="org/pizzeria/io/jsonReader/JsonFileReader.html#toJsonString()" class="member-name-link">toJsonString()</a> - Method in class org.pizzeria.io.jsonReader.<a href="org/pizzeria/io/jsonReader/JsonFileReader.html" title="class in org.pizzeria.io.jsonReader">JsonFileReader</a></dt>
+<dt><a href="org/pizzeria/io/json/JsonFileReader.html#toJsonString()" class="member-name-link">toJsonString()</a> - Method in class org.pizzeria.io.json.<a href="org/pizzeria/io/json/JsonFileReader.html" title="class in org.pizzeria.io.json">JsonFileReader</a></dt>
 <dd>
 <div class="block">Return json string.</div>
 </dd>
@@ -401,11 +403,11 @@ the order they are declared.</div>
 <dd>
 <div class="block">Constructs a new Worker object with the given name, workingExperience, and logger.</div>
 </dd>
-<dt><a href="org/pizzeria/io/jsonReader/WorkerConfig.html" class="type-name-link" title="class in org.pizzeria.io.jsonReader">WorkerConfig</a> - Class in <a href="org/pizzeria/io/jsonReader/package-summary.html">org.pizzeria.io.jsonReader</a></dt>
+<dt><a href="org/pizzeria/io/json/WorkerConfig.html" class="type-name-link" title="class in org.pizzeria.io.json">WorkerConfig</a> - Class in <a href="org/pizzeria/io/json/package-summary.html">org.pizzeria.io.json</a></dt>
 <dd>
 <div class="block">WorkerConfig class.</div>
 </dd>
-<dt><a href="org/pizzeria/io/jsonReader/WorkerConfig.html#%3Cinit%3E()" class="member-name-link">WorkerConfig()</a> - Constructor for class org.pizzeria.io.jsonReader.<a href="org/pizzeria/io/jsonReader/WorkerConfig.html" title="class in org.pizzeria.io.jsonReader">WorkerConfig</a></dt>
+<dt><a href="org/pizzeria/io/json/WorkerConfig.html#%3Cinit%3E()" class="member-name-link">WorkerConfig()</a> - Constructor for class org.pizzeria.io.json.<a href="org/pizzeria/io/json/WorkerConfig.html" title="class in org.pizzeria.io.json">WorkerConfig</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/pizzeria/worker/WorkerFactory.html" class="type-name-link" title="class in org.pizzeria.worker">WorkerFactory</a> - Class in <a href="org/pizzeria/worker/package-summary.html">org.pizzeria.worker</a></dt>
 <dd>

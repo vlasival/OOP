@@ -52,9 +52,9 @@ loadScripts(document, 'script');</script>
 <span class="package-hierarchy-label">Package Hierarchies:</span>
 <ul class="horizontal contents-list">
 <li><a href="org/pizzeria/package-tree.html">org.pizzeria</a>, </li>
-<li><a href="org/pizzeria/customQueue/package-tree.html">org.pizzeria.customQueue</a>, </li>
-<li><a href="org/pizzeria/io/jsonReader/package-tree.html">org.pizzeria.io.jsonReader</a>, </li>
+<li><a href="org/pizzeria/io/json/package-tree.html">org.pizzeria.io.json</a>, </li>
 <li><a href="org/pizzeria/io/logger/package-tree.html">org.pizzeria.io.logger</a>, </li>
+<li><a href="org/pizzeria/queue/package-tree.html">org.pizzeria.queue</a>, </li>
 <li><a href="org/pizzeria/state/package-tree.html">org.pizzeria.state</a>, </li>
 <li><a href="org/pizzeria/worker/package-tree.html">org.pizzeria.worker</a>, </li>
 <li><a href="org/pizzeria/worker/baker/package-tree.html">org.pizzeria.worker.baker</a>, </li>
@@ -65,12 +65,12 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" class="type-name-link external-link" title="class or interface in java.lang">Object</a>
 <ul>
-<li class="circle">org.pizzeria.customQueue.<a href="org/pizzeria/customQueue/BlockingQueue.html" class="type-name-link" title="class in org.pizzeria.customQueue">BlockingQueue</a>&lt;T&gt; (implements org.pizzeria.customQueue.<a href="org/pizzeria/customQueue/IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;T&gt;, java.io.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a>)</li>
-<li class="circle">org.pizzeria.io.jsonReader.<a href="org/pizzeria/io/jsonReader/JsonFileReader.html" class="type-name-link" title="class in org.pizzeria.io.jsonReader">JsonFileReader</a></li>
+<li class="circle">org.pizzeria.queue.<a href="org/pizzeria/queue/CustomBlockingQueue.html" class="type-name-link" title="class in org.pizzeria.queue">CustomBlockingQueue</a>&lt;T&gt; (implements org.pizzeria.queue.<a href="org/pizzeria/queue/InBlockingQueue.html" title="interface in org.pizzeria.queue">InBlockingQueue</a>&lt;T&gt;, java.io.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a>)</li>
+<li class="circle">org.pizzeria.io.json.<a href="org/pizzeria/io/json/JsonFileReader.html" class="type-name-link" title="class in org.pizzeria.io.json">JsonFileReader</a></li>
 <li class="circle">org.pizzeria.io.logger.<a href="org/pizzeria/io/logger/Logger.html" class="type-name-link" title="class in org.pizzeria.io.logger">Logger</a> (implements org.pizzeria.io.logger.<a href="org/pizzeria/io/logger/ILogger.html" title="interface in org.pizzeria.io.logger">ILogger</a>)</li>
 <li class="circle">org.pizzeria.<a href="org/pizzeria/Main.html" class="type-name-link" title="class in org.pizzeria">Main</a></li>
 <li class="circle">org.pizzeria.<a href="org/pizzeria/Pizzeria.html" class="type-name-link" title="class in org.pizzeria">Pizzeria</a></li>
-<li class="circle">org.pizzeria.io.jsonReader.<a href="org/pizzeria/io/jsonReader/PizzeriaConfig.html" class="type-name-link" title="class in org.pizzeria.io.jsonReader">PizzeriaConfig</a></li>
+<li class="circle">org.pizzeria.io.json.<a href="org/pizzeria/io/json/PizzeriaConfig.html" class="type-name-link" title="class in org.pizzeria.io.json">PizzeriaConfig</a></li>
 <li class="circle">org.pizzeria.state.<a href="org/pizzeria/state/State.html" class="type-name-link" title="class in org.pizzeria.state">State</a> (implements java.io.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a>)</li>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html" class="type-name-link external-link" title="class or interface in java.lang">Thread</a> (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>)
 <ul>
@@ -82,7 +82,7 @@ loadScripts(document, 'script');</script>
 </li>
 </ul>
 </li>
-<li class="circle">org.pizzeria.io.jsonReader.<a href="org/pizzeria/io/jsonReader/WorkerConfig.html" class="type-name-link" title="class in org.pizzeria.io.jsonReader">WorkerConfig</a></li>
+<li class="circle">org.pizzeria.io.json.<a href="org/pizzeria/io/json/WorkerConfig.html" class="type-name-link" title="class in org.pizzeria.io.json">WorkerConfig</a></li>
 <li class="circle">org.pizzeria.worker.<a href="org/pizzeria/worker/WorkerFactory.html" class="type-name-link" title="class in org.pizzeria.worker">WorkerFactory</a></li>
 </ul>
 </li>
@@ -91,8 +91,8 @@ loadScripts(document, 'script');</script>
 <section class="hierarchy">
 <h2 title="Interface Hierarchy">Interface Hierarchy</h2>
 <ul>
-<li class="circle">org.pizzeria.customQueue.<a href="org/pizzeria/customQueue/IBlockingQueue.html" class="type-name-link" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;T&gt;</li>
 <li class="circle">org.pizzeria.io.logger.<a href="org/pizzeria/io/logger/ILogger.html" class="type-name-link" title="interface in org.pizzeria.io.logger">ILogger</a></li>
+<li class="circle">org.pizzeria.queue.<a href="org/pizzeria/queue/InBlockingQueue.html" class="type-name-link" title="interface in org.pizzeria.queue">InBlockingQueue</a>&lt;T&gt;</li>
 </ul>
 </section>
 <section class="hierarchy">

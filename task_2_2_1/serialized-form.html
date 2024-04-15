@@ -52,12 +52,12 @@ loadScripts(document, 'script');</script>
 <ul class="block-list">
 <li>
 <section class="serialized-package-container">
-<h2 title="Package">Package&nbsp;<a href="org/pizzeria/customQueue/package-summary.html">org.pizzeria.customQueue</a></h2>
+<h2 title="Package">Package&nbsp;<a href="org/pizzeria/queue/package-summary.html">org.pizzeria.queue</a></h2>
 <ul class="block-list">
 <li>
-<section class="serialized-class-details" id="org.pizzeria.customQueue.BlockingQueue">
-<h3>Class&nbsp;<a href="org/pizzeria/customQueue/BlockingQueue.html" title="class in org.pizzeria.customQueue">org.pizzeria.customQueue.BlockingQueue</a></h3>
-<div class="type-signature">class BlockingQueue extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a> implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
+<section class="serialized-class-details" id="org.pizzeria.queue.CustomBlockingQueue">
+<h3>Class&nbsp;<a href="org/pizzeria/queue/CustomBlockingQueue.html" title="class in org.pizzeria.queue">org.pizzeria.queue.CustomBlockingQueue</a></h3>
+<div class="type-signature">class CustomBlockingQueue extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a> implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
 <ul class="block-list">
 <li>
 <section class="detail">
@@ -65,7 +65,7 @@ loadScripts(document, 'script');</script>
 <ul class="block-list">
 <li class="block-list">
 <h5>queue</h5>
-<pre><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Queue.html" title="class or interface in java.util" class="external-link">Queue</a>&lt;<a href="org/pizzeria/customQueue/BlockingQueue.html" title="type parameter in BlockingQueue">T</a>&gt; queue</pre>
+<pre><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Queue.html" title="class or interface in java.util" class="external-link">Queue</a>&lt;<a href="org/pizzeria/queue/CustomBlockingQueue.html" title="type parameter in CustomBlockingQueue">T</a>&gt; queue</pre>
 </li>
 <li class="block-list">
 <h5>spaceAvailable</h5>
@@ -128,11 +128,11 @@ loadScripts(document, 'script');</script>
 <ul class="block-list">
 <li class="block-list">
 <h5>orders</h5>
-<pre><a href="org/pizzeria/customQueue/BlockingQueue.html" title="class in org.pizzeria.customQueue">BlockingQueue</a>&lt;<a href="org/pizzeria/state/Order.html" title="class in org.pizzeria.state">Order</a>&gt; orders</pre>
+<pre><a href="org/pizzeria/queue/InBlockingQueue.html" title="interface in org.pizzeria.queue">InBlockingQueue</a>&lt;<a href="org/pizzeria/state/Order.html" title="class in org.pizzeria.state">Order</a>&gt; orders</pre>
 </li>
 <li class="block-list">
 <h5>storage</h5>
-<pre><a href="org/pizzeria/customQueue/BlockingQueue.html" title="class in org.pizzeria.customQueue">BlockingQueue</a>&lt;<a href="org/pizzeria/state/Order.html" title="class in org.pizzeria.state">Order</a>&gt; storage</pre>
+<pre><a href="org/pizzeria/queue/InBlockingQueue.html" title="interface in org.pizzeria.queue">InBlockingQueue</a>&lt;<a href="org/pizzeria/state/Order.html" title="class in org.pizzeria.state">Order</a>&gt; storage</pre>
 </li>
 </ul>
 </section>
