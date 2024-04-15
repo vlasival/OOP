@@ -1,5 +1,7 @@
 package org.pizzeria.worker;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -20,11 +22,6 @@ public class BakerTest {
     @BeforeAll
     public void setup() {
         orders = new BlockingQueue<>(5);
-        try {
-            orders.put(new Order(0, "null"));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         storage = new BlockingQueue<>(5);
         baker = new Baker(
@@ -36,11 +33,36 @@ public class BakerTest {
         );
     }
 
+    private void putOneOrder() {
+        try {
+            orders.put(new Order(1, "null"));
+        } catch (InterruptedException ignored) { }
+    }
+
+    private void waitForBaker() {
+        synchronized (orders) {
+            try {
+                orders.wait();
+            } catch (InterruptedException ignored) { }
+        }
+    }
+
     @Test
-    public void testBakeOrder() throws Exception {
+    public void testBakeOrder() {
         Thread thread = new Thread(baker);
         thread.start();
-        // storage.isEmpty().wait();
+        waitForBaker();
+        putOneOrder();
+        waitForBaker();
+        putOneOrder();
+        waitForBaker();
 
+        baker.stopWorking();
+        try {
+            thread.join();
+        } catch (InterruptedException ignored) { }
+
+        assertTrue(orders.isEmpty());
+        assertTrue(storage.size() == 2);
     }
 }

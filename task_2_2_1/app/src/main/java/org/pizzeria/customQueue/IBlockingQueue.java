@@ -1,7 +1,5 @@
 package org.pizzeria.customQueue;
 
-import java.util.List;
-
 /**
  * Interface for a custom blocking queue.
  */
@@ -29,4 +27,11 @@ public interface IBlockingQueue<T> {
      * @return true if the queue is empty, false otherwise
      */
     public boolean isEmpty();
+
+    /**
+     * Returns the number of elements in the queue.
+     *
+     * @return the number of elements in the queue
+     */
+    public int size();
 }

@@ -62,10 +62,6 @@ public class Pizzeria {
         couriers = createWorkers(WorkerType.Courier, config.getCouriers());
     }
 
-    public String getNameOfSerializeFile() {
-        return nameOfSerializeFile;
-    }
-
     private void loadOldStateFromFile(String filename) {
         try {
             State oldState = State.deserializeState(filename);
@@ -119,15 +115,17 @@ public class Pizzeria {
 
         joinThreads(courierThreads);
 
-        serializeState();
+        serializeState(nameOfSerializeFile);
     }
 
-    private void serializeState() {
+    public void serializeState(String filename) {
         if (state.getOrders().isEmpty() && state.getStorage().isEmpty()) {
-            Path filePath = Paths.get(nameOfSerializeFile);
+            Path filePath = Paths.get(filename);
             try {
                 Files.deleteIfExists(filePath);
-            } catch (IOException ignored) { } 
+            } catch (IOException ignored) {
+                ignored.printStackTrace();
+             } 
             return;
         }
 

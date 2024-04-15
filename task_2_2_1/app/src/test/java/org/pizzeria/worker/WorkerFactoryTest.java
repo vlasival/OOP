@@ -9,6 +9,7 @@ import org.pizzeria.io.jsonReader.WorkerConfig;
 import org.pizzeria.worker.baker.Baker;
 import org.pizzeria.worker.courier.Courier;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
@@ -25,6 +26,7 @@ public class WorkerFactoryTest {
 
     private WorkerFactory workerFactory;
 
+    @SuppressWarnings("deprecation")
     @BeforeEach
     public void init() {
         MockitoAnnotations.initMocks(this);
@@ -43,12 +45,14 @@ public class WorkerFactoryTest {
                                             mockStorageQueue);
 
         assertTrue(worker instanceof Baker);
+        assertEquals("John", worker.getWorkerName());
+        assertEquals(5, worker.getWorkingExperience());
     }
 
     @Test
     public void createWorker_Courier_Type_Test() {
-        when(workerConfig.getName()).thenReturn("John");
-        when(workerConfig.getWorkingExperience()).thenReturn(5);
+        when(workerConfig.getName()).thenReturn("Johannes");
+        when(workerConfig.getWorkingExperience()).thenReturn(15);
         when(workerConfig.getCapacity()).thenReturn(10);
 
         Worker worker = workerFactory.createWorker(WorkerType.Courier, 
@@ -57,6 +61,8 @@ public class WorkerFactoryTest {
                                             mockStorageQueue);
 
         assertTrue(worker instanceof Courier);
+        assertEquals("Johannes", worker.getWorkerName());
+        assertEquals(15, worker.getWorkingExperience());
     }
 
     @Test

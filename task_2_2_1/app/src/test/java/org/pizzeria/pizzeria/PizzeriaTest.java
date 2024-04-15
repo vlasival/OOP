@@ -6,7 +6,9 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.pizzeria.Pizzeria;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,10 +29,10 @@ class PizzeriaTest {
 
     @Test
     void addOrderTest() throws InterruptedException {
-        // int initialOrderCount = pizzeria.getState().getOrders().size();
-        // pizzeria.addOrder(5);
-        // int newOrderCount = pizzeria.getState().getOrders().size();
-        // assertEquals(initialOrderCount + 5, newOrderCount);
+        int initialOrderCount = pizzeria.getState().getOrders().size();
+        pizzeria.addOrder(5);
+        int newOrderCount = pizzeria.getState().getOrders().size();
+        assertEquals(initialOrderCount + 5, newOrderCount);
     }
 
     @Test
@@ -51,4 +53,5 @@ class PizzeriaTest {
             Files.deleteIfExists(filePath);
         } catch (IOException ignored) { } 
     }
+
 }
