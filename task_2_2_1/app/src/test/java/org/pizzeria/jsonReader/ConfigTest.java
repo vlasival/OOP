@@ -2,11 +2,11 @@ package org.pizzeria.jsonReader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 import org.pizzeria.io.jsonReader.JsonFileReader;
 import org.pizzeria.io.jsonReader.PizzeriaConfig;
 
-import com.google.gson.Gson;
 
 /**
  * A unit test class for handling the Pizzeria's configuration.

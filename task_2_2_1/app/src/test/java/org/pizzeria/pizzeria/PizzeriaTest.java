@@ -1,11 +1,5 @@
 package org.pizzeria.pizzeria;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.pizzeria.Pizzeria;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,8 +8,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.pizzeria.Pizzeria;
 
 @TestInstance(Lifecycle.PER_CLASS)
 class PizzeriaTest {
@@ -72,7 +70,9 @@ class PizzeriaTest {
         Path filePath = Paths.get("state.ser");
         try {
             Files.deleteIfExists(filePath);
-        } catch (IOException ignored) { } 
+        } catch (IOException ignored) {
+            ignored.printStackTrace();
+        } 
     }
 
 }
