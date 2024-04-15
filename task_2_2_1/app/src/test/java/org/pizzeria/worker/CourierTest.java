@@ -43,7 +43,9 @@ public class CourierTest {
     private void putOneOrder() {
         try {
             storage.put(new Order(1, "null"));
-        } catch (InterruptedException ignored) { }
+        } catch (InterruptedException ignored) {
+            ignored.printStackTrace();
+        }
     }
 
     /**
@@ -53,7 +55,9 @@ public class CourierTest {
         synchronized (storage) {
             try {
                 storage.wait();
-            } catch (InterruptedException ignored) { }
+            } catch (InterruptedException ignored) {
+                ignored.printStackTrace();
+            }
         }
     }
 
@@ -73,7 +77,9 @@ public class CourierTest {
         courier.stopWorking();
         try {
             thread.join();
-        } catch (InterruptedException ignored) { }
+        } catch (InterruptedException ignored) {
+            ignored.printStackTrace();
+        }
 
         assertTrue(storage.isEmpty());
     }

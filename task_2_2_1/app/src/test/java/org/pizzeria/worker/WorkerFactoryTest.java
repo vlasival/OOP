@@ -1,17 +1,18 @@
 package org.pizzeria.worker;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.pizzeria.customQueue.IBlockingQueue;
-import org.pizzeria.state.Order;
 import org.pizzeria.io.jsonReader.WorkerConfig;
+import org.pizzeria.state.Order;
 import org.pizzeria.worker.baker.Baker;
 import org.pizzeria.worker.courier.Courier;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
 
 /**
  * Test class for WorkerFactory.
@@ -48,10 +49,10 @@ public class WorkerFactoryTest {
         when(workerConfig.getWorkingExperience()).thenReturn(5);
         when(workerConfig.getCapacity()).thenReturn(10);
 
-        Worker worker = workerFactory.createWorker(WorkerType.Baker, 
-                                            workerConfig,
-                                            mockOrdersQueue, 
-                                            mockStorageQueue);
+        Worker worker = workerFactory.createWorker(WorkerType.Baker,
+                workerConfig,
+                mockOrdersQueue,
+                mockStorageQueue);
 
         assertTrue(worker instanceof Baker);
         assertEquals("John", worker.getWorkerName());
@@ -67,10 +68,10 @@ public class WorkerFactoryTest {
         when(workerConfig.getWorkingExperience()).thenReturn(15);
         when(workerConfig.getCapacity()).thenReturn(10);
 
-        Worker worker = workerFactory.createWorker(WorkerType.Courier, 
-                                            workerConfig,
-                                            mockOrdersQueue, 
-                                            mockStorageQueue);
+        Worker worker = workerFactory.createWorker(WorkerType.Courier,
+                workerConfig,
+                mockOrdersQueue,
+                mockStorageQueue);
 
         assertTrue(worker instanceof Courier);
         assertEquals("Johannes", worker.getWorkerName());
@@ -86,10 +87,10 @@ public class WorkerFactoryTest {
         when(workerConfig.getWorkingExperience()).thenReturn(5);
         when(workerConfig.getCapacity()).thenReturn(10);
 
-        Worker worker = workerFactory.createWorker(null, 
-                                            workerConfig,
-                                            mockOrdersQueue, 
-                                            mockStorageQueue);
+        Worker worker = workerFactory.createWorker(null,
+                workerConfig,
+                mockOrdersQueue,
+                mockStorageQueue);
 
         assertTrue(worker == null);
     }

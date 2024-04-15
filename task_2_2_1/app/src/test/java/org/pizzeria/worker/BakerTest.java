@@ -45,7 +45,9 @@ public class BakerTest {
     private void putOneOrder() {
         try {
             orders.put(new Order(1, "null"));
-        } catch (InterruptedException ignored) { }
+        } catch (InterruptedException ignored) {
+            ignored.printStackTrace();
+        }
     }
 
     /**
@@ -55,7 +57,9 @@ public class BakerTest {
         synchronized (orders) {
             try {
                 orders.wait();
-            } catch (InterruptedException ignored) { }
+            } catch (InterruptedException ignored) {
+                ignored.printStackTrace();
+            }
         }
     }
 
@@ -75,7 +79,9 @@ public class BakerTest {
         baker.stopWorking();
         try {
             thread.join();
-        } catch (InterruptedException ignored) { }
+        } catch (InterruptedException ignored) {
+            ignored.printStackTrace();
+        }
 
         assertTrue(orders.isEmpty());
         assertTrue(storage.size() == 2);
