@@ -3,7 +3,7 @@ package org.pizzeria.io.logger;
 /**
  * Interface of logger.
  */
-public interface ILogger {
+public interface InLogger {
     void log(String message);
 }
 

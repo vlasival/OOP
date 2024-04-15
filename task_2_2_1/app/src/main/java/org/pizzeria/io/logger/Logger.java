@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Logger is used to log messages to console.
  */
-public class Logger implements ILogger {
+public class Logger implements InLogger {
 
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
     private String className;

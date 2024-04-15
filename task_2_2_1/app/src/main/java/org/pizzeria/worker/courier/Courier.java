@@ -1,6 +1,6 @@
 package org.pizzeria.worker.courier;
 
-import org.pizzeria.io.logger.ILogger;
+import org.pizzeria.io.logger.InLogger;
 import org.pizzeria.queue.InBlockingQueue;
 import org.pizzeria.state.Order;
 import org.pizzeria.worker.Worker;
@@ -25,7 +25,7 @@ public class Courier extends Worker {
         String name, 
         int workingExperience, 
         int capacity, 
-        ILogger logger, 
+        InLogger logger, 
         InBlockingQueue<Order> storage
     ) {
         super(name, workingExperience, logger);

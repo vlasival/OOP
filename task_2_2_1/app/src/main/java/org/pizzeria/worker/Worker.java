@@ -1,7 +1,7 @@
 package org.pizzeria.worker;
 
 import java.util.Random;
-import org.pizzeria.io.logger.ILogger;
+import org.pizzeria.io.logger.InLogger;
 
 /**
  * The Worker class is an abstract class that represents a worker in a pizzeria.
@@ -12,7 +12,7 @@ public abstract class Worker extends Thread {
 
     protected int workingExperience;
     
-    protected final ILogger logger;
+    protected final InLogger logger;
     
     protected final String name;
     
@@ -29,7 +29,7 @@ public abstract class Worker extends Thread {
      * @param workingExperience  the working experience of the worker
      * @param logger       the logger used for logging
      */
-    public Worker(String name, int workingExperience, ILogger logger) {
+    public Worker(String name, int workingExperience, InLogger logger) {
         this.logger = logger;
         this.workingExperience = workingExperience;
         this.name = name;
@@ -64,7 +64,6 @@ public abstract class Worker extends Thread {
 
     /**
      * Overrides the run() method from the Thread class.
-     *
      * This method represents the main logic of the worker, and should be implemented by subclasses.
      */
     @Override

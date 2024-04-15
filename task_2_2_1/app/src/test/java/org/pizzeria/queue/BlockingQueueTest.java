@@ -7,9 +7,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.pizzeria.queue.CustomBlockingQueue;
-import org.pizzeria.queue.InBlockingQueue;
-
 
 /**
  * This class contains unit tests for the BlockingQueue class.
@@ -42,7 +39,7 @@ public class BlockingQueueTest {
     @Test
     void putTest() {
         try {
-           queue.put("Five");
+            queue.put("Five");
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {

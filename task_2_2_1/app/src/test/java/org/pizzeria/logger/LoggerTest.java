@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.pizzeria.Pizzeria;
-import org.pizzeria.io.logger.ILogger;
+import org.pizzeria.io.logger.InLogger;
 import org.pizzeria.io.logger.Logger;
 
 /**
@@ -21,7 +21,7 @@ import org.pizzeria.io.logger.Logger;
 @TestInstance(Lifecycle.PER_CLASS)
 public class LoggerTest {
 
-    private ILogger logger;
+    private InLogger logger;
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 

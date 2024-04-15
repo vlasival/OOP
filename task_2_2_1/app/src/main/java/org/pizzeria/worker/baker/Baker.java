@@ -1,6 +1,6 @@
 package org.pizzeria.worker.baker;
 
-import org.pizzeria.io.logger.ILogger;
+import org.pizzeria.io.logger.InLogger;
 import org.pizzeria.queue.InBlockingQueue;
 import org.pizzeria.state.Order;
 import org.pizzeria.worker.Worker;
@@ -22,7 +22,7 @@ public class Baker extends Worker {
      * @param orders the queue of orders to be baked
      * @param storage the queue for storing the baked orders
      */
-    public Baker(String name, int workingExperience, ILogger logger,
+    public Baker(String name, int workingExperience, InLogger logger,
                  InBlockingQueue<Order> orders, InBlockingQueue<Order> storage) {
         super(name, workingExperience, logger);
         this.orders = orders;
