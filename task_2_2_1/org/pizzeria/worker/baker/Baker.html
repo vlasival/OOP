@@ -99,7 +99,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Baker</span>
 <span class="extends-implements">extends <a href="../Worker.html" title="class in org.pizzeria.worker">Worker</a></span></div>
-<div class="block">Baker class.</div>
+<div class="block">Baker class that extends the Worker class.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -118,7 +118,7 @@ loadScripts(document, 'script');</script>
 <h2>Field Summary</h2>
 <div class="inherited-list">
 <h3 id="fields-inherited-from-class-org.pizzeria.worker.Worker">Fields inherited from class&nbsp;org.pizzeria.worker.<a href="../Worker.html" title="class in org.pizzeria.worker">Worker</a></h3>
-<code><a href="../Worker.html#canWork">canWork</a>, <a href="../Worker.html#logger">logger</a>, <a href="../Worker.html#name">name</a>, <a href="../Worker.html#workingTime">workingTime</a></code></div>
+<code><a href="../Worker.html#canWork">canWork</a>, <a href="../Worker.html#logger">logger</a>, <a href="../Worker.html#maxWorkingTime">maxWorkingTime</a>, <a href="../Worker.html#name">name</a>, <a href="../Worker.html#random">random</a>, <a href="../Worker.html#workingExperience">workingExperience</a></code></div>
 <div class="inherited-list">
 <h3 id="fields-inherited-from-class-java.lang.Thread">Fields inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html" title="class or interface in java.lang" class="external-link">Thread</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#MAX_PRIORITY" title="class or interface in java.lang" class="external-link">MAX_PRIORITY</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#MIN_PRIORITY" title="class or interface in java.lang" class="external-link">MIN_PRIORITY</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#NORM_PRIORITY" title="class or interface in java.lang" class="external-link">NORM_PRIORITY</a></code></div>
@@ -132,13 +132,13 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,long,org.pizzeria.io.logger.ILogger,org.pizzeria.customQueue.IBlockingQueue,org.pizzeria.customQueue.IBlockingQueue)" class="member-name-link">Baker</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
- long&nbsp;workingTime,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,int,org.pizzeria.io.logger.ILogger,org.pizzeria.customQueue.IBlockingQueue,org.pizzeria.customQueue.IBlockingQueue)" class="member-name-link">Baker</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ int&nbsp;workingExperience,
  <a href="../../io/logger/ILogger.html" title="interface in org.pizzeria.io.logger">ILogger</a>&nbsp;logger,
  <a href="../../customQueue/IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;<a href="../../state/Order.html" title="class in org.pizzeria.state">Order</a>&gt;&nbsp;orders,
  <a href="../../customQueue/IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;<a href="../../state/Order.html" title="class in org.pizzeria.state">Order</a>&gt;&nbsp;storage)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Constructor.</div>
+<div class="block">Constructor for creating a Baker object.</div>
 </div>
 </div>
 </section>
@@ -157,14 +157,14 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#run()" class="member-name-link">run</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Running method.</div>
+<div class="block">The running method that is executed when the thread starts.</div>
 </div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.pizzeria.worker.Worker">Methods inherited from class&nbsp;org.pizzeria.worker.<a href="../Worker.html" title="class in org.pizzeria.worker">Worker</a></h3>
-<code><a href="../Worker.html#getWorkerName()">getWorkerName</a>, <a href="../Worker.html#getWorkingTime()">getWorkingTime</a>, <a href="../Worker.html#stopWorking()">stopWorking</a></code></div>
+<code><a href="../Worker.html#getWorkerName()">getWorkerName</a>, <a href="../Worker.html#getWorkingExperience()">getWorkingExperience</a>, <a href="../Worker.html#stopWorking()">stopWorking</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Thread">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html" title="class or interface in java.lang" class="external-link">Thread</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#activeCount()" title="class or interface in java.lang" class="external-link">activeCount</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#checkAccess()" title="class or interface in java.lang" class="external-link">checkAccess</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#countStackFrames()" title="class or interface in java.lang" class="external-link">countStackFrames</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#currentThread()" title="class or interface in java.lang" class="external-link">currentThread</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#dumpStack()" title="class or interface in java.lang" class="external-link">dumpStack</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#enumerate(java.lang.Thread%5B%5D)" title="class or interface in java.lang" class="external-link">enumerate</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#getAllStackTraces()" title="class or interface in java.lang" class="external-link">getAllStackTraces</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#getContextClassLoader()" title="class or interface in java.lang" class="external-link">getContextClassLoader</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#getDefaultUncaughtExceptionHandler()" title="class or interface in java.lang" class="external-link">getDefaultUncaughtExceptionHandler</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#getId()" title="class or interface in java.lang" class="external-link">getId</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#getName()" title="class or interface in java.lang" class="external-link">getName</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#getPriority()" title="class or interface in java.lang" class="external-link">getPriority</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#getStackTrace()" title="class or interface in java.lang" class="external-link">getStackTrace</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#getState()" title="class or interface in java.lang" class="external-link">getState</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#getThreadGroup()" title="class or interface in java.lang" class="external-link">getThreadGroup</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#getUncaughtExceptionHandler()" title="class or interface in java.lang" class="external-link">getUncaughtExceptionHandler</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#holdsLock(java.lang.Object)" title="class or interface in java.lang" class="external-link">holdsLock</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#interrupt()" title="class or interface in java.lang" class="external-link">interrupt</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#interrupted()" title="class or interface in java.lang" class="external-link">interrupted</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#isAlive()" title="class or interface in java.lang" class="external-link">isAlive</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#isDaemon()" title="class or interface in java.lang" class="external-link">isDaemon</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#isInterrupted()" title="class or interface in java.lang" class="external-link">isInterrupted</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#isVirtual()" title="class or interface in java.lang" class="external-link">isVirtual</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#join()" title="class or interface in java.lang" class="external-link">join</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#join(long)" title="class or interface in java.lang" class="external-link">join</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#join(long,int)" title="class or interface in java.lang" class="external-link">join</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#join(java.time.Duration)" title="class or interface in java.lang" class="external-link">join</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#ofPlatform()" title="class or interface in java.lang" class="external-link">ofPlatform</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#ofVirtual()" title="class or interface in java.lang" class="external-link">ofVirtual</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#onSpinWait()" title="class or interface in java.lang" class="external-link">onSpinWait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#resume()" title="class or interface in java.lang" class="external-link">resume</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#setContextClassLoader(java.lang.ClassLoader)" title="class or interface in java.lang" class="external-link">setContextClassLoader</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#setDaemon(boolean)" title="class or interface in java.lang" class="external-link">setDaemon</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#setDefaultUncaughtExceptionHandler(java.lang.Thread.UncaughtExceptionHandler)" title="class or interface in java.lang" class="external-link">setDefaultUncaughtExceptionHandler</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#setName(java.lang.String)" title="class or interface in java.lang" class="external-link">setName</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#setPriority(int)" title="class or interface in java.lang" class="external-link">setPriority</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#setUncaughtExceptionHandler(java.lang.Thread.UncaughtExceptionHandler)" title="class or interface in java.lang" class="external-link">setUncaughtExceptionHandler</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#sleep(long)" title="class or interface in java.lang" class="external-link">sleep</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#sleep(long,int)" title="class or interface in java.lang" class="external-link">sleep</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#sleep(java.time.Duration)" title="class or interface in java.lang" class="external-link">sleep</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#start()" title="class or interface in java.lang" class="external-link">start</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#startVirtualThread(java.lang.Runnable)" title="class or interface in java.lang" class="external-link">startVirtualThread</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#stop()" title="class or interface in java.lang" class="external-link">stop</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#suspend()" title="class or interface in java.lang" class="external-link">suspend</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#threadId()" title="class or interface in java.lang" class="external-link">threadId</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html#yield()" title="class or interface in java.lang" class="external-link">yield</a></code></div>
@@ -183,21 +183,21 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(java.lang.String,long,org.pizzeria.io.logger.ILogger,org.pizzeria.customQueue.IBlockingQueue,org.pizzeria.customQueue.IBlockingQueue)">
+<section class="detail" id="&lt;init&gt;(java.lang.String,int,org.pizzeria.io.logger.ILogger,org.pizzeria.customQueue.IBlockingQueue,org.pizzeria.customQueue.IBlockingQueue)">
 <h3>Baker</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Baker</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
- long&nbsp;workingTime,
+ int&nbsp;workingExperience,
  <a href="../../io/logger/ILogger.html" title="interface in org.pizzeria.io.logger">ILogger</a>&nbsp;logger,
  <a href="../../customQueue/IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;<a href="../../state/Order.html" title="class in org.pizzeria.state">Order</a>&gt;&nbsp;orders,
  <a href="../../customQueue/IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;<a href="../../state/Order.html" title="class in org.pizzeria.state">Order</a>&gt;&nbsp;storage)</span></div>
-<div class="block">Constructor.</div>
+<div class="block">Constructor for creating a Baker object.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>name</code> - worker name</dd>
-<dd><code>workingTime</code> - time</dd>
-<dd><code>logger</code> - logger</dd>
-<dd><code>orders</code> - orders</dd>
-<dd><code>storage</code> - storage</dd>
+<dd><code>name</code> - the name of the baker worker</dd>
+<dd><code>workingExperience</code> - the time taken to bake an order</dd>
+<dd><code>logger</code> - the logger used for logging messages</dd>
+<dd><code>orders</code> - the queue of orders to be baked</dd>
+<dd><code>storage</code> - the queue for storing the baked orders</dd>
 </dl>
 </section>
 </li>
@@ -213,7 +213,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="run()">
 <h3>run</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">run</span>()</div>
-<div class="block">Running method.</div>
+<div class="block">The running method that is executed when the thread starts.
+ It continuously checks for orders in the queue and bakes them.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html#run()" title="class or interface in java.lang" class="external-link">run</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a></code></dd>

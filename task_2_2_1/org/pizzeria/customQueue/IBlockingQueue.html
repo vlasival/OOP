@@ -111,19 +111,14 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets an item from the queue.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getSize()" class="member-name-link">getSize</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isEmpty()" class="member-name-link">isEmpty</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Gets the size of the queue.</div>
+<div class="block">Checks whether the queue is empty or not.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="IBlockingQueue.html" title="type parameter in IBlockingQueue">T</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getSome(int)" class="member-name-link">getSome</a><wbr>(int&nbsp;n)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#put(T)" class="member-name-link">put</a><wbr>(<a href="IBlockingQueue.html" title="type parameter in IBlockingQueue">T</a>&nbsp;item)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Gets some items from the queue.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#put(T)" class="member-name-link">put</a><wbr>(<a href="IBlockingQueue.html" title="type parameter in IBlockingQueue">T</a>&nbsp;item)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Puts an item into the queue.</div>
 </div>
 </div>
@@ -148,9 +143,9 @@ loadScripts(document, 'script');</script>
 <div class="block">Puts an item into the queue.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>item</code> - The item to put into the queue.</dd>
+<dd><code>item</code> - The item to put into the queue</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - if the thread was interrupted.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - if the thread was interrupted</dd>
 </dl>
 </section>
 </li>
@@ -162,34 +157,20 @@ throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/
 <div class="block">Gets an item from the queue.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The item from the queue.</dd>
+<dd>The item from the queue</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - if the thread was interrupted.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - if the thread was interrupted</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="getSome(int)">
-<h3>getSome</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="IBlockingQueue.html" title="type parameter in IBlockingQueue">T</a>&gt;</span>&nbsp;<span class="element-name">getSome</span><wbr><span class="parameters">(int&nbsp;n)</span>
-         throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
-<div class="block">Gets some items from the queue.</div>
+<section class="detail" id="isEmpty()">
+<h3>isEmpty</h3>
+<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isEmpty</span>()</div>
+<div class="block">Checks whether the queue is empty or not.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>A list of the items from the queue.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - if the thread was interrupted.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getSize()">
-<h3>getSize</h3>
-<div class="member-signature"><span class="return-type">int</span>&nbsp;<span class="element-name">getSize</span>()</div>
-<div class="block">Gets the size of the queue.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>size of the queue.</dd>
+<dd>true if the queue is empty, false otherwise</dd>
 </dl>
 </section>
 </li>

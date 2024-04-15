@@ -90,13 +90,21 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;T&gt;</code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></code>, <code><a href="IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;T&gt;</code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">BlockingQueue&lt;T&gt;</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
-implements <a href="IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;T&gt;</span></div>
-<div class="block">Thread-safe custom dequeue. It uses a semaphore for synchronization.</div>
+implements <a href="IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;T&gt;, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></span></div>
+<div class="block">Thread-safe custom blocking queue implementation.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../../../serialized-form.html#org.pizzeria.customQueue.BlockingQueue">Serialized Form</a></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -129,22 +137,22 @@ implements <a href="IBlockingQueue.html" title="interface in org.pizzeria.custom
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="BlockingQueue.html" title="type parameter in BlockingQueue">T</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#get()" class="member-name-link">get</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Method gets an element from the queue.</div>
+<div class="block">Gets an element from the queue.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isEmpty()" class="member-name-link">isEmpty</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks whether the queue is empty or not.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#put(T)" class="member-name-link">put</a><wbr>(<a href="BlockingQueue.html" title="type parameter in BlockingQueue">T</a>&nbsp;item)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Puts an element into the queue.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSize()" class="member-name-link">getSize</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#size()" class="member-name-link">size</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Method returns the size of the queue.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="BlockingQueue.html" title="type parameter in BlockingQueue">T</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSome(int)" class="member-name-link">getSome</a><wbr>(int&nbsp;n)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Method puts an element into the queue.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#put(T)" class="member-name-link">put</a><wbr>(<a href="BlockingQueue.html" title="type parameter in BlockingQueue">T</a>&nbsp;item)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Method puts an element into the queue.</div>
+<div class="block">Returns the number of elements in the queue.</div>
 </div>
 </div>
 </div>
@@ -187,14 +195,14 @@ implements <a href="IBlockingQueue.html" title="interface in org.pizzeria.custom
 <h3 id="put(java.lang.Object)">put</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="BlockingQueue.html" title="type parameter in BlockingQueue">T</a>&nbsp;item)</span>
          throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
-<div class="block">Method puts an element into the queue. Blocks if the queue is full.</div>
+<div class="block">Puts an element into the queue. Blocks if the queue is full.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="IBlockingQueue.html#put(T)">put</a></code>&nbsp;in interface&nbsp;<code><a href="IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;<a href="BlockingQueue.html" title="type parameter in BlockingQueue">T</a>&gt;</code></dd>
 <dt>Parameters:</dt>
 <dd><code>item</code> - element to be added to the queue</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - if the thread was interrupted.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - if the thread is interrupted while waiting to put an item into the queue</dd>
 </dl>
 </section>
 </li>
@@ -203,47 +211,38 @@ implements <a href="IBlockingQueue.html" title="interface in org.pizzeria.custom
 <h3>get</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="BlockingQueue.html" title="type parameter in BlockingQueue">T</a></span>&nbsp;<span class="element-name">get</span>()
       throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
-<div class="block">Method gets an element from the queue.</div>
+<div class="block">Gets an element from the queue. Blocks if the queue is empty.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="IBlockingQueue.html#get()">get</a></code>&nbsp;in interface&nbsp;<code><a href="IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;<a href="BlockingQueue.html" title="type parameter in BlockingQueue">T</a>&gt;</code></dd>
 <dt>Returns:</dt>
-<dd>element from the queue
- If the queue is empty, it waits until an element is available
- If the queue is not empty, it returns the first element</dd>
+<dd>element from the queue</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - if the thread was interrupted.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - if the thread is interrupted while waiting to get an item from the queue</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="getSome(int)">
-<h3>getSome</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="BlockingQueue.html" title="type parameter in BlockingQueue">T</a>&gt;</span>&nbsp;<span class="element-name">getSome</span><wbr><span class="parameters">(int&nbsp;n)</span>
-                throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
-<div class="block">Method puts an element into the queue. Blocks if the queue is full.</div>
+<section class="detail" id="isEmpty()">
+<h3>isEmpty</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isEmpty</span>()</div>
+<div class="block">Checks whether the queue is empty or not.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="IBlockingQueue.html#getSome(int)">getSome</a></code>&nbsp;in interface&nbsp;<code><a href="IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;<a href="BlockingQueue.html" title="type parameter in BlockingQueue">T</a>&gt;</code></dd>
-<dt>Parameters:</dt>
-<dd><code>n</code> - element to be added to the queue</dd>
+<dd><code><a href="IBlockingQueue.html#isEmpty()">isEmpty</a></code>&nbsp;in interface&nbsp;<code><a href="IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;<a href="BlockingQueue.html" title="type parameter in BlockingQueue">T</a>&gt;</code></dd>
 <dt>Returns:</dt>
-<dd>A list of the items from the queue.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - if the thread was interrupted.</dd>
+<dd>true if the queue is empty, false otherwise</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="getSize()">
-<h3>getSize</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getSize</span>()</div>
-<div class="block">Method returns the size of the queue.</div>
+<section class="detail" id="size()">
+<h3>size</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">size</span>()</div>
+<div class="block">Returns the number of elements in the queue.</div>
 <dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="IBlockingQueue.html#getSize()">getSize</a></code>&nbsp;in interface&nbsp;<code><a href="IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;<a href="BlockingQueue.html" title="type parameter in BlockingQueue">T</a>&gt;</code></dd>
 <dt>Returns:</dt>
-<dd>size of the queue.</dd>
+<dd>the number of elements in the queue</dd>
 </dl>
 </section>
 </li>

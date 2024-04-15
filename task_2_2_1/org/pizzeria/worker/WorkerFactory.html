@@ -120,9 +120,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Worker.html" title="class in org.pizzeria.worker">Worker</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createWorker(org.pizzeria.worker.WorkerType,java.lang.String,long,int,org.pizzeria.customQueue.IBlockingQueue,org.pizzeria.customQueue.IBlockingQueue)" class="member-name-link">createWorker</a><wbr>(<a href="WorkerType.html" title="enum class in org.pizzeria.worker">WorkerType</a>&nbsp;type,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createWorker(org.pizzeria.worker.WorkerType,java.lang.String,int,int,org.pizzeria.customQueue.IBlockingQueue,org.pizzeria.customQueue.IBlockingQueue)" class="member-name-link">createWorker</a><wbr>(<a href="WorkerType.html" title="enum class in org.pizzeria.worker">WorkerType</a>&nbsp;type,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
- long&nbsp;workingTime,
+ int&nbsp;workingExperience,
  int&nbsp;capacity,
  <a href="../customQueue/IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;<a href="../state/Order.html" title="class in org.pizzeria.state">Order</a>&gt;&nbsp;orders,
  <a href="../customQueue/IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;<a href="../state/Order.html" title="class in org.pizzeria.state">Order</a>&gt;&nbsp;storage)</code></div>
@@ -188,11 +188,11 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="createWorker(org.pizzeria.worker.WorkerType,java.lang.String,long,int,org.pizzeria.customQueue.IBlockingQueue,org.pizzeria.customQueue.IBlockingQueue)">
+<section class="detail" id="createWorker(org.pizzeria.worker.WorkerType,java.lang.String,int,int,org.pizzeria.customQueue.IBlockingQueue,org.pizzeria.customQueue.IBlockingQueue)">
 <h3>createWorker</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Worker.html" title="class in org.pizzeria.worker">Worker</a></span>&nbsp;<span class="element-name">createWorker</span><wbr><span class="parameters">(<a href="WorkerType.html" title="enum class in org.pizzeria.worker">WorkerType</a>&nbsp;type,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
- long&nbsp;workingTime,
+ int&nbsp;workingExperience,
  int&nbsp;capacity,
  <a href="../customQueue/IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;<a href="../state/Order.html" title="class in org.pizzeria.state">Order</a>&gt;&nbsp;orders,
  <a href="../customQueue/IBlockingQueue.html" title="interface in org.pizzeria.customQueue">IBlockingQueue</a>&lt;<a href="../state/Order.html" title="class in org.pizzeria.state">Order</a>&gt;&nbsp;storage)</span></div>
@@ -201,7 +201,7 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>type</code> - type</dd>
 <dd><code>name</code> - name</dd>
-<dd><code>workingTime</code> - time</dd>
+<dd><code>workingExperience</code> - time</dd>
 <dd><code>capacity</code> - cap</dd>
 <dd><code>orders</code> - ord</dd>
 <dd><code>storage</code> - storage</dd>

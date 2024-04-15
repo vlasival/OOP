@@ -101,7 +101,11 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">Worker</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html" title="class or interface in java.lang" class="external-link">Thread</a></span></div>
-<div class="block">Worker class.</div>
+<div class="block">The Worker class is an abstract class that represents a worker in a pizzeria.
+ 
+ Each worker has a working time, a logger, a name, and a flag indicating if they can work.
+ 
+ This class extends the Thread class, allowing workers to run as separate threads.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -129,11 +133,17 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color"><code>protected final <a href="../io/logger/ILogger.html" title="interface in org.pizzeria.io.logger">ILogger</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#logger" class="member-name-link">logger</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#name" class="member-name-link">name</a></code></div>
+<div class="col-first even-row-color"><code>protected static int</code></div>
+<div class="col-second even-row-color"><code><a href="#maxWorkingTime" class="member-name-link">maxWorkingTime</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected long</code></div>
-<div class="col-second odd-row-color"><code><a href="#workingTime" class="member-name-link">workingTime</a></code></div>
+<div class="col-first odd-row-color"><code>protected final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#name" class="member-name-link">name</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Random.html" title="class or interface in java.util" class="external-link">Random</a></code></div>
+<div class="col-second even-row-color"><code><a href="#random" class="member-name-link">random</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected int</code></div>
+<div class="col-second odd-row-color"><code><a href="#workingExperience" class="member-name-link">workingExperience</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 </div>
 <div class="inherited-list">
@@ -149,11 +159,11 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,long,org.pizzeria.io.logger.ILogger)" class="member-name-link">Worker</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
- long&nbsp;workingTime,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,int,org.pizzeria.io.logger.ILogger)" class="member-name-link">Worker</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ int&nbsp;workingExperience,
  <a href="../io/logger/ILogger.html" title="interface in org.pizzeria.io.logger">ILogger</a>&nbsp;logger)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Constructor.</div>
+<div class="block">Constructs a new Worker object with the given name, workingExperience, and logger.</div>
 </div>
 </div>
 </section>
@@ -172,22 +182,22 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWorkerName()" class="member-name-link">getWorkerName</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Getter.</div>
+<div class="block">Retrieves the name of the worker.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWorkingTime()" class="member-name-link">getWorkingTime</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWorkingExperience()" class="member-name-link">getWorkingExperience</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Getter.</div>
+<div class="block">Retrieves the working time of the worker.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#run()" class="member-name-link">run</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Run.</div>
+<div class="block">Overrides the run() method from the Thread class.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stopWorking()" class="member-name-link">stopWorking</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Stop.</div>
+<div class="block">Stops the worker from working.</div>
 </div>
 </div>
 </div>
@@ -210,9 +220,9 @@ loadScripts(document, 'script');</script>
 <h2>Field Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="workingTime">
-<h3>workingTime</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">workingTime</span></div>
+<section class="detail" id="workingExperience">
+<h3>workingExperience</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">workingExperience</span></div>
 </section>
 </li>
 <li>
@@ -230,7 +240,19 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="canWork">
 <h3>canWork</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canWork</span></div>
+<div class="member-signature"><span class="modifiers">protected volatile</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canWork</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="maxWorkingTime">
+<h3>maxWorkingTime</h3>
+<div class="member-signature"><span class="modifiers">protected static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">maxWorkingTime</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="random">
+<h3>random</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Random.html" title="class or interface in java.util" class="external-link">Random</a></span>&nbsp;<span class="element-name">random</span></div>
 </section>
 </li>
 </ul>
@@ -242,17 +264,17 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(java.lang.String,long,org.pizzeria.io.logger.ILogger)">
+<section class="detail" id="&lt;init&gt;(java.lang.String,int,org.pizzeria.io.logger.ILogger)">
 <h3>Worker</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Worker</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
- long&nbsp;workingTime,
+ int&nbsp;workingExperience,
  <a href="../io/logger/ILogger.html" title="interface in org.pizzeria.io.logger">ILogger</a>&nbsp;logger)</span></div>
-<div class="block">Constructor.</div>
+<div class="block">Constructs a new Worker object with the given name, workingExperience, and logger.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>name</code> - name</dd>
-<dd><code>workingTime</code> - time</dd>
-<dd><code>logger</code> - logger</dd>
+<dd><code>name</code> - the name of the worker</dd>
+<dd><code>workingExperience</code> - the working experience of the worker</dd>
+<dd><code>logger</code> - the logger used for logging</dd>
 </dl>
 </section>
 </li>
@@ -265,13 +287,13 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="getWorkingTime()">
-<h3>getWorkingTime</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">getWorkingTime</span>()</div>
-<div class="block">Getter.</div>
+<section class="detail" id="getWorkingExperience()">
+<h3>getWorkingExperience</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getWorkingExperience</span>()</div>
+<div class="block">Retrieves the working time of the worker.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>working time</dd>
+<dd>the working time of the worker</dd>
 </dl>
 </section>
 </li>
@@ -279,10 +301,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getWorkerName()">
 <h3>getWorkerName</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getWorkerName</span>()</div>
-<div class="block">Getter.</div>
+<div class="block">Retrieves the name of the worker.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>name</dd>
+<dd>the name of the worker</dd>
 </dl>
 </section>
 </li>
@@ -290,14 +312,16 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="stopWorking()">
 <h3>stopWorking</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">stopWorking</span>()</div>
-<div class="block">Stop.</div>
+<div class="block">Stops the worker from working.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="run()">
 <h3>run</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">run</span>()</div>
-<div class="block">Run.</div>
+<div class="block">Overrides the run() method from the Thread class.
+ 
+ This method represents the main logic of the worker, and should be implemented by subclasses.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html#run()" title="class or interface in java.lang" class="external-link">run</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a></code></dd>
