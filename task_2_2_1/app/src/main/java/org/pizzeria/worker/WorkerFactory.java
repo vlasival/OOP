@@ -1,8 +1,8 @@
 package org.pizzeria.worker;
 
-import org.pizzeria.customQueue.IBlockingQueue;
-import org.pizzeria.io.jsonReader.WorkerConfig;
+import org.pizzeria.io.json.WorkerConfig;
 import org.pizzeria.io.logger.Logger;
+import org.pizzeria.queue.InBlockingQueue;
 import org.pizzeria.state.Order;
 import org.pizzeria.worker.baker.Baker;
 import org.pizzeria.worker.courier.Courier;
@@ -24,8 +24,8 @@ public class WorkerFactory {
     public Worker createWorker(
             WorkerType type,
             WorkerConfig config,
-            IBlockingQueue<Order> orders, 
-            IBlockingQueue<Order> storage
+            InBlockingQueue<Order> orders, 
+            InBlockingQueue<Order> storage
     ) {
         String name = config.getName();
         int workingExperience = config.getWorkingExperience();
@@ -34,7 +34,7 @@ public class WorkerFactory {
     }
 
     /**
-     * Full method
+     * Full method.
      *
      * @param type type
      * @param name name
@@ -49,15 +49,15 @@ public class WorkerFactory {
             String name,
             int workingExperience,
             int capacity,
-            IBlockingQueue<Order> orders, 
-            IBlockingQueue<Order> storage
-        ) {
+            InBlockingQueue<Order> orders, 
+            InBlockingQueue<Order> storage
+    ) {
 
         if (type == null) {
             return null;
         }
         
-        Worker worker = null;
+        Worker worker;
 
         switch (type) {
             case Baker:
@@ -68,6 +68,8 @@ public class WorkerFactory {
                 worker = new Courier(name, workingExperience, capacity, 
                                 new Logger(Courier.class, name), storage);
                 break;
+            default:
+                worker = null;
         }
         return worker;
     }

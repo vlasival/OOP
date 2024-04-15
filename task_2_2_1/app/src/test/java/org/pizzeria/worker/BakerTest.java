@@ -6,9 +6,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.pizzeria.customQueue.BlockingQueue;
-import org.pizzeria.customQueue.IBlockingQueue;
 import org.pizzeria.io.logger.Logger;
+import org.pizzeria.queue.CustomBlockingQueue;
+import org.pizzeria.queue.InBlockingQueue;
 import org.pizzeria.state.Order;
 import org.pizzeria.worker.baker.Baker;
 
@@ -19,17 +19,17 @@ import org.pizzeria.worker.baker.Baker;
 public class BakerTest {
 
     Baker baker;
-    IBlockingQueue<Order> orders;
-    IBlockingQueue<Order> storage;
+    InBlockingQueue<Order> orders;
+    InBlockingQueue<Order> storage;
 
     /**
      * Sets up the test environment by initializing the necessary objects.
      */
     @BeforeAll
     public void setup() {
-        orders = new BlockingQueue<>(5);
+        orders = new CustomBlockingQueue<>(5);
 
-        storage = new BlockingQueue<>(5);
+        storage = new CustomBlockingQueue<>(5);
         baker = new Baker(
             "John",
             5, 

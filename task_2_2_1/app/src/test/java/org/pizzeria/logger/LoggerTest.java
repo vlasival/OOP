@@ -15,6 +15,9 @@ import org.pizzeria.Pizzeria;
 import org.pizzeria.io.logger.ILogger;
 import org.pizzeria.io.logger.Logger;
 
+/**
+ * Class for test custom logger.
+ */
 @TestInstance(Lifecycle.PER_CLASS)
 public class LoggerTest {
 

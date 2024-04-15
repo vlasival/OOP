@@ -1,9 +1,9 @@
-package org.pizzeria.customQueue;
+package org.pizzeria.queue;
 
 /**
  * Interface for a custom blocking queue.
  */
-public interface IBlockingQueue<T> {
+public interface InBlockingQueue<T> {
 
     /**
      * Puts an item into the queue.

@@ -1,7 +1,7 @@
 package org.pizzeria.worker.baker;
 
-import org.pizzeria.customQueue.IBlockingQueue;
 import org.pizzeria.io.logger.ILogger;
+import org.pizzeria.queue.InBlockingQueue;
 import org.pizzeria.state.Order;
 import org.pizzeria.worker.Worker;
 
@@ -10,8 +10,8 @@ import org.pizzeria.worker.Worker;
  */
 public class Baker extends Worker {
 
-    private final IBlockingQueue<Order> orders;
-    private final IBlockingQueue<Order> storage;
+    private final InBlockingQueue<Order> orders;
+    private final InBlockingQueue<Order> storage;
 
     /**
      * Constructor for creating a Baker object.
@@ -23,7 +23,7 @@ public class Baker extends Worker {
      * @param storage the queue for storing the baked orders
      */
     public Baker(String name, int workingExperience, ILogger logger,
-                 IBlockingQueue<Order> orders, IBlockingQueue<Order> storage) {
+                 InBlockingQueue<Order> orders, InBlockingQueue<Order> storage) {
         super(name, workingExperience, logger);
         this.orders = orders;
         this.storage = storage;

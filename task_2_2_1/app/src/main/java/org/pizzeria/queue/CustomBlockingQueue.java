@@ -1,4 +1,4 @@
-package org.pizzeria.customQueue;
+package org.pizzeria.queue;
 
 import java.io.Serializable;
 import java.util.ArrayDeque;
@@ -8,7 +8,7 @@ import java.util.concurrent.Semaphore;
 /**
  * Thread-safe custom blocking queue implementation.
  */
-public class BlockingQueue<T> implements IBlockingQueue<T>, Serializable {
+public class CustomBlockingQueue<T> implements InBlockingQueue<T>, Serializable {
 
     private final Queue<T> queue;
     private final Semaphore spaceAvailable;
@@ -19,7 +19,7 @@ public class BlockingQueue<T> implements IBlockingQueue<T>, Serializable {
      *
      * @param size size of the queue
      */
-    public BlockingQueue(int size) {
+    public CustomBlockingQueue(int size) {
         queue = new ArrayDeque<>(size);
         spaceAvailable = new Semaphore(size);
         spaceOccupied = new Semaphore(0);
@@ -29,7 +29,7 @@ public class BlockingQueue<T> implements IBlockingQueue<T>, Serializable {
      * Puts an element into the queue. Blocks if the queue is full.
      *
      * @param item element to be added to the queue
-     * @throws InterruptedException if the thread is interrupted while waiting to put an item into the queue
+     * @throws InterruptedException if the thread is interrupted
      */
     @Override
     public void put(T item) throws InterruptedException {
@@ -44,7 +44,7 @@ public class BlockingQueue<T> implements IBlockingQueue<T>, Serializable {
      * Gets an element from the queue. Blocks if the queue is empty.
      *
      * @return element from the queue
-     * @throws InterruptedException if the thread is interrupted while waiting to get an item from the queue
+     * @throws InterruptedException if the thread is interrupted
      */
     @Override
     public T get() throws InterruptedException {

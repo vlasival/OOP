@@ -1,4 +1,4 @@
-package org.pizzeria.io.jsonReader;
+package org.pizzeria.io.json;
 
 import java.util.List;
 

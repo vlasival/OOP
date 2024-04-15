@@ -1,14 +1,11 @@
 package org.pizzeria.worker;
 
 import java.util.Random;
-
 import org.pizzeria.io.logger.ILogger;
 
 /**
  * The Worker class is an abstract class that represents a worker in a pizzeria.
- * 
  * Each worker has a working time, a logger, a name, and a flag indicating if they can work.
- * 
  * This class extends the Thread class, allowing workers to run as separate threads.
  */
 public abstract class Worker extends Thread {
@@ -67,9 +64,9 @@ public abstract class Worker extends Thread {
 
     /**
      * Overrides the run() method from the Thread class.
-     * 
+     *
      * This method represents the main logic of the worker, and should be implemented by subclasses.
      */
     @Override
-    abstract public void run();
+    public abstract void run();
 }

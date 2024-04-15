@@ -8,8 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.pizzeria.customQueue.IBlockingQueue;
-import org.pizzeria.io.jsonReader.WorkerConfig;
+import org.pizzeria.io.json.WorkerConfig;
+import org.pizzeria.queue.InBlockingQueue;
 import org.pizzeria.state.Order;
 import org.pizzeria.worker.baker.Baker;
 import org.pizzeria.worker.courier.Courier;
@@ -23,10 +23,10 @@ public class WorkerFactoryTest {
     private WorkerConfig workerConfig;
 
     @Mock
-    private IBlockingQueue<Order> mockOrdersQueue;
+    private InBlockingQueue<Order> mockOrdersQueue;
 
     @Mock
-    private IBlockingQueue<Order> mockStorageQueue;
+    private InBlockingQueue<Order> mockStorageQueue;
 
     private WorkerFactory workerFactory;
 

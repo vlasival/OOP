@@ -1,7 +1,7 @@
 package org.pizzeria.worker.courier;
 
-import org.pizzeria.customQueue.IBlockingQueue;
 import org.pizzeria.io.logger.ILogger;
+import org.pizzeria.queue.InBlockingQueue;
 import org.pizzeria.state.Order;
 import org.pizzeria.worker.Worker;
 
@@ -9,12 +9,12 @@ import org.pizzeria.worker.Worker;
  * The Courier class represents a worker who takes orders from storage and puts them in a queue.
  */
 public class Courier extends Worker {
-    private final IBlockingQueue<Order> storage;
+    private final InBlockingQueue<Order> storage;
     private final int capacity;
 
     /**
      * Constructs a new Courier with the name, working time, capacity, logger, and storage.
-     * 
+     *
      * @param name the name of the courier
      * @param workingExperience the working experience of the worker
      * @param capacity the maximum number of orders the courier can hold in the bag
@@ -26,7 +26,7 @@ public class Courier extends Worker {
         int workingExperience, 
         int capacity, 
         ILogger logger, 
-        IBlockingQueue<Order> storage
+        InBlockingQueue<Order> storage
     ) {
         super(name, workingExperience, logger);
         this.storage = storage;
@@ -45,7 +45,7 @@ public class Courier extends Worker {
     /**
      * Delivers an order by logging a message, 
      * waiting for the specified working time, and then logging another message.
-     * 
+     *
      * @throws InterruptedException if the thread is interrupted while waiting
      */
     private void deliverOrder() throws InterruptedException {
@@ -67,7 +67,6 @@ public class Courier extends Worker {
 
     /**
      * Overrides the run method of the Worker class.
-     * 
      * Gets orders from the storage until the courier can work.
      * For each order, logs a message that includes the order's name, id, the remaining bag space.
      * Delivers the order after the bag is full or there are no more orders in the storage.

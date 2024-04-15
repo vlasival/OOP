@@ -1,10 +1,10 @@
-package org.pizzeria.jsonReader;
+package org.pizzeria.json;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import org.pizzeria.io.jsonReader.JsonFileReader;
+import org.pizzeria.io.json.JsonFileReader;
 
 /**
  * Test class for JsonFileReader.

@@ -6,9 +6,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.pizzeria.customQueue.BlockingQueue;
-import org.pizzeria.customQueue.IBlockingQueue;
 import org.pizzeria.io.logger.Logger;
+import org.pizzeria.queue.CustomBlockingQueue;
+import org.pizzeria.queue.InBlockingQueue;
 import org.pizzeria.state.Order;
 import org.pizzeria.worker.courier.Courier;
 
@@ -19,7 +19,7 @@ import org.pizzeria.worker.courier.Courier;
 public class CourierTest {
 
     Courier courier;
-    IBlockingQueue<Order> storage;
+    InBlockingQueue<Order> storage;
 
     /**
      * Sets up the test case by initializing the storage and courier objects.
@@ -27,7 +27,7 @@ public class CourierTest {
     @BeforeAll
     public void setup() {
 
-        storage = new BlockingQueue<>(5);
+        storage = new CustomBlockingQueue<>(5);
         courier = new Courier(
             "John",
             5, 

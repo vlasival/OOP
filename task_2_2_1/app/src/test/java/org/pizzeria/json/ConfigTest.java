@@ -1,11 +1,11 @@
-package org.pizzeria.jsonReader;
+package org.pizzeria.json;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
-import org.pizzeria.io.jsonReader.JsonFileReader;
-import org.pizzeria.io.jsonReader.PizzeriaConfig;
+import org.pizzeria.io.json.JsonFileReader;
+import org.pizzeria.io.json.PizzeriaConfig;
 
 
 /**
@@ -22,12 +22,12 @@ public class ConfigTest {
         Gson gson = new Gson();
         PizzeriaConfig config = gson.fromJson(reader.toJsonString(), PizzeriaConfig.class);
         int storageSize = config.getStorageSize();
-        int orderListSize = config.getOrderListSize();
-        long workingTime = config.getWorkingTime();
-        int startOrdersCount = config.getStartOrdersCount();
         assertEquals(storageSize, 10);
+        int orderListSize = config.getOrderListSize();
         assertEquals(orderListSize, 50);
+        long workingTime = config.getWorkingTime();
         assertEquals(workingTime, 5000);
+        int startOrdersCount = config.getStartOrdersCount();
         assertEquals(startOrdersCount, 4);
     }
 }

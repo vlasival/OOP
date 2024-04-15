@@ -7,7 +7,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.pizzeria.customQueue.BlockingQueue;
+import org.pizzeria.queue.CustomBlockingQueue;
+import org.pizzeria.queue.InBlockingQueue;
+
 
 /**
  * Class representing state of the pizzeria ordering system.
@@ -16,8 +18,8 @@ import org.pizzeria.customQueue.BlockingQueue;
 public class State implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private BlockingQueue<Order> orders;
-    private BlockingQueue<Order> storage;
+    private InBlockingQueue<Order> orders;
+    private InBlockingQueue<Order> storage;
 
     /**
      * Constructor for State class.
@@ -26,21 +28,21 @@ public class State implements Serializable {
      * @param queueSize   size of orders queue.
      */
     public State(int storageSize, int queueSize) {
-        orders = new BlockingQueue<Order>(queueSize);
-        storage = new BlockingQueue<Order>(storageSize);
+        orders = new CustomBlockingQueue<Order>(queueSize);
+        storage = new CustomBlockingQueue<Order>(storageSize);
     }
 
     /**
      * Getter for orders queue.
      */
-    public BlockingQueue<Order> getOrders() {
+    public InBlockingQueue<Order> getOrders() {
         return orders;
     }
 
     /**
      * Getter for storage queue.
      */
-    public BlockingQueue<Order> getStorage() {
+    public InBlockingQueue<Order> getStorage() {
         return storage;
     }
 
@@ -65,7 +67,8 @@ public class State implements Serializable {
      * @throws IOException throws if cannot open a file
      * @throws ClassNotFoundException throws if cannot link to class
      */
-    public static State deserializeState(String filename) throws IOException, ClassNotFoundException {
+    public static State deserializeState(String filename) throws IOException, 
+                                                                ClassNotFoundException {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
             return (State) in.readObject();
         }

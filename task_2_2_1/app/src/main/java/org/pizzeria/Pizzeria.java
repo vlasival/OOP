@@ -1,22 +1,20 @@
 package org.pizzeria;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.pizzeria.io.jsonReader.JsonFileReader;
-import org.pizzeria.io.jsonReader.PizzeriaConfig;
-import org.pizzeria.io.jsonReader.WorkerConfig;
+import org.pizzeria.io.json.JsonFileReader;
+import org.pizzeria.io.json.PizzeriaConfig;
+import org.pizzeria.io.json.WorkerConfig;
 import org.pizzeria.state.Order;
 import org.pizzeria.state.State;
 import org.pizzeria.worker.Worker;
 import org.pizzeria.worker.WorkerFactory;
 import org.pizzeria.worker.WorkerType;
-
-import com.google.gson.Gson;
 
 /**
  * Represents a pizzeria with workers and orders.
@@ -118,6 +116,12 @@ public class Pizzeria {
         serializeState(nameOfSerializeFile);
     }
 
+    /**
+     * Method serializes current pizzeria state.
+     * Including order and storage queues.
+     *
+     * @param filename name of file to serialize in
+     */
     public void serializeState(String filename) {
         if (state.getOrders().isEmpty() && state.getStorage().isEmpty()) {
             Path filePath = Paths.get(filename);
@@ -125,7 +129,7 @@ public class Pizzeria {
                 Files.deleteIfExists(filePath);
             } catch (IOException ignored) {
                 ignored.printStackTrace();
-             } 
+            } 
             return;
         }
 

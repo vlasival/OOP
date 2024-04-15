@@ -15,6 +15,8 @@ public class MainTest {
      */
     @Test
     public void testMain() {
+        @SuppressWarnings("unused")
+        Main main = new Main();
 
         boolean thrown = false;
 

@@ -31,7 +31,7 @@ public class StateTest {
         order = new Order(0, "order");
     }
 
-     /**
+    /**
      * Test case to check the size of orders.
      */
     @Test
@@ -70,6 +70,8 @@ public class StateTest {
         Path filePath = Paths.get("state.ser");
         try {
             Files.deleteIfExists(filePath);
-        } catch (IOException ignored) { } 
+        } catch (IOException ignored) {
+            ignored.printStackTrace();
+        } 
     }
 }

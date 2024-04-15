@@ -7,7 +7,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.pizzeria.customQueue.BlockingQueue;
+import org.pizzeria.queue.CustomBlockingQueue;
+import org.pizzeria.queue.InBlockingQueue;
 
 
 /**
@@ -16,20 +17,22 @@ import org.pizzeria.customQueue.BlockingQueue;
 @TestInstance(Lifecycle.PER_CLASS)
 public class BlockingQueueTest {
     
-    BlockingQueue<String> queue;
+    InBlockingQueue<String> queue;
 
     /**
      * Fills the blocking queue with initial values before running the tests.
      */
     @BeforeAll
     void filling() {
-        queue = new BlockingQueue<>(10);
+        queue = new CustomBlockingQueue<>(10);
         try {
             queue.put("One");
             queue.put("Two");
             queue.put("Three");
             queue.put("Four");
-        } catch (InterruptedException e) { }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -40,12 +43,11 @@ public class BlockingQueueTest {
     void putTest() {
         try {
            queue.put("Five");
-       } catch (InterruptedException e) {
-
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         } finally {
             assertFalse(queue.isEmpty());
         }
-       
     }
 
     /**
@@ -58,7 +60,7 @@ public class BlockingQueueTest {
         try {
             str = queue.get();
         } catch (InterruptedException e) {
-
+            e.printStackTrace();
         } finally {
             assertEquals("One", str);
         }
