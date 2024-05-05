@@ -1,4 +1,4 @@
-package org.snake;
+package org.snake.model;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;

@@ -1,11 +1,12 @@
-package org.snake;
+package org.snake.model;
 
 /**
  * Represents a basic element in the Snake game, with x and y coordinates.
  */
 public class Element {
     
-    protected double x, y;
+    protected double x;
+    protected double y;
 
     /**
      * Initializes a new element at the specified position.

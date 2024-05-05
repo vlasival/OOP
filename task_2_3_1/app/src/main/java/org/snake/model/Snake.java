@@ -1,4 +1,4 @@
-package org.snake;
+package org.snake.model;
 
 import java.util.LinkedList;
 import java.util.List;

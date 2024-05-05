@@ -1,4 +1,4 @@
-package org.snake;
+package org.snake.model;
 
 import java.util.Random;
 
@@ -8,6 +8,7 @@ import java.util.Random;
 public class Food extends Element {
 
     private Random random = new Random();
+    public Type foodType;
 
     /**
      * Initializes a new food object at position (0, 0).
@@ -53,6 +54,12 @@ public class Food extends Element {
     public void generateNew(int width, int height) {
         x = random.nextInt(width);
         y = random.nextInt(height);
+    }
+
+    private enum Type {
+        APPLE,
+        BANANA,
+        BATTERY
     }
 
 }
