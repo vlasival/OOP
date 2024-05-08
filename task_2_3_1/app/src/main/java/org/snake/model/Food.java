@@ -8,23 +8,19 @@ import java.util.Random;
 public class Food extends Element {
 
     private Random random = new Random();
-    public Type foodType;
+    private int width;
+    private int height;
 
     /**
-     * Initializes a new food object at position (0, 0).
-     */
-    public Food() {
-        super(0, 0);
-    }
-
-    /**
-     * Initializes a new food object at the specified position.
+     * Initializes a new food object and set field config.
      *
      * @param x the x-coordinate of the food
      * @param y the y-coordinate of the food
      */
-    public Food(double x, double y) {
-        super(x, y);
+    public Food(int width, int height) {
+        super(0, 0);
+        this.width = width;
+        this.height = height;
     }
 
     /**
@@ -51,15 +47,8 @@ public class Food extends Element {
      * @param width  the maximum width for the new position
      * @param height the maximum height for the new position
      */
-    public void generateNew(int width, int height) {
+    public void generateNew() {
         x = random.nextInt(width);
         y = random.nextInt(height);
     }
-
-    private enum Type {
-        APPLE,
-        BANANA,
-        BATTERY
-    }
-
 }

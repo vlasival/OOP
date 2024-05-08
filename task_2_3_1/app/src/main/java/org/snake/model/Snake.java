@@ -12,11 +12,15 @@ public class Snake {
     private int directionX;
     private int directionY;
     private int lenght;
+    private int width;
+    private int height;
 
     /**
      * Initializes a new snake.
      */
-    public Snake() {
+    public Snake(int width, int height) {
+        this.width = width;
+        this.height = height;
         snake = new LinkedList<>();
         initSnake();
     }
@@ -90,8 +94,8 @@ public class Snake {
      * Moves the snake in its current direction.
      */
     protected void move() {
-        double newX = (getHead().getX() + directionX + SnakeGame.WIDTH) % SnakeGame.WIDTH;
-        double newY = (getHead().getY() + directionY + SnakeGame.HEIGHT) % SnakeGame.HEIGHT;
+        double newX = (getHead().getX() + directionX + width) % width;
+        double newY = (getHead().getY() + directionY + height) % height;
         Element newHead = new Element(newX, newY);
         snake.addFirst(newHead);
         snake.removeLast();
@@ -145,7 +149,8 @@ public class Snake {
      */
     protected boolean checkCollisionWithBody(Element collider) {
         for (int i = 1; i < snake.size(); i++) {
-            if (collider.getX() == snake.get(i).getX() && collider.getY() == snake.get(i).getY()) {
+            if (collider.getX() == snake.get(i).getX() 
+                && collider.getY() == snake.get(i).getY()) {
                 return true;
             }
         }
