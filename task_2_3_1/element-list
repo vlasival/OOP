@@ -1,1 +1,4 @@
+module:org.snake
+org.snake
 org.snake.model
+org.snake.viewmodel
