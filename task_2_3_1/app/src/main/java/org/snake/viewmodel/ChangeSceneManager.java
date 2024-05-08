@@ -1,12 +1,14 @@
 package org.snake.viewmodel;
 
 import java.io.IOException;
-
-import org.snake.SnakeGame;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.snake.SnakeGame;
 
+/**
+ * Loader scenes class.
+ */
 public class ChangeSceneManager {
 
     private static Scene currentScene;

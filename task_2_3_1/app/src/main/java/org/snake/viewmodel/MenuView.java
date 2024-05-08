@@ -1,11 +1,12 @@
 package org.snake.viewmodel;
 
 import java.io.IOException;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 
+/**
+ * ModelView for menu scene.
+ */
 public class MenuView implements View {
 
     @FXML

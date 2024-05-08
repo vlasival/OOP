@@ -1,5 +1,8 @@
 package org.snake.model;
 
+/**
+ * Business model of snake game.
+ */
 public class GameModel {
     private Snake snake;
     private Food food;
@@ -30,7 +33,7 @@ public class GameModel {
     /**
      * Getter for Food object.
      *
-     * @return Food
+     * @return food object
      */
     public Food getFood() {
         return food;

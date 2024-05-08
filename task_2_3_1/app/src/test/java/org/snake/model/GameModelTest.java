@@ -6,13 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 
+/**
+ * Class that tests business logic of the game.
+ */
 @TestInstance(Lifecycle.PER_CLASS)
 public class GameModelTest {
     private GameModel gameModel;

@@ -1,8 +1,5 @@
 package org.snake.viewmodel;
 
-import org.snake.model.Element;
-import org.snake.model.GameModel;
-
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -15,7 +12,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import org.snake.model.Element;
+import org.snake.model.GameModel;
 
+/**
+ * GameView is middle ModelView class.
+ */
 public class GameView implements View {
 
     @FXML
@@ -49,27 +51,27 @@ public class GameView implements View {
      */
     public void startScene() {
         model = new GameModel(SceneController.WIDTH / SceneController.CELL_SIZE, 
-                            SceneController.HEIGHT / SceneController.CELL_SIZE);
+            SceneController.HEIGHT / SceneController.CELL_SIZE);
 
         ChangeSceneManager.getCurrentScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
-                    @Override
-                    public void handle(KeyEvent event) {
-                        if (model.isMoving()) {
-                            return;
-                        }
-                        model.setMoving(true);
-                        KeyCode code = event.getCode();
-                        if (code == KeyCode.LEFT) {
-                            model.getSnake().turnLeft();
-                        } else if (code == KeyCode.RIGHT) {
-                            model.getSnake().turnRight();
-                        } else if (code == KeyCode.UP) {
-                            model.getSnake().turnUp();
-                        } else if (code == KeyCode.DOWN) {
-                            model.getSnake().turnDown();
-                        }
-                    }
-                });
+            @Override
+            public void handle(KeyEvent event) {
+                if (model.isMoving()) {
+                    return;
+                }
+                model.setMoving(true);
+                KeyCode code = event.getCode();
+                if (code == KeyCode.LEFT) {
+                    model.getSnake().turnLeft();
+                } else if (code == KeyCode.RIGHT) {
+                    model.getSnake().turnRight();
+                } else if (code == KeyCode.UP) {
+                    model.getSnake().turnUp();
+                } else if (code == KeyCode.DOWN) {
+                    model.getSnake().turnDown();
+                }
+            }
+        });
 
         
         timeline = new Timeline(new KeyFrame(Duration.millis(difficulty), e -> {

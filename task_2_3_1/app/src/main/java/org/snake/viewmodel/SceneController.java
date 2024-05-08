@@ -3,6 +3,9 @@ package org.snake.viewmodel;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+/**
+ * Javafx Application extention class.
+ */
 public class SceneController extends Application {
 
     public static final int WIDTH = 600;

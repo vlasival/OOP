@@ -14,8 +14,8 @@ public class Food extends Element {
     /**
      * Initializes a new food object and set field config.
      *
-     * @param x the x-coordinate of the food
-     * @param y the y-coordinate of the food
+     * @param width the width of the field
+     * @param height the width of the field
      */
     public Food(int width, int height) {
         super(0, 0);
@@ -43,9 +43,6 @@ public class Food extends Element {
 
     /**
      * Generates a new random position for the food within the specified width and height.
-     *
-     * @param width  the maximum width for the new position
-     * @param height the maximum height for the new position
      */
     public void generateNew() {
         x = random.nextInt(width);
