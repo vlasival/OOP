@@ -5,8 +5,8 @@ package org.snake.model;
  */
 public class Element {
     
-    protected double x;
-    protected double y;
+    protected double xcord;
+    protected double ycord;
 
     /**
      * Initializes a new element at the specified position.
@@ -15,8 +15,8 @@ public class Element {
      * @param y the y-coordinate of the element
      */
     public Element(double x, double y) {
-        this.x = x;
-        this.y = y;
+        this.xcord = x;
+        this.ycord = y;
     }
 
     /**
@@ -25,7 +25,7 @@ public class Element {
      * @return the x-coordinate of the element
      */
     public double getX() {
-        return x;
+        return xcord;
     }
 
     /**
@@ -34,7 +34,7 @@ public class Element {
      * @return the y-coordinate of the element
      */
     public double getY() {
-        return y;
+        return ycord;
     }
 
 }

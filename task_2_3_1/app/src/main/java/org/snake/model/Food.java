@@ -24,28 +24,10 @@ public class Food extends Element {
     }
 
     /**
-     * Returns the x-coordinate of the food.
-     *
-     * @return the x-coordinate of the food
-     */
-    public double getX() {
-        return x;
-    }
-
-    /**
-     * Returns the y-coordinate of the food.
-     *
-     * @return the y-coordinate of the food
-     */
-    public double getY() {
-        return y;
-    }
-
-    /**
      * Generates a new random position for the food within the specified width and height.
      */
     public void generateNew() {
-        x = random.nextInt(width);
-        y = random.nextInt(height);
+        xcord = random.nextInt(width);
+        ycord = random.nextInt(height);
     }
 }

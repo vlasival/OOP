@@ -40,7 +40,7 @@ public class GameModel {
     }
 
     /**
-     * Snake is taking change direction?
+     * Check if snake is changing direction.
      *
      * @return is changing direction now
      */
