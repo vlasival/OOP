@@ -26,8 +26,10 @@ public class PrimeUtils {
      */
     public static List<Message> generateMessage(String filePath) throws IOException {
         List<Message> messages = new ArrayList<>();
-        try (InputStream inputStream = PrimeUtils.class.getClassLoader().getResourceAsStream(filePath);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+        try (InputStream inputStream 
+                = PrimeUtils.class.getClassLoader().getResourceAsStream(filePath);
+            BufferedReader reader 
+                = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
 
             List<Integer> block = new ArrayList<>();
             int blockSizeInBytes = 0;

@@ -31,6 +31,7 @@ public class PrimeServer {
     private Map<SocketChannel, Message> executingMessages = new HashMap<>();
     private Deque<Message> messageBlocks;
     private boolean working = true;
+    private boolean result;
 
     /**
      * PrimeServer constructor.
@@ -59,7 +60,7 @@ public class PrimeServer {
      *
      * @throws IOException if an I/O error occurs
      */
-    public void start() throws IOException {
+    public boolean start() throws IOException {
         while (working) {
             selector.select();
             Iterator<SelectionKey> keys = selector.selectedKeys().iterator();
@@ -73,6 +74,7 @@ public class PrimeServer {
                 }
             }
         }
+        return result;
     }
 
     /**
@@ -138,7 +140,8 @@ public class PrimeServer {
      * @throws IOException if an I/O error occurs
      * @throws ClassNotFoundException if buffer data cannot be casted to message
      */
-    private Message receiveMessageFromBuffer(ByteBuffer clientBuffer) throws IOException, ClassNotFoundException {
+    private Message receiveMessageFromBuffer(ByteBuffer clientBuffer) throws IOException, 
+                                                                    ClassNotFoundException {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(clientBuffer.array());
         ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
         return (Message) objectInputStream.readObject();
@@ -191,7 +194,7 @@ public class PrimeServer {
      * @param result result of checking, true if all numbers are prime
      * @throws IOException if an I/O error occurs
      */
-    private void finishWorking(boolean result) throws IOException {
+    public void finishWorking(boolean result) throws IOException {
         for (SocketChannel client : clientBuffers.keySet()) {
             Message exitMessage = new Message();
             exitMessage.setType("EXIT");
@@ -206,6 +209,7 @@ public class PrimeServer {
             System.out.println("The list contains non-prime numbers. Goodbye!");
         }
         working = false;
+        this.result = result;
     }
 
     /**
@@ -215,7 +219,8 @@ public class PrimeServer {
      * @param message received message
      * @throws IOException if an I/O error occurs
      */
-    private void handleClientMessage(SocketChannel clientChannel, Message message) throws IOException {
+    private void handleClientMessage(SocketChannel clientChannel, Message message) 
+                                                                throws IOException {
         String messageType = message.getType();
         switch (messageType) {
             case "REQUEST":

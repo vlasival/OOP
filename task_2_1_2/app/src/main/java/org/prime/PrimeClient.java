@@ -70,7 +70,8 @@ public class PrimeClient {
                             System.out.println("Tasks done. Exiting program...");
                             return;
                         default:
-                            System.out.println("Unknown message type. Synchronize types with server.");
+                            System.out.println("Unknown message type. " 
+                                    + "Synchronize types with server.");
                             break;
                     }
                 } catch (ClassNotFoundException e) {
@@ -111,7 +112,7 @@ public class PrimeClient {
      * @param number number to check
      * @return true if prime, false otherwise
      */
-    private boolean isPrime(int number) {
+    public boolean isPrime(int number) {
         if (number <= 1) return false;
         for (int i = 2; i <= Math.sqrt(number); i++) {
             if (number % i == 0) {
