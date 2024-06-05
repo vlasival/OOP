@@ -90,6 +90,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">PrimeUtils</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Class contains data preparation methods.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -135,7 +136,8 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Message.html" title="class in org.prime">Message</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#generateMessage(java.lang.String)" class="member-name-link">generateMessage</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;filePath)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Метод читает файл с числами, разделенными пробелами, и делит их на блоки определенного размера.</div>
+<div class="block">Method reads file with numbers, separated by spaces 
+ and splits it on data blocks fixed size.</div>
 </div>
 </div>
 </div>
@@ -195,14 +197,15 @@ loadScripts(document, 'script');</script>
 <h3>generateMessage</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Message.html" title="class in org.prime">Message</a>&gt;</span>&nbsp;<span class="element-name">generateMessage</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;filePath)</span>
                                      throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
-<div class="block">Метод читает файл с числами, разделенными пробелами, и делит их на блоки определенного размера.</div>
+<div class="block">Method reads file with numbers, separated by spaces 
+ and splits it on data blocks fixed size.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>filePath</code> - путь к файлу с числами.</dd>
+<dd><code>filePath</code> - path to file in resources</dd>
 <dt>Returns:</dt>
-<dd>список Message, каждый из которых содержит блок чисел.</dd>
+<dd>list of separated messages</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - если происходит ошибка при чтении файла.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - if an I/O error occurs</dd>
 </dl>
 </section>
 </li>
