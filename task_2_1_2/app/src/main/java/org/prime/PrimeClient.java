@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PrimeClient {
+
     private SocketChannel socket;
     private ByteBuffer buffer;
 
@@ -20,7 +21,7 @@ public class PrimeClient {
         System.out.println("Chanell binded on ip " + address + " on port " + port);
         socket.configureBlocking(false);
         System.out.println("Chanell configured");
-        buffer = ByteBuffer.allocate(256);
+        buffer = ByteBuffer.allocate(PrimeUtils.BUFFER_SIZE);
     }
 
     public void start() throws IOException {
@@ -81,7 +82,9 @@ public class PrimeClient {
     private boolean isPrime(int number) {
         if (number <= 1) return false;
         for (int i = 2; i <= Math.sqrt(number); i++) {
-            if (number % i == 0) return false;
+            if (number % i == 0) {
+                return false;
+            }
         }
         return true;
     }

@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
+import java.nio.channels.ClosedChannelException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
@@ -17,8 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 public class PrimeServer {
-    public static final String dataFile = "test.txt";
-    public static final int bufferCapacity = 512;
+    public static final String dataFile = "numbers.txt";
 
     private Selector selector;
     private ServerSocketChannel serverChannel;
@@ -32,12 +32,12 @@ public class PrimeServer {
             selector = Selector.open();
             serverChannel = ServerSocketChannel.open();
             serverChannel.bind(new InetSocketAddress(address, port));
-            System.out.println("Chanell binded on ip " + address + " on port " + port);
+            System.out.println("Channel binded on ip " + address + " on port " + port);
             serverChannel.configureBlocking(false);
             serverChannel.register(selector, SelectionKey.OP_ACCEPT);
-            System.out.println("Chanell registered");
+            System.out.println("Channel registered");
 
-            messageBlocks = PrimeUtils.generateMessage(dataFile, bufferCapacity - 256);
+            messageBlocks = PrimeUtils.generateMessage(dataFile);
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("\n\nFailed to bind socket");
@@ -55,7 +55,8 @@ public class PrimeServer {
                 if (key.isAcceptable()) {
                     System.out.println("Accepting client");
                     SocketChannel client = acceptClient(key);
-                    System.out.println("Client " + client.getLocalAddress().toString() + " accepted");
+                    System.out.println("Client " 
+                        + client.getLocalAddress().toString() + " accepted");
                 } else if (key.isReadable()) {
                     readClient(key);
                 }
@@ -68,8 +69,13 @@ public class PrimeServer {
         SocketChannel clientChannel = serverChannel.accept();
         clientChannel.configureBlocking(false);
         clientChannel.register(selector, SelectionKey.OP_READ);
-        clientBuffers.put(clientChannel, ByteBuffer.allocate(bufferCapacity));
+        clientBuffers.put(clientChannel, ByteBuffer.allocate(PrimeUtils.BUFFER_SIZE));
         return clientChannel;
+    }
+
+    private void removeClient(SocketChannel clientChannel) throws IOException {
+        clientChannel.close();
+        clientBuffers.remove(clientChannel);
     }
 
     private void removeClient(SelectionKey key) throws IOException {
@@ -81,7 +87,8 @@ public class PrimeServer {
     private void readClient(SelectionKey key) throws IOException {
         SocketChannel clientChannel = (SocketChannel) key.channel();
         ByteBuffer buffer = clientBuffers.get(clientChannel);
-        int bytesRead = clientChannel.read(buffer);
+        int bytesRead;
+        bytesRead = clientChannel.read(buffer);
 
         // if client was disconnected
         if (bytesRead == -1) {
@@ -116,17 +123,23 @@ public class PrimeServer {
         objectOutputStream.flush();
         byte[] data = byteArrayOutputStream.toByteArray();
         ByteBuffer buffer = ByteBuffer.wrap(data);
-        clientSocket.write(buffer);
+        try {
+            clientSocket.write(buffer);
+        } catch (ClosedChannelException e) {
+            removeClient(clientSocket);
+            return;
+        }
     }
 
     private void requestTask(SocketChannel clientChannel) throws IOException {
         Message task;
         if (messageBlocks.size() > 0) {
-            task = messageBlocks.getFirst();
+            task = messageBlocks.removeFirst();
         } else {
             if (executingMessages.size() > 0) {
                 messageBlocks.addAll(executingMessages.values());
-                task = messageBlocks.getFirst();
+                executingMessages.clear();
+                task = messageBlocks.removeFirst();
             } else {
                 finishWorking(true);
                 return;
@@ -136,7 +149,15 @@ public class PrimeServer {
         sendMessage(clientChannel, task);
     }
 
-    private void finishWorking(boolean result) {
+    private void finishWorking(boolean result) throws IOException {
+        for (SocketChannel client : clientBuffers.keySet()) {
+            Message exitMessage = new Message();
+            exitMessage.setType("EXIT");
+            sendMessage(client, exitMessage);
+            client.close();
+        }
+        clientBuffers.clear();
+
         if (result) {
             System.out.println("All numbers is prime.");
         } else {
