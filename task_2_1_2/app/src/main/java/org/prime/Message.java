@@ -5,6 +5,9 @@ import java.util.List;
 
 import lombok.Data;
 
+/**
+ * Class represents a message wandering on the network.
+ */
 @Data
 public class Message implements Serializable {
     private String type;

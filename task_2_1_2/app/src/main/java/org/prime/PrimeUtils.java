@@ -8,17 +8,21 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class contains data preparation methods.
+ */
 public class PrimeUtils {
 
     public static final int BUFFER_SIZE = 1024; // Размер буфера в байтах
     private static final int usingBufferSize = BUFFER_SIZE / 4;
 
     /**
-     * Метод читает файл с числами, разделенными пробелами, и делит их на блоки определенного размера.
+     * Method reads file with numbers, separated by spaces 
+     * and splits it on data blocks fixed size.
      *
-     * @param filePath путь к файлу с числами.
-     * @return список Message, каждый из которых содержит блок чисел.
-     * @throws IOException если происходит ошибка при чтении файла.
+     * @param filePath path to file in resources
+     * @return list of separated messages
+     * @throws IOException if an I/O error occurs
      */
     public static List<Message> generateMessage(String filePath) throws IOException {
         List<Message> messages = new ArrayList<>();
