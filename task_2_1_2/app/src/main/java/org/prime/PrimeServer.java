@@ -6,11 +6,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
+import java.net.StandardSocketOptions;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -22,9 +24,6 @@ import java.util.Map;
  * PrimeServer класс, который реализует сервер для распределенной проверки чисел на простоту.
  */
 public class PrimeServer {
-    public static final String DATA_FILE = "numbers.txt";
-    private static final int BUFFER_SIZE = 1024;
-
     private Selector selector;
     private ServerSocketChannel serverChannel;
     private Map<SocketChannel, ByteBuffer> clientBuffers = new HashMap<>();
@@ -37,18 +36,21 @@ public class PrimeServer {
      * PrimeServer constructor.
      *
      * @param address server address
-     * @param port    server port
+     * @param port server port
+     * @param dataFile file contains numbers
+     * @param resourcesClass class to find resources folder
      */
-    public PrimeServer(String address, int port) {
+    public PrimeServer(String address, int port, String dataFile, Class<?> resourcesClass) {
         try {
             selector = Selector.open();
             serverChannel = ServerSocketChannel.open();
             serverChannel.bind(new InetSocketAddress(address, port));
             serverChannel.configureBlocking(false);
+            serverChannel.setOption(StandardSocketOptions.SO_REUSEADDR, true);
             serverChannel.register(selector, SelectionKey.OP_ACCEPT);
             System.out.println("Channel bound and configured on IP \'" + address 
                                                     + "\' and port " + port);
-            messageBlocks = new LinkedList<>(PrimeUtils.generateMessage(DATA_FILE));
+            messageBlocks = new LinkedList<>(PrimeUtils.generateMessage(dataFile, resourcesClass));
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Failed to bind socket");
@@ -60,7 +62,7 @@ public class PrimeServer {
      *
      * @throws IOException if an I/O error occurs
      */
-    public boolean start() throws IOException {
+    public synchronized boolean start() throws IOException {
         while (working) {
             selector.select();
             Iterator<SelectionKey> keys = selector.selectedKeys().iterator();
@@ -73,6 +75,7 @@ public class PrimeServer {
                     readClient(key);
                 }
             }
+            checkConnectionAndRefreshTasks();
         }
         return result;
     }
@@ -88,7 +91,7 @@ public class PrimeServer {
         SocketChannel clientChannel = serverChannel.accept();
         clientChannel.configureBlocking(false);
         clientChannel.register(selector, SelectionKey.OP_READ);
-        clientBuffers.put(clientChannel, ByteBuffer.allocate(BUFFER_SIZE));
+        clientBuffers.put(clientChannel, ByteBuffer.allocate(PrimeUtils.BUFFER_SIZE));
         System.out.println("Client accepted: " + clientChannel.getRemoteAddress());
     }
 
@@ -102,7 +105,19 @@ public class PrimeServer {
         clientChannel.close();
         clientBuffers.remove(clientChannel);
         executingMessages.remove(clientChannel);
-        System.out.println("Client removed: " + clientChannel.getRemoteAddress());
+    }
+
+    /**
+     * Send to client signal to end working.
+     *
+     * @param client client who sent
+     * @throws IOException if an I/O error occurs
+     */
+    private void freeWorker(SocketChannel client) throws IOException {
+        Message exitMessage = new Message();
+        exitMessage.setType("EXIT");
+        sendMessage(client, exitMessage);
+        removeClient(client);
     }
 
     /**
@@ -116,7 +131,6 @@ public class PrimeServer {
         ByteBuffer buffer = clientBuffers.get(clientChannel);
         int bytesRead = clientChannel.read(buffer);
 
-        // if client was disconnected
         if (bytesRead == -1) {
             removeClient(clientChannel);
             return;
@@ -140,8 +154,7 @@ public class PrimeServer {
      * @throws IOException if an I/O error occurs
      * @throws ClassNotFoundException if buffer data cannot be casted to message
      */
-    private Message receiveMessageFromBuffer(ByteBuffer clientBuffer) throws IOException, 
-                                                                    ClassNotFoundException {
+    private Message receiveMessageFromBuffer(ByteBuffer clientBuffer) throws IOException, ClassNotFoundException {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(clientBuffer.array());
         ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
         return (Message) objectInputStream.readObject();
@@ -174,18 +187,32 @@ public class PrimeServer {
         Message task;
         if (!messageBlocks.isEmpty()) {
             task = messageBlocks.pollFirst();
+            executingMessages.put(clientChannel, task);
+            sendMessage(clientChannel, task);
         } else {
             if (!executingMessages.isEmpty()) {
-                messageBlocks.addAll(executingMessages.values());
-                executingMessages.clear();
-                task = messageBlocks.pollFirst();
+                // freeWorker(clientChannel);
+                return;
             } else {
                 finishWorking(true);
-                return;
             }
         }
-        executingMessages.put(clientChannel, task);
-        sendMessage(clientChannel, task);
+    }
+
+    /**
+     * Checks conditions to finish a work.
+     *
+     * @throws IOException if an I/O error occurs
+     */
+    private void checkConnectionAndRefreshTasks() throws IOException {
+        for (var message : executingMessages.entrySet()) {
+            if (!message.getKey().isConnected()) {
+                messageBlocks.add(message.getValue());
+            }
+        }
+        if (messageBlocks.isEmpty()) {
+            finishWorking(true);
+        }
     }
 
     /**
@@ -194,22 +221,21 @@ public class PrimeServer {
      * @param result result of checking, true if all numbers are prime
      * @throws IOException if an I/O error occurs
      */
-    public void finishWorking(boolean result) throws IOException {
-        for (SocketChannel client : clientBuffers.keySet()) {
-            Message exitMessage = new Message();
-            exitMessage.setType("EXIT");
-            sendMessage(client, exitMessage);
-            client.close();
-        }
-        clientBuffers.clear();
-
-        if (result) {
-            System.out.println("All numbers are prime.");
-        } else {
-            System.out.println("The list contains non-prime numbers. Goodbye!");
+    public synchronized void finishWorking(boolean result) throws IOException {
+        for (var client : new ArrayList<>(clientBuffers.keySet())) {
+            if (client.isOpen()) {
+                freeWorker(client);
+            }
         }
         working = false;
         this.result = result;
+
+        if (selector.isOpen()) {
+            selector.close();
+        }
+        if (serverChannel.isOpen()) {
+            serverChannel.close();
+        }
     }
 
     /**
@@ -219,8 +245,7 @@ public class PrimeServer {
      * @param message received message
      * @throws IOException if an I/O error occurs
      */
-    private void handleClientMessage(SocketChannel clientChannel, Message message) 
-                                                                throws IOException {
+    private void handleClientMessage(SocketChannel clientChannel, Message message) throws IOException {
         String messageType = message.getType();
         switch (messageType) {
             case "REQUEST":
@@ -248,7 +273,8 @@ public class PrimeServer {
      * @throws IOException if an I/O error occurs
      */
     public static void main(String[] args) throws IOException {
-        PrimeServer server = new PrimeServer("localhost", 5000);
-        server.start();
+        PrimeServer server = new PrimeServer("localhost", 5000, "numbers.txt", PrimeUtils.class);
+        boolean res = server.start();
+        System.out.println(res);
     }
 }

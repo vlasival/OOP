@@ -44,9 +44,7 @@ public class PrimeClient {
      * @throws IOException if an I/O error occurs
      */
     public void start() throws IOException {
-        // ready to work notification to server
         sendMessage(createMessage("REQUEST", null));
-
         int requestAttempts = 0;
 
         while (true) {
@@ -70,8 +68,7 @@ public class PrimeClient {
                             System.out.println("Tasks done. Exiting program...");
                             return;
                         default:
-                            System.out.println("Unknown message type. " 
-                                    + "Synchronize types with server.");
+                            System.out.println("Unknown message type. Synchronize types with server.");
                             break;
                     }
                 } catch (ClassNotFoundException e) {
@@ -79,15 +76,64 @@ public class PrimeClient {
                         System.out.println("Too many attempts to receive message. Aborting...");
                         return;
                     }
-                    System.out.println(
-                        "Error casting received message from server to Message class."
-                    );
+                    System.out.println("Error casting received message from server to Message class.");
                     sendMessage(createMessage("REQUEST", null));
                     requestAttempts++;
                 }
                 buffer.clear();
             }
+
+            // Sleep for a short duration to prevent busy-waiting
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                System.out.println("Client thread interrupted. Exiting...");
+                return;
+            }
         }
+    }
+
+    /**
+     * Creating a message to send in network.
+     *
+     * @param type message type
+     * @param data message data
+     * @return message
+     */
+    private Message createMessage(String type, List<Integer> data) {
+        Message message = new Message();
+        message.setType(type);
+        message.setData(data);
+        return message;
+    }
+
+    /**
+     * Sending message to the server method.
+     *
+     * @param message message to send
+     * @throws IOException if an I/O error occurs
+     */
+    private void sendMessage(Message message) throws IOException {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+        objectOutputStream.writeObject(message);
+        objectOutputStream.flush();
+        byte[] data = byteArrayOutputStream.toByteArray();
+        ByteBuffer buffer = ByteBuffer.wrap(data);
+        socket.write(buffer);
+    }
+
+    /**
+     * Read a message from client buffer.
+     *
+     * @return readed message
+     * @throws IOException if an I/O error occurs
+     * @throws ClassNotFoundException if class of buffer data don't cast to message class
+     */
+    private Message readMessageFromBuffer() throws IOException, ClassNotFoundException {
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(buffer.array());
+        ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
+        return (Message) objectInputStream.readObject();
     }
 
     /**
@@ -120,49 +166,6 @@ public class PrimeClient {
             }
         }
         return true;
-    }
-
-    /**
-     * Creating a message to send in network.
-     *
-     * @param type message type
-     * @param data message data
-     * @return message
-     */
-    private Message createMessage(String type, List<Integer> data) {
-        Message message = new Message();
-        message.setType(type);
-        message.setData(data);
-        return message;
-    }
-
-    /**
-     * Read a message from client buffer.
-     *
-     * @return readed message
-     * @throws IOException if an I/O error occurs
-     * @throws ClassNotFoundException if class of buffer data don't cast to message class
-     */
-    private Message readMessageFromBuffer() throws IOException, ClassNotFoundException {
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(buffer.array());
-        ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
-        return (Message) objectInputStream.readObject();
-    }
-
-    /**
-     * Sending message to the server method.
-     *
-     * @param message message to send
-     * @throws IOException if an I/O error occurs
-     */
-    private void sendMessage(Message message) throws IOException {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-        objectOutputStream.writeObject(message);
-        objectOutputStream.flush();
-        byte[] data = byteArrayOutputStream.toByteArray();
-        ByteBuffer buffer = ByteBuffer.wrap(data);
-        socket.write(buffer);
     }
 
     /**

@@ -24,10 +24,11 @@ public class PrimeUtils {
      * @return list of separated messages
      * @throws IOException if an I/O error occurs
      */
-    public static List<Message> generateMessage(String filePath) throws IOException {
+    public static List<Message> generateMessage(String filePath, Class<?> resourcesClass) 
+                                                                    throws IOException {
         List<Message> messages = new ArrayList<>();
         try (InputStream inputStream 
-                = PrimeUtils.class.getClassLoader().getResourceAsStream(filePath);
+                = resourcesClass.getClassLoader().getResourceAsStream(filePath);
             BufferedReader reader 
                 = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
 
@@ -39,14 +40,19 @@ public class PrimeUtils {
             int charsRead;
             while ((charsRead = reader.read(buffer)) != -1) {
                 leftover.append(buffer, 0, charsRead);
+                String leftoverString = leftover.toString();
+                String offset = "";
+                if (leftoverString.charAt(leftoverString.length() - 1) == ' ') {
+                    offset = " ";
+                }
 
-                String[] numberStrings = leftover.toString().split("\\s+");
+                String[] numberStrings = leftoverString.split("\\s+");
                 leftover.setLength(0); // clear stringBuilder
 
                 for (int i = 0; i < numberStrings.length; i++) {
                     String numberString = numberStrings[i];
                     if (i == (numberStrings.length - 1)) {
-                        leftover.append(numberString + " ");
+                        leftover.append(numberString + offset);
                     } else {
                         int number = Integer.parseInt(numberString.trim());
                         int numberSize = numberString.getBytes(StandardCharsets.UTF_8).length;
