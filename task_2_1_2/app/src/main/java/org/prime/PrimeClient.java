@@ -68,7 +68,7 @@ public class PrimeClient {
                             System.out.println("Tasks done. Exiting program...");
                             return;
                         default:
-                            System.out.println("Unknown message type. Synchronize types with server.");
+                            System.out.println("Unknown message type. Synchronize types.");
                             break;
                     }
                 } catch (ClassNotFoundException e) {
@@ -76,7 +76,7 @@ public class PrimeClient {
                         System.out.println("Too many attempts to receive message. Aborting...");
                         return;
                     }
-                    System.out.println("Error casting received message from server to Message class.");
+                    System.out.println("Error casting received message to Message class.");
                     sendMessage(createMessage("REQUEST", null));
                     requestAttempts++;
                 }
@@ -159,7 +159,9 @@ public class PrimeClient {
      * @return true if prime, false otherwise
      */
     public boolean isPrime(int number) {
-        if (number <= 1) return false;
+        if (number <= 1) {
+            return false;
+        }
         for (int i = 2; i <= Math.sqrt(number); i++) {
             if (number % i == 0) {
                 return false;

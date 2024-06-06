@@ -3,9 +3,9 @@ package org.prime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 /**
  * Testing class for message build-in lombok functions.

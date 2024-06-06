@@ -154,7 +154,8 @@ public class PrimeServer {
      * @throws IOException if an I/O error occurs
      * @throws ClassNotFoundException if buffer data cannot be casted to message
      */
-    private Message receiveMessageFromBuffer(ByteBuffer clientBuffer) throws IOException, ClassNotFoundException {
+    private Message receiveMessageFromBuffer(ByteBuffer clientBuffer) throws IOException, 
+                                                                ClassNotFoundException {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(clientBuffer.array());
         ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
         return (Message) objectInputStream.readObject();
@@ -245,7 +246,8 @@ public class PrimeServer {
      * @param message received message
      * @throws IOException if an I/O error occurs
      */
-    private void handleClientMessage(SocketChannel clientChannel, Message message) throws IOException {
+    private void handleClientMessage(SocketChannel clientChannel, Message message) 
+                                                                throws IOException {
         String messageType = message.getType();
         switch (messageType) {
             case "REQUEST":
