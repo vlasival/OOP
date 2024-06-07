@@ -1,4 +1,4 @@
-package org.snake.viewmodel;
+package org.snake.utils;
 
 /**
  * Type of Scene.

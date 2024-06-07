@@ -8,6 +8,9 @@ module org.snake {
     requires static lombok;
     requires javafx.base;
 
+    opens org.snake.utils to javafx.graphics;
+    exports org.snake.utils;
+    
     opens org.snake.model to javafx.fxml;
     exports org.snake.model;
 }

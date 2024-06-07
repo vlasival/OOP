@@ -3,35 +3,29 @@ package org.snake.model;
 import java.util.LinkedList;
 import java.util.List;
 
+import lombok.Getter;
+
 /**
  * Represents a snake in the game.
  */
 public class Snake {
 
-    private List<Element> snake;
-    private int directionX;
-    private int directionY;
-    private int lenght;
+    @Getter
+    private List<Element> body;
+    @Getter
+    private Direction direction;
+    @Getter
+    private int length;
+    @Getter
     private int width;
+    @Getter
     private int height;
 
-    /**
-     * Initializes a new snake.
-     */
     public Snake(int width, int height) {
         this.width = width;
         this.height = height;
-        snake = new LinkedList<>();
+        body = new LinkedList<>();
         initSnake();
-    }
-
-    /**
-     * Returns the length of the snake.
-     *
-     * @return the length of the snake
-     */
-    public int getLength() {
-        return lenght;
     }
 
     /**
@@ -40,7 +34,7 @@ public class Snake {
      * @return snake's head element
      */
     public Element getHead() {
-        return snake.getFirst();
+        return body.getFirst();
     }
 
     /**
@@ -49,16 +43,7 @@ public class Snake {
      * @return snake's last element
      */
     public Element getLastElement() {
-        return snake.getLast();
-    }
-
-    /**
-     * Returns the list of elements that make up the snake's body.
-     *
-     * @return the list of elements that make up the snake's body
-     */
-    public List<Element> getElements() {
-        return snake;
+        return body.getLast();
     }
 
     /**
@@ -67,47 +52,45 @@ public class Snake {
      * @param element the new element to add
      */
     private void addElement(Element element) {
-        snake.addLast(element);
+        body.addLast(element);
     }
 
     /**
      * Grows the snake by adding a new element to its body.
      */
     public void growUp() {
-        Element newPart = new Element(getLastElement().getX(), getLastElement().getY());
+        Element newPart = new Element(getLastElement().getXcord(), getLastElement().getYcord());
         addElement(newPart);
-        lenght++;
-        System.out.println("Snake grown up. Length: " + lenght);
+        length++;
+        System.out.println("Snake grown up. Length: " + length);
     }
 
     /**
      * Initializes the snake with a default direction and length.
      */
     private void initSnake() {
-        directionX = 1;
-        directionY = 0;
+        direction = Direction.RIGHT;
         addElement(new Element(0, 0));
-        lenght = 1;
+        length = 1;
     }
 
     /**
      * Moves the snake in its current direction.
      */
     protected void move() {
-        double newX = (getHead().getX() + directionX + width) % width;
-        double newY = (getHead().getY() + directionY + height) % height;
+        int newX = (getHead().getXcord() + direction.getDirectionX() + width) % width;
+        int newY = (getHead().getYcord() + direction.getDirectionY() + height) % height;
         Element newHead = new Element(newX, newY);
-        snake.addFirst(newHead);
-        snake.removeLast();
+        body.addFirst(newHead);
+        body.removeLast();
     }
 
     /**
      * Turns the snake to the right.
      */
     public void turnRight() {
-        if (directionX == 0) {
-            directionX = 1;
-            directionY = 0;
+        if (direction != Direction.LEFT) {
+            direction = Direction.RIGHT;
         }
     }
 
@@ -115,9 +98,8 @@ public class Snake {
      * Turns the snake to the left.
      */
     public void turnLeft() {
-        if (directionX == 0) {
-            directionX = -1;
-            directionY = 0;
+        if (direction != Direction.RIGHT) {
+            direction = Direction.LEFT;
         }
     }
 
@@ -125,9 +107,8 @@ public class Snake {
      * Turns the snake up.
      */
     public void turnUp() {
-        if (directionY == 0) {
-            directionX = 0;
-            directionY = -1;
+        if (direction != Direction.DOWN) {
+            direction = Direction.UP;
         }
     }
 
@@ -135,10 +116,18 @@ public class Snake {
      * Turns the snake down.
      */
     public void turnDown() {
-        if (directionY == 0) {
-            directionX = 0;
-            directionY = 1;
+        if (direction != Direction.UP) {
+            direction = Direction.DOWN;
         }
+    }
+
+    public boolean checkHeadCollisionWithItsBody() {
+        for (int i = 1; i < body.size(); i++) {
+            if (checkCollisionWithHead(body.get(i))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -148,13 +137,7 @@ public class Snake {
      * @return true if the element has collided with snake's body, false otherwise
      */
     protected boolean checkCollisionWithBody(Element collider) {
-        for (int i = 1; i < snake.size(); i++) {
-            if (collider.getX() == snake.get(i).getX() 
-                && collider.getY() == snake.get(i).getY()) {
-                return true;
-            }
-        }
-        return false;
+        return collider.checkCollisionWithOthers(body);
     }
 
     /**
@@ -164,8 +147,17 @@ public class Snake {
      * @return true if the snake's head has collided with an element, false otherwise
      */
     protected boolean checkCollisionWithHead(Element collider) {
-        if (collider.getX() == getHead().getX() && collider.getY() == getHead().getY()) {
+        if (collider.getXcord() == getHead().getXcord() && collider.getYcord() == getHead().getYcord()) {
             return true;
+        }
+        return false;
+    }
+
+    protected boolean checkCollisionWithHead(List<Element> colliders) {
+        for (Element e : colliders) {
+            if (checkCollisionWithHead(e)) {
+                return true;
+            }
         }
         return false;
     }

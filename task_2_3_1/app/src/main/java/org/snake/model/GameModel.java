@@ -1,13 +1,25 @@
 package org.snake.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Business model of snake game.
  */
 public class GameModel {
-    private Snake snake;
-    private Food food;
-    private boolean moving = false;
+
     public boolean isGameOvered = false;
+
+    @Getter
+    private Snake playerSnake;
+    @Getter
+    private Snake gameSnake;
+    @Getter
+    private Food food;
+    private Intelligence intelligence;
+    @Getter
+    @Setter
+    private boolean moving = false;
 
     /**
      * GameModel constructor.
@@ -16,45 +28,12 @@ public class GameModel {
      * @param height height of the firld
      */
     public GameModel(int width, int height) {
-        snake = new Snake(width, height);
+        playerSnake = new Snake(width, height);
+        gameSnake = new Snake(width, height);
+        gameSnake.getHead().setYcord(height - 1);
         food = new Food(width, height);
         food.generateNew();
-    }
-
-    /**
-     * Getter for Snake object.
-     *
-     * @return Snake
-     */
-    public Snake getSnake() {
-        return snake;
-    }
-
-    /**
-     * Getter for Food object.
-     *
-     * @return food object
-     */
-    public Food getFood() {
-        return food;
-    }
-
-    /**
-     * Check if snake is changing direction.
-     *
-     * @return is changing direction now
-     */
-    public boolean isMoving() {
-        return moving;
-    }
-
-    /**
-     * Setter for changer direction.
-     *
-     * @param value value to set
-     */
-    public void setMoving(boolean value) {
-        moving = value; 
+        intelligence = new Intelligence(gameSnake, playerSnake, food);
     }
 
     /**
@@ -65,15 +44,23 @@ public class GameModel {
             return;
         }
         moving = false;
-        snake.move();
-        if (snake.checkCollisionWithBody(snake.getHead())) {
+        playerSnake.move();
+        intelligence.manageGameSnake();
+        gameSnake.move();
+        if (playerSnake.checkHeadCollisionWithItsBody()
+                || playerSnake.checkCollisionWithHead(gameSnake.getBody())) {
             gameOver();
+            return;
         }
-        if (snake.checkCollisionWithHead(food)) {
-            snake.growUp();
+        if (gameSnake.checkHeadCollisionWithItsBody()
+                || gameSnake.checkCollisionWithHead(playerSnake.getBody())) {
+            gameSnake = new Snake(playerSnake.getWidth(), playerSnake.getHeight());
+        }
+        if (playerSnake.checkCollisionWithHead(food)) {
+            playerSnake.growUp();
             do {
                 food.generateNew();
-            } while (snake.checkCollisionWithBody(food));
+            } while (playerSnake.checkCollisionWithBody(food));
         }
     }
 

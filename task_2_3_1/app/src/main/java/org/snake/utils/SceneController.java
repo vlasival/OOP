@@ -1,4 +1,6 @@
-package org.snake.viewmodel;
+package org.snake.utils;
+
+import org.snake.logger.MyLogger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -16,11 +18,13 @@ public class SceneController extends Application {
      * Starting method for javafx application.
      */
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         primaryStage.setTitle("Snake Game");
         primaryStage.setResizable(false);
         ChangeSceneManager.setPrimaryStage(primaryStage);
+        MyLogger.info("primary stage setted", this.getClass());
         ChangeSceneManager.changeScene(SceneType.MENU);
+        MyLogger.info("primary scene changed", this.getClass());
     }
 
     /**

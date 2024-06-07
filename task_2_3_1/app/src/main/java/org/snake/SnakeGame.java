@@ -1,6 +1,6 @@
 package org.snake;
 
-import org.snake.viewmodel.SceneController;
+import org.snake.utils.SceneController;
 
 /**
  * Entry point to the application.

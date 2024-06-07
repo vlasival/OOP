@@ -1,6 +1,8 @@
 package org.snake.viewmodel;
 
-import java.io.IOException;
+import org.snake.utils.ChangeSceneManager;
+import org.snake.utils.SceneType;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
@@ -29,32 +31,20 @@ public class MenuView implements View {
 
     @FXML
     private void presEasy() {
-        try {
-            GameView.setDifficulty(200);
-            ChangeSceneManager.changeScene(SceneType.GAME);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        GameView.setDifficulty(200);
+        ChangeSceneManager.changeScene(SceneType.GAME);
     }
 
     @FXML
     private void presMedium() {
-        try {
-            GameView.setDifficulty(100);
-            ChangeSceneManager.changeScene(SceneType.GAME);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        GameView.setDifficulty(100);
+        ChangeSceneManager.changeScene(SceneType.GAME);
     }
 
     @FXML
     private void presHard() {
-        try {
-            GameView.setDifficulty(50);
-            ChangeSceneManager.changeScene(SceneType.GAME);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        GameView.setDifficulty(50);
+        ChangeSceneManager.changeScene(SceneType.GAME);
     }
     
 }

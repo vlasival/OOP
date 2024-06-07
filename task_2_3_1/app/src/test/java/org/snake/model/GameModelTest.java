@@ -25,7 +25,7 @@ public class GameModelTest {
 
     @Test
     public void testSnakeNotNull() {
-        assertNotNull(gameModel.getSnake());
+        assertNotNull(gameModel.getPlayerSnake());
     }
 
     @Test
@@ -42,9 +42,9 @@ public class GameModelTest {
 
     @Test
     public void testGameUpdateMovesSnake() {
-        double initialSnakeX = gameModel.getSnake().getHead().getX();
+        double initialSnakeX = gameModel.getPlayerSnake().getHead().getXcord();
         gameModel.update();
-        double newSnakeX = gameModel.getSnake().getHead().getX();
+        double newSnakeX = gameModel.getPlayerSnake().getHead().getXcord();
         assertNotEquals(initialSnakeX, newSnakeX);
     }
 
@@ -52,29 +52,29 @@ public class GameModelTest {
     public void testGameOverWhenSnakeCollidesWithItself() {
         for (int i = 0; i < 5; i++) {
             gameModel.update();
-            gameModel.getSnake().growUp();
+            gameModel.getPlayerSnake().growUp();
         }
         
-        gameModel.getSnake().turnDown();
+        gameModel.getPlayerSnake().turnDown();
         gameModel.update(); 
-        gameModel.getSnake().turnRight();
+        gameModel.getPlayerSnake().turnRight();
         gameModel.update(); 
-        gameModel.getSnake().turnUp();
+        gameModel.getPlayerSnake().turnUp();
         gameModel.update();
-        gameModel.getSnake().turnLeft();
+        gameModel.getPlayerSnake().turnLeft();
         gameModel.update();
 
-        assertTrue(gameModel.getSnake().checkCollisionWithBody(gameModel.getSnake().getHead()));
+        assertTrue(gameModel.getPlayerSnake().checkCollisionWithBody(gameModel.getPlayerSnake().getHead()));
         assertTrue(gameModel.isGameOvered);
-        assertEquals(6, gameModel.getSnake().getLength());
+        assertEquals(6, gameModel.getPlayerSnake().getLength());
     }
 
     @Test
     public void testListsElementsNotEqual() {
-        int initialSnakeList = gameModel.getSnake().getElements().size();
-        gameModel.getSnake().growUp();
+        int initialSnakeList = gameModel.getPlayerSnake().getBody().size();
+        gameModel.getPlayerSnake().growUp();
         gameModel.update();
-        int newSnakeList = gameModel.getSnake().getElements().size();
+        int newSnakeList = gameModel.getPlayerSnake().getBody().size();
         assertNotEquals(initialSnakeList, newSnakeList);
     }
 }

@@ -1,10 +1,12 @@
-package org.snake.viewmodel;
+package org.snake.utils;
 
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.snake.SnakeGame;
+import org.snake.logger.MyLogger;
+import org.snake.viewmodel.View;
 
 /**
  * Loader scenes class.
@@ -36,9 +38,15 @@ public class ChangeSceneManager {
         return currentScene;
     }
 
-    private static void loadScene(String fxmlFile) throws IOException {
+    private static void loadScene(String fxmlFile) {
         FXMLLoader loader = new FXMLLoader(SnakeGame.class.getResource(fxmlFile));
-        Scene scene = new Scene(loader.load());
+        Scene scene;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            MyLogger.err("Failed to load file in", ChangeSceneManager.class);
+            return;
+        }
         primaryStage.setScene(scene);
         primaryStage.show();
         currentScene = scene;
@@ -53,7 +61,7 @@ public class ChangeSceneManager {
      * @param type scene type
      * @throws IOException throws if coudn't read a file
      */
-    public static void changeScene(SceneType type) throws IOException {
+    public static void changeScene(SceneType type) {
         switch (type) {
             case GAME:
                 loadScene("game_space.fxml");

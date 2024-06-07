@@ -27,7 +27,7 @@ public class Food extends Element {
      * Generates a new random position for the food within the specified width and height.
      */
     public void generateNew() {
-        xcord = random.nextInt(width);
-        ycord = random.nextInt(height);
+        setXcord(random.nextInt(width));
+        setYcord(random.nextInt(height));
     }
 }

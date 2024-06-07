@@ -14,6 +14,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import org.snake.model.Element;
 import org.snake.model.GameModel;
+import org.snake.utils.ChangeSceneManager;
+import org.snake.utils.SceneController;
 
 /**
  * GameView is middle ModelView class.
@@ -62,13 +64,13 @@ public class GameView implements View {
                 model.setMoving(true);
                 KeyCode code = event.getCode();
                 if (code == KeyCode.LEFT) {
-                    model.getSnake().turnLeft();
+                    model.getPlayerSnake().turnLeft();
                 } else if (code == KeyCode.RIGHT) {
-                    model.getSnake().turnRight();
+                    model.getPlayerSnake().turnRight();
                 } else if (code == KeyCode.UP) {
-                    model.getSnake().turnUp();
+                    model.getPlayerSnake().turnUp();
                 } else if (code == KeyCode.DOWN) {
-                    model.getSnake().turnDown();
+                    model.getPlayerSnake().turnDown();
                 }
             }
         });
@@ -80,11 +82,25 @@ public class GameView implements View {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
+    
+    /**
+     * Updates the game screen every frame.
+     */
+    private void updateScreen() {
+        pane.getChildren().clear();
+        for (Element element : model.getPlayerSnake().getBody()) {
+            drawRectangle(Color.GREEN, element.getXcord(), element.getYcord());
+        }
+        for (Element element : model.getGameSnake().getBody()) {
+            drawRectangle(Color.AQUA, element.getXcord(), element.getYcord());
+        }
+        drawRectangle(Color.RED, model.getFood().getXcord(), model.getFood().getYcord());
+    }
 
     private void update() {
         model.update();
         updateScreen();
-        score.setText(String.valueOf(model.getSnake().getLength()));
+        score.setText(String.valueOf(model.getPlayerSnake().getLength()));
         if (model.isGameOvered) {
             gameOver();
         }
@@ -118,16 +134,5 @@ public class GameView implements View {
         );
         rect.setFill(color);
         pane.getChildren().add(rect);
-    }
-
-    /**
-     * Updates the game screen every frame.
-     */
-    public void updateScreen() {
-        pane.getChildren().clear();
-        for (Element element : model.getSnake().getElements()) {
-            drawRectangle(Color.GREEN, element.getX(), element.getY());
-        }
-        drawRectangle(Color.RED, model.getFood().getX(), model.getFood().getY());
     }
 }
