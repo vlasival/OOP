@@ -2,7 +2,6 @@ package org.snake.model;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import lombok.Getter;
 
 /**
@@ -127,6 +126,11 @@ public class Snake {
         }
     }
 
+    /**
+     * Checks if this snake's head collides with it's body.
+     *
+     * @return true if collides, false othrewise
+     */
     public boolean checkHeadCollisionWithItsBody() {
         for (int i = 1; i < body.size(); i++) {
             if (checkCollisionWithHead(body.get(i))) {
@@ -153,7 +157,8 @@ public class Snake {
      * @return true if the snake's head has collided with an element, false otherwise
      */
     protected boolean checkCollisionWithHead(Element collider) {
-        if (collider.getXcord() == getHead().getXcord() && collider.getYcord() == getHead().getYcord()) {
+        if (collider.getXcord() == getHead().getXcord() 
+            && collider.getYcord() == getHead().getYcord()) {
             return true;
         }
         return false;
@@ -162,7 +167,7 @@ public class Snake {
     /**
      * Checks if any of list of elements has collided with snake's head.
      *
-     * @param collider list of elements to check for collision
+     * @param colliders list of elements to check for collision
      * @return true if the snake's head has collided with any element, false otherwise
      */
     protected boolean checkCollisionWithHead(List<Element> colliders) {

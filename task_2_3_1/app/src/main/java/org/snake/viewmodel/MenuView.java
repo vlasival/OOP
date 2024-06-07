@@ -1,11 +1,10 @@
 package org.snake.viewmodel;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import org.snake.logger.MyLogger;
 import org.snake.utils.ChangeSceneManager;
 import org.snake.utils.SceneType;
-
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 
 /**
  * ModelView for menu scene.

@@ -1,9 +1,8 @@
 package org.snake.model;
 
-import org.snake.logger.MyLogger;
-
 import lombok.Getter;
 import lombok.Setter;
+import org.snake.logger.MyLogger;
 
 /**
  * Business model of snake game.

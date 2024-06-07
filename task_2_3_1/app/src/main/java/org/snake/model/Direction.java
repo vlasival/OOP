@@ -2,7 +2,6 @@ package org.snake.model;
 
 import java.util.Arrays;
 import java.util.List;
-
 import lombok.Getter;
 
 /**

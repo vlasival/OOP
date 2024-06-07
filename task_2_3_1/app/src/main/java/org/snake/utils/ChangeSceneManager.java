@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
-
 import org.snake.SnakeGame;
 import org.snake.logger.MyLogger;
 import org.snake.viewmodel.View;

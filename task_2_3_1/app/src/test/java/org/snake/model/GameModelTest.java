@@ -82,7 +82,9 @@ public class GameModelTest {
         gameModel.getPlayerSnake().turnLeft();
         gameModel.update();
 
-        assertTrue(gameModel.getPlayerSnake().checkCollisionWithBody(gameModel.getPlayerSnake().getHead()));
+        assertTrue(gameModel.getPlayerSnake().checkCollisionWithBody(
+            gameModel.getPlayerSnake().getHead())
+        );
         assertTrue(gameModel.isGameOvered);
         assertEquals(6, gameModel.getPlayerSnake().getLength());
     }

@@ -14,7 +14,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import lombok.Getter;
 import lombok.Setter;
-
 import org.snake.logger.MyLogger;
 import org.snake.model.Element;
 import org.snake.model.GameModel;
