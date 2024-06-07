@@ -1,4 +1,6 @@
 module:org.snake
 org.snake
+org.snake.logger
 org.snake.model
+org.snake.utils
 org.snake.viewmodel

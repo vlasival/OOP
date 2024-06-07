@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"org.snake","l":"org.snake"},{"m":"org.snake","l":"org.snake.model"},{"m":"org.snake","l":"org.snake.viewmodel"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"org.snake","l":"org.snake"},{"m":"org.snake","l":"org.snake.logger"},{"m":"org.snake","l":"org.snake.model"},{"m":"org.snake","l":"org.snake.utils"},{"m":"org.snake","l":"org.snake.viewmodel"}];updateSearchResults();
