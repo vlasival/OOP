@@ -12,6 +12,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import lombok.Getter;
+import lombok.Setter;
+
+import org.snake.logger.MyLogger;
 import org.snake.model.Element;
 import org.snake.model.GameModel;
 import org.snake.utils.ChangeSceneManager;
@@ -32,21 +36,9 @@ public class GameView implements View {
 
     private Timeline timeline;
 
+    @Getter
+    @Setter
     private static int difficulty;
-
-    /**
-     * Getter for game speed.
-     */
-    public static int getDifficulty() {
-        return difficulty;
-    }
-
-    /**
-     * Setter for game speed.
-     */
-    public static void setDifficulty(int difficulty) {
-        GameView.difficulty = difficulty;
-    }
 
     /**
      * Method starts game.
@@ -81,6 +73,7 @@ public class GameView implements View {
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
+        MyLogger.info("Game started", getClass());
     }
     
     /**
@@ -97,6 +90,9 @@ public class GameView implements View {
         drawRectangle(Color.RED, model.getFood().getXcord(), model.getFood().getYcord());
     }
 
+    /**
+     * Helper for updating screen.
+     */
     private void update() {
         model.update();
         updateScreen();
@@ -106,6 +102,9 @@ public class GameView implements View {
         }
     }
 
+    /**
+     * Calls if game was overed for player.
+     */
     private void gameOver() {
         pane.getChildren().clear();
         try {

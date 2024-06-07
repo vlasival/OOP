@@ -21,6 +21,12 @@ public class Snake {
     @Getter
     private int height;
 
+    /**
+     * Constructior.
+     *
+     * @param width width of game board
+     * @param height height of game board
+     */
     public Snake(int width, int height) {
         this.width = width;
         this.height = height;
@@ -153,6 +159,12 @@ public class Snake {
         return false;
     }
 
+    /**
+     * Checks if any of list of elements has collided with snake's head.
+     *
+     * @param collider list of elements to check for collision
+     * @return true if the snake's head has collided with any element, false otherwise
+     */
     protected boolean checkCollisionWithHead(List<Element> colliders) {
         for (Element e : colliders) {
             if (checkCollisionWithHead(e)) {

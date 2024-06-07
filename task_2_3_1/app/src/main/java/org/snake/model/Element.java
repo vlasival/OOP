@@ -28,6 +28,12 @@ public class Element {
         this.ycord = y;
     }
 
+    /**
+     * Checks collision of this element and list of another elements.
+     *
+     * @param elements list of elements
+     * @return true if collides, false othrewise
+     */
     public boolean checkCollisionWithOthers(List<Element> elements) {
         for (Element e : elements) {
             if (e.getXcord() == this.getXcord() && e.getYcord() == this.getYcord()) {

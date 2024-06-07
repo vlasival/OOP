@@ -1,5 +1,7 @@
 package org.snake.model;
 
+import org.snake.logger.MyLogger;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -55,17 +57,29 @@ public class GameModel {
         if (gameSnake.checkHeadCollisionWithItsBody()
                 || gameSnake.checkCollisionWithHead(playerSnake.getBody())) {
             gameSnake = new Snake(playerSnake.getWidth(), playerSnake.getHeight());
+            MyLogger.info("Game snake was stain. But it'll be back", getClass());
         }
         if (playerSnake.checkCollisionWithHead(food)) {
             playerSnake.growUp();
             do {
                 food.generateNew();
             } while (playerSnake.checkCollisionWithBody(food));
+            MyLogger.info("Player snake grown up", getClass());
+        }
+        if (gameSnake.checkCollisionWithHead(food)) {
+            gameSnake.growUp();
+            do {
+                food.generateNew();
+            } while (gameSnake.checkCollisionWithBody(food));
+            MyLogger.info("Game snake grown up", getClass());
         }
     }
 
+    /**
+     * Calls if player's snake was died.
+     */
     private void gameOver() {
         isGameOvered = true;
-        System.out.println("Game over :(");
+        MyLogger.info("Game over XD", getClass());
     }
 }

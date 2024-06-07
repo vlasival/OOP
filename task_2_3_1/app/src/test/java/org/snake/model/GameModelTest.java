@@ -18,21 +18,33 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 public class GameModelTest {
     private GameModel gameModel;
 
+    /**
+     * Setting up the environment.
+     */
     @BeforeAll
     public void setUp() {
         gameModel = new GameModel(10, 10);
     }
 
+    /**
+     * Tests if snake not null.
+     */
     @Test
     public void testSnakeNotNull() {
         assertNotNull(gameModel.getPlayerSnake());
     }
 
+    /**
+     * Tests if food not null.
+     */
     @Test
     public void testFoodNotNull() {
         assertNotNull(gameModel.getFood());
     }
 
+    /**
+     * Test moving flag.
+     */
     @Test
     public void testGameInitiallyNotMoving() {
         assertFalse(gameModel.isMoving());
@@ -40,6 +52,9 @@ public class GameModelTest {
         assertTrue(gameModel.isMoving());
     }
 
+    /**
+     * Test snake movement.
+     */
     @Test
     public void testGameUpdateMovesSnake() {
         double initialSnakeX = gameModel.getPlayerSnake().getHead().getXcord();
@@ -48,6 +63,9 @@ public class GameModelTest {
         assertNotEquals(initialSnakeX, newSnakeX);
     }
 
+    /**
+     * Test collides with itself.
+     */
     @Test
     public void testGameOverWhenSnakeCollidesWithItself() {
         for (int i = 0; i < 5; i++) {
@@ -69,6 +87,9 @@ public class GameModelTest {
         assertEquals(6, gameModel.getPlayerSnake().getLength());
     }
 
+    /**
+     * Test snake growth.
+     */
     @Test
     public void testListsElementsNotEqual() {
         int initialSnakeList = gameModel.getPlayerSnake().getBody().size();

@@ -4,6 +4,9 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import lombok.Getter;
+import lombok.Setter;
+
 import org.snake.SnakeGame;
 import org.snake.logger.MyLogger;
 import org.snake.viewmodel.View;
@@ -13,31 +16,18 @@ import org.snake.viewmodel.View;
  */
 public class ChangeSceneManager {
 
+    @Getter
     private static Scene currentScene;
 
+    @Getter
+    @Setter
     private static Stage primaryStage;
 
     /**
-     * Getter for primary stage.
+     * Loads scene from fxml.
+     *
+     * @param fxmlFile name of file in resources
      */
-    public static Stage getPrimaryStage() {
-        return primaryStage;
-    }
-
-    /**
-     * Setter for primary stage.
-     */
-    public static void setPrimaryStage(Stage primaryStage) {
-        ChangeSceneManager.primaryStage = primaryStage;
-    }
-
-    /**
-     * Getter for current loaded scene.
-     */
-    public static Scene getCurrentScene() {
-        return currentScene;
-    }
-
     private static void loadScene(String fxmlFile) {
         FXMLLoader loader = new FXMLLoader(SnakeGame.class.getResource(fxmlFile));
         Scene scene;
@@ -59,15 +49,16 @@ public class ChangeSceneManager {
      * Method to change a current scene.
      *
      * @param type scene type
-     * @throws IOException throws if coudn't read a file
      */
     public static void changeScene(SceneType type) {
         switch (type) {
             case GAME:
                 loadScene("game_space.fxml");
+                MyLogger.info("Game scene loaded", ChangeSceneManager.class);
                 break;
             case MENU:
                 loadScene("menu.fxml");
+                MyLogger.info("Menu scene loaded", ChangeSceneManager.class);
                 break;
             default:
                 break;

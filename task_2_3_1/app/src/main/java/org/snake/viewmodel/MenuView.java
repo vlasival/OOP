@@ -1,5 +1,6 @@
 package org.snake.viewmodel;
 
+import org.snake.logger.MyLogger;
 import org.snake.utils.ChangeSceneManager;
 import org.snake.utils.SceneType;
 
@@ -29,22 +30,34 @@ public class MenuView implements View {
         
     }
 
+    /**
+     * If Easy button was pressed.
+     */
     @FXML
     private void presEasy() {
         GameView.setDifficulty(200);
         ChangeSceneManager.changeScene(SceneType.GAME);
+        MyLogger.info("Easy mode was chosen", getClass());
     }
 
+    /**
+     * If Medium button was pressed.
+     */
     @FXML
     private void presMedium() {
         GameView.setDifficulty(100);
         ChangeSceneManager.changeScene(SceneType.GAME);
+        MyLogger.info("Medium mode was chosen", getClass());
     }
 
+    /**
+     * If Hard button was pressed.
+     */
     @FXML
     private void presHard() {
         GameView.setDifficulty(50);
         ChangeSceneManager.changeScene(SceneType.GAME);
+        MyLogger.info("Hard mode was chosen", getClass());
     }
     
 }
